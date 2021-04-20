@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Gestion projets</title>
+      <title>Gestion des projets</title>
 
       <!-- Custom styles for this template -->
       <link href="css/sidebar.css" rel="stylesheet">
