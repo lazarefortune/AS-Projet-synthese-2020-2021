@@ -167,7 +167,7 @@
                                        Selectionner une promotion
                                        <form class="mt-2">
                                           <div class="form-check">
-                                             <input class="form-check-input" type="radio" name="promoName" id="checkPromo1" disabled>
+                                             <input class="form-check-input" type="radio" name="promoName" id="checkPromo1">
                                              <label class="form-check-label" for="flexRadioDefault1">
                                              Année spéciale
                                              </label>
