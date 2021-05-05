@@ -1,0 +1,62 @@
+{% extends "layouts/admin_simple.html.twig" %}
+
+{% block admin_content %}
+    <main class="auth auth-floated">
+        <!-- .auth-announcement -->
+        <div id="announcement" class="auth-announcement" style="background-image: url(assets/images/illustration/img-1.png);">
+          <div class="announcement-body">
+            <h2 class="announcement-title"> Gestion des Projets Tutorés </h2>
+              <div class="jumbotron">
+                  <p class="blockquote">
+                      EXPLICATIONS UTILISATION SITE <br>
+                      bienvenue ! <br>
+                      Sur ce site vous pourrez accéder aux informations concernant les groupes de projets tutorés.
+                  </p>
+              </div>
+
+          </div>
+        </div>
+
+
+        <form class="auth-form" method="post">
+          <div class="mb-4">
+              <a href="{{ path('home') }}">
+                  <div class="mb-3">
+                      <img class="rounded" src="{{ asset('assets/images/Logo_IUT_Metz.Info_UL.small.png') }}" alt="" height="72">
+                  </div>
+              </a>
+            <h1 class="h3"> Connexion </h1>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="d-block text-left" for="login">Identifiant</label>
+            <input type="text" name="login" id="login" class="form-control form-control-lg" required="">
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="d-block text-left" for="password">Mot de passe</label>
+              <input type="password" name="password" id="password" class="form-control form-control-lg" required="">
+          </div>
+
+          <div class="form-group mb-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+          </div>
+
+          <!-- .form-group
+          <div class="form-group text-center">
+            <div class="custom-control custom-control-inline custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="remember-me"> <label class="custom-control-label" for="remember-me">Rester connecté</label>
+            </div>
+          </div>-->
+
+          <p class="py-2">
+            <a href="{{ path('password_reset') }}" class="link">Mot de passe oublié ?</a>
+          </p>
+
+
+          <p class="mb-0 px-3 text-muted text-center"> © 2021 All Rights Reserved. 
+          </p>
+        </form>
+
+      </main>
+{% endblock %}

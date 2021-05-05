@@ -1,0 +1,40 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+            {# Ceci est la page d'accueil
+            <div class="card-metric mt-4">
+                Informations: 
+            </div> #}
+
+            <div class="card card-fluid mt-4 p-3">
+                Bienvenue sur la page d'accueil
+            </div>
+
+            <div class="alert alert-danger">
+                <span class="font-weight-bold">Informations:</span> <br>
+                <ul>
+                    <li>Certaines pages ne sont pas encore disponibles</li>
+                    <li>Les fonctionnalités ne sont pas encore disonibles</li>
+                    <li>Vous pouvez consulter la page de connexion en cliquant sur "déconnexion"</li>
+                    <li>Les pages disponibles sont :
+                        <ol>
+                            <li>Connexion</li>
+                            <li>Mot de passe oublié</li>
+                            <li>Profil</li>
+                            <li>Email</li>
+                            <li>Liste des groupes, consultation et modification des notes</li>
+                            <li>Liste des encadrants, ajout d'un encadrant</li>
+                        </ol>
+                        
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+{% endblock %}

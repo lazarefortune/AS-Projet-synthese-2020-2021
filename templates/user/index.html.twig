@@ -1,0 +1,69 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+	<div class="row mt-4">
+		<div class="mx-auto col-md-11">
+			<div class="card card-fluid">
+				<h6 class="card-header">
+					Profile
+				</h6>
+				<!-- .card-body -->
+				<div
+					class="card-body">
+					<!-- form -->
+					<form
+						method="post">
+						<!-- form row -->
+						<div
+							class="form-row">
+							<!-- form column -->
+							<div class="col-md-6 mb-3">
+								<label for="input01">Nom</label>
+								<input type="text" class="form-control" id="input01" value="Nom" required="">
+							</div>
+							<!-- /form column -->
+							<!-- form column -->
+							<div class="col-md-6 mb-3">
+								<label for="input02">Prénom</label>
+								<input type="text" class="form-control" id="input02" value="Prénom" required="">
+							</div>
+							<!-- /form column -->
+						</div>
+						<!-- /form row -->
+						<!-- .form-group -->
+						<div class="form-group">
+							<label for="input03">Adresse e-mail</label>
+							<input type="email" class="form-control" id="input03" value="utilisateur@univ-lorraine.fr" required="">
+						</div>
+						<!-- /.form-group -->
+						<!-- .form-group -->
+						<div class="form-group">
+							<label for="input04">Nouveau mot de passe</label>
+							<input type="password" class="form-control" id="input04" value="secret" required="">
+						</div>
+						<!-- /.form-group -->
+						<!-- .form-group -->
+						<div class="form-group">
+							<label for="input05">Identifiant de connexion</label>
+							<input type="text" class="form-control" id="input05" value="bent10" required="">
+							<small class="text-muted">Dolores reiciendis, eos accusamus nobis at omnis consequuntur culpa tempore saepe animi.</small>
+						</div>
+						<!-- /.form-group -->
+						<hr>
+						<!-- .form-actions -->
+						<div
+							class="form-actions">
+							<!-- enable submit btn when user type their current password -->
+							<input type="password" class="form-control mr-3" id="input06" placeholder="Entrez le mot de passe actuel" required="">
+							<button type="submit" class="btn btn-primary text-nowrap ml-auto" disabled>Mettre à jour</button>
+						</div>
+						<!-- /.form-actions -->
+					</form>
+					<!-- /form -->
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+	</div>
+{% endblock %}

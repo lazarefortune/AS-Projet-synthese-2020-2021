@@ -1,3 +1,51 @@
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+group_list:
+    path: /groupes
+    controller: App\Controller\Admin\GroupController::group_list
+
+group_notes:
+    path: /groupe/{groupId}/notes
+    controller: App\Controller\Admin\GroupController::group_notes
+
+group_notes_edit:
+    path: /groupe/{groupId}/edit/{typeEval}
+    defaults:
+        typeEval: sout
+    controller: App\Controller\Admin\GroupController::edit_note
+
+# group_notes_edit_poster:
+#     path: /groupe/{groupId}/edit/{typeEval}
+#     defaults:
+#         typeEval: poster
+#     controller: App\Controller\Admin\GroupController::edit_note
+
+account:
+    path: /profile
+    controller: App\Controller\UserController::index
+
+evaluator_list:
+    path: /evaluateurs
+    controller: App\Controller\Admin\EvaluatorController::list
+
+email:
+    path: /email
+    controller: App\Controller\Admin\EmailController::index
+
+maintenance:
+    path: /maintenance
+    controller: App\Controller\MaintenanceController::index
+
+login:
+    path: /connexion
+    controller: App\Controller\Auth\AuthController::login
+
+password_reset:
+    path: /mot-de-passe/recuperation
+    controller: App\Controller\Auth\AuthController::password_reset_form
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index

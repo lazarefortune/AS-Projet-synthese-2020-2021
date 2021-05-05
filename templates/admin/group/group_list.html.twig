@@ -1,0 +1,43 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+    <h4 class="text-center my-4">liste des groupes</h4>
+
+    <section class="px-5">            
+        <div class="input-group mb-1 w-75 mx-auto">
+            <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
+            </div>
+        </div>   
+        
+        <div class="table-responsive">
+            <table class="table table-hover my-5">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width:2%;"></td>
+                        <th scope="col" class="align-middle text-center min-vw-5" style="width:5%;">n°</td>
+                        <th scope="col" class="align-middle text-center" style="width:60%;">Titre du Projet</td>
+                        <th scope="col" class="align-middle text-center" style="width:30%;">Nom de l'encadrant</td>
+                        <th scope="col" class="align-middle text-center min-vw-5" style="width:5%;">Nombre d'étudiants</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for id in [1,2,3,4,5] %}
+                    <tr>
+                        <th><input class="align-bottom" type="radio" name="grp" value="groupe_1"></input></th>
+                        <td class="text-center align-middle"> {{ id }} </td>
+                        <td class=" pl-4 align-middle">Titre du projet </td>
+                        <td class="text-center align-middle"> Nom et prénom </td>
+                        <td class="text-center align-middle"> {{ id+3 }} </td>
+                        <td> <a href="{{ path('group_notes', {groupId: id}) }}"><button class="btn btn-outline-primary btn-sm">Notes</button></a> </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+            
+        </div>
+        
+    </section>
+{% endblock %}
