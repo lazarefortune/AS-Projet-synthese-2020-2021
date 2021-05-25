@@ -29,7 +29,7 @@
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
 
-		{% block javascripts %}{% endblock %}
+		{% block head_javascripts %}{% endblock %}
 	</head>
 	<body>
 		{% block admin_header %}
@@ -376,11 +376,12 @@
 				<!-- Menu Toggle Script -->
 				<script>
 					$(".menu-toggle").click(function (e) {
-e.preventDefault();
-$("#wrapper").toggleClass("toggled");
-});
+					e.preventDefault();
+					$("#wrapper").toggleClass("toggled");
+					});
 				</script>
-
+	
+				{% block javascripts %}{% endblock %}
 			</body>
 		</html>
 	</body>

@@ -5,238 +5,238 @@
 {% endblock %}
 
 {% block admin_content %}
-    <!-- .page-navs -->
-                  <nav class="page-navs mb-4">
-                     <!-- .nav-scroller -->
-                     <div class="row nav-scroller">
-                        <!-- .nav -->
-                        <div class="nav nav-center nav-tabs offset-md-1 col-md-10" id="nav-tabs" role="tablist">
-                           <a href="#nav-list" class="nav-link active" id="nav-list-tab" data-toggle="tab" role="tab" aria-controls="nav-list" aria-selected="true">Consulter la liste</a>
-                           <a href="#nav-addform" class="nav-link" id="nav-addform-tab" data-toggle="tab" role="tab" aria-controls="nav-addform" aria-selected="false">Ajouter un évaluateur</a>
-                        </div>
-                        <!-- /.nav -->
+   <!-- .page-navs -->
+   <nav class="page-navs mb-4">
+      <!-- .nav-scroller -->
+      <div class="row nav-scroller">
+         <!-- .nav -->
+         <div class="nav nav-center nav-tabs offset-md-1 col-md-10" id="nav-tabs" role="tablist">
+            <a href="#nav-list" class="nav-link active" id="nav-list-tab" data-toggle="tab" role="tab" aria-controls="nav-list" aria-selected="true">Consulter la liste</a>
+            <a href="#nav-addform" class="nav-link" id="nav-addform-tab" data-toggle="tab" role="tab" aria-controls="nav-addform" aria-selected="false">Ajouter un évaluateur</a>
+         </div>
+         <!-- /.nav -->
+      </div>
+      <!-- /.nav-scroller -->
+   </nav>
+   <!-- /.page-navs -->
+   <!-- tab-content -->
+   <div class="row tab-content justify-content-center" id="nav-tabContent">
+      <!-- .tabe-pane -->
+      <div class="col-md-10 tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+         <!-- .card -->
+         <div class="card card-fluid">
+            <!-- .card-header -->
+            <div class="card-header">
+               Evaluateurs 
+            </div>
+            <!-- /.card-header -->
+            <!-- .card-body -->
+            <div class="card-body">
+               <div class="form-group">
+                  <!-- .input-group -->
+                  <div class="input-group input-group-alt w-90">
+                     <!-- .input-group -->
+                     <div class="input-group has-clearable">
+                        <button id="clear-search" type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button>
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+                        </div><input id="table-search" type="text" class="form-control" placeholder="Recherche">
                      </div>
-                     <!-- /.nav-scroller -->
-                  </nav>
-                  <!-- /.page-navs -->
-                  <!-- tab-content -->
-                  <div class="row tab-content justify-content-center" id="nav-tabContent">
-                     <!-- .tabe-pane -->
-                     <div class="col-md-10 tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-                        <!-- .card -->
-                        <div class="card card-fluid">
-                           <!-- .card-header -->
-                           <div class="card-header">
-                              Evaluateurs 
-                           </div>
-                           <!-- /.card-header -->
-                           <!-- .card-body -->
-                           <div class="card-body">
-                              <div class="form-group">
-                                 <!-- .input-group -->
-                                 <div class="input-group input-group-alt w-90">
-                                    <!-- .input-group -->
-                                    <div class="input-group has-clearable">
-                                       <button id="clear-search" type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button>
-                                       <div class="input-group-prepend">
-                                          <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                       </div><input id="table-search" type="text" class="form-control" placeholder="Recherche">
-                                    </div>
-                                    <!-- /.input-group -->
-                                 </div>
-                                 <!-- /.input-group -->
-                              </div>
-                              <!-- .table-responsive -->
-                              <div class="table-responsive">
-                                 <!-- .table -->
-                                 <table class="table">
-                                    <!-- thead -->
-                                    <thead>
-                                       <tr>
-                                          <th style="min-width: 180px;">Nom</th>
-                                       <th style="min-width: 250px;">Titre projet</th>
-                                       <th>Groupe</th>
-                                       <th></th>
-                                    </tr>
-                                 </thead>
-                                 <!-- /thead -->
-                                 <!-- tbody -->
-                                 <tbody>
-                                    <tr>
-                                       <td>BAILLON Frédéric</td>
-                                          <td>La guerre invisible</td>
-                                          <td>1.6</td>
-                                          <td>
-                                             <ul class="list-inline m-0  align-items-center justify-content-center">
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
-                                                      <i class="fa fa-edit"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                                      <i class="fa fa-trash"></i>
-                                                   </button>
-                                                   <li class="list-inline-item">
-                                                      <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
-                                                         <i class="fa fa-envelope"></i>
-                                                      </button>
-                                                   </li>
-                                                </li>
-                                             </ul>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td>BOUBEL Maxime</td>
-                                          <td>Application mobile</td>
-                                          <td>2.2</td>
-                                          <td>
-                                             <ul class="list-inline m-0  align-items-center justify-content-center">
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
-                                                      <i class="fa fa-edit"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                                      <i class="fa fa-trash"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
-                                                      <i class="fa fa-envelope"></i>
-                                                   </button>
-                                                </li>
-                                             </ul>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td>BRUNELLE Quentin</td>
-                                          <td>Conception et développement d'une application de ticketing</td>
-                                          <td>2.7</td>
-                                          <td>
-                                             <ul class="list-inline m-0  align-items-center justify-content-center">
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
-                                                      <i class="fa fa-edit"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                                      <i class="fa fa-trash"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
-                                                      <i class="fa fa-envelope"></i>
-                                                   </button>
-                                                </li>
-                                             </ul>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td>CHELGHOUM Kamel</td>
-                                          <td>Application pour la gestion des enseignements</td>
-                                          <td>3.1</td>
-                                          <td>
-                                             <ul class="list-inline m-0  align-items-center justify-content-center">
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
-                                                      <i class="fa fa-edit"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                                      <i class="fa fa-trash"></i>
-                                                   </button>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                   <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
-                                                      <i class="fa fa-envelope"></i>
-                                                   </button>
-                                                </li>
-                                             </ul>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                    <!-- /tbody -->
-                                 </table>
-                                 <!-- /.table -->
-                              </div>
-                              <!-- /.table-responsive -->
-                           </div>
-                           <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                     </div>
-                     <!-- /.tab-pane -->
-                     <div class="col-md-10 tab-pane fade" id="nav-addform" role="tabpanel" aria-labelledby="nav-list-tab">
-                        <!-- .card -->
-                        <div class="card card-fluid">
-                           <!-- .card-header -->
-                           <div class="card-header"> 
-                              Formulaire d'ajout
-                           </div>
-                           <!-- /.card-header -->
-                           <!-- .card-body -->
-                           <div class="card-body">
-                              <!-- .form -->
-                              <div class="form">
-                                 <!-- .form-group -->
-                                 <div class="form-group">
-                                    <label for="tf1">Nom</label>
-                                    <input type="text" class="form-control w-90" id="tf1">
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-group -->
-                                 <div class="form-group">
-                                    <label for="tf2">Prénom</label>
-                                    <input type="text" class="form-control w-90" id="tf2">
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-group -->
-                                 <div class="form-group">
-                                    <label for="tf3">Adresse e-mail</label>
-                                    <input type="email" class="form-control w-90" id="tf3">
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-group -->
-                                 <div class="form-group">
-                                    <label for="tf4">Identifiant</label>
-                                    <input type="text" class="form-control w-90" id="tf4">
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-group -->
-                                 <div class="form-group">
-                                    <label for="tf5">Mot de passe</label>
-                                    <input type="password" class="form-control pwd w-90" id="password" name="password" data-toggle="password">
-                                    <span class="input-group-btn">
-                                       <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-                                     </span>          
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-group -->
-                                 <div class="form-group switcher">
-                                    <span>Droits administrateur</span> </br>
-                                    <label class="switcher-control">
-                                       <input type="checkbox" class="form-control w-75 switcher-input">
-                                       <span class="switcher-indicator"></span>
-                                    </label>
-                                 </div>
-                                 <!-- /.form-group -->
-                                 <!-- .form-actions -->
-                                 <div class="form-actions">
-                                    <button class="btn btn-primary" type="submit">Ajouter</button>
-                                 </div>
-                                 <!-- /.form-actions -->
-                              </div>
-                              <!-- /.form -->
-                           </div>
-                           <!-- /.card-body -->   
-                        </div>
-                        <!-- /.card -->
-                     </div>
-                     <!-- /.tab-pane-->   
+                     <!-- /.input-group -->
                   </div>
-                  <!-- /.tab-content -->
+                  <!-- /.input-group -->
+               </div>
+               <!-- .table-responsive -->
+               <div class="table-responsive">
+                  <!-- .table -->
+                  <table class="table">
+                     <!-- thead -->
+                     <thead>
+                        <tr>
+                           <th style="min-width: 180px;">Nom</th>
+                        <th style="min-width: 250px;">Titre projet</th>
+                        <th>Groupe</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <!-- /thead -->
+                  <!-- tbody -->
+                  <tbody>
+                     <tr>
+                        <td>BAILLON Frédéric</td>
+                           <td>La guerre invisible</td>
+                           <td>1.6</td>
+                           <td>
+                              <ul class="list-inline m-0  align-items-center justify-content-center">
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
+                                       <i class="fa fa-edit"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                       <i class="fa fa-trash"></i>
+                                    </button>
+                                    <li class="list-inline-item">
+                                       <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
+                                          <i class="fa fa-envelope"></i>
+                                       </button>
+                                    </li>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>BOUBEL Maxime</td>
+                           <td>Application mobile</td>
+                           <td>2.2</td>
+                           <td>
+                              <ul class="list-inline m-0  align-items-center justify-content-center">
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
+                                       <i class="fa fa-edit"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                       <i class="fa fa-trash"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
+                                       <i class="fa fa-envelope"></i>
+                                    </button>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>BRUNELLE Quentin</td>
+                           <td>Conception et développement d'une application de ticketing</td>
+                           <td>2.7</td>
+                           <td>
+                              <ul class="list-inline m-0  align-items-center justify-content-center">
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
+                                       <i class="fa fa-edit"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                       <i class="fa fa-trash"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
+                                       <i class="fa fa-envelope"></i>
+                                    </button>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>CHELGHOUM Kamel</td>
+                           <td>Application pour la gestion des enseignements</td>
+                           <td>3.1</td>
+                           <td>
+                              <ul class="list-inline m-0  align-items-center justify-content-center">
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Editer">
+                                       <i class="fa fa-edit"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                       <i class="fa fa-trash"></i>
+                                    </button>
+                                 </li>
+                                 <li class="list-inline-item">
+                                    <button class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Mail">
+                                       <i class="fa fa-envelope"></i>
+                                    </button>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                     <!-- /tbody -->
+                  </table>
+                  <!-- /.table -->
+               </div>
+               <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+         </div>
+         <!-- /.card -->
+      </div>
+      <!-- /.tab-pane -->
+      <div class="col-md-10 tab-pane fade" id="nav-addform" role="tabpanel" aria-labelledby="nav-list-tab">
+         <!-- .card -->
+         <div class="card card-fluid">
+            <!-- .card-header -->
+            <div class="card-header"> 
+               Formulaire d'ajout
+            </div>
+            <!-- /.card-header -->
+            <!-- .card-body -->
+            <div class="card-body">
+               <!-- .form -->
+               <div class="form">
+                  <!-- .form-group -->
+                  <div class="form-group">
+                     <label for="tf1">Nom</label>
+                     <input type="text" class="form-control w-90" id="tf1">
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-group -->
+                  <div class="form-group">
+                     <label for="tf2">Prénom</label>
+                     <input type="text" class="form-control w-90" id="tf2">
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-group -->
+                  <div class="form-group">
+                     <label for="tf3">Adresse e-mail</label>
+                     <input type="email" class="form-control w-90" id="tf3">
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-group -->
+                  <div class="form-group">
+                     <label for="tf4">Identifiant</label>
+                     <input type="text" class="form-control w-90" id="tf4">
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-group -->
+                  <div class="form-group">
+                     <label for="tf5">Mot de passe</label>
+                     <input type="password" class="form-control pwd w-90" id="password" name="password" data-toggle="password">
+                     <span class="input-group-btn">
+                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        </span>          
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-group -->
+                  <div class="form-group switcher">
+                     <span>Droits administrateur</span> </br>
+                     <label class="switcher-control">
+                        <input type="checkbox" class="form-control w-75 switcher-input">
+                        <span class="switcher-indicator"></span>
+                     </label>
+                  </div>
+                  <!-- /.form-group -->
+                  <!-- .form-actions -->
+                  <div class="form-actions">
+                     <button class="btn btn-primary" type="submit">Ajouter</button>
+                  </div>
+                  <!-- /.form-actions -->
+               </div>
+               <!-- /.form -->
+            </div>
+            <!-- /.card-body -->   
+         </div>
+         <!-- /.card -->
+      </div>
+      <!-- /.tab-pane-->   
+   </div>
+   <!-- /.tab-content -->
 {% endblock %}
