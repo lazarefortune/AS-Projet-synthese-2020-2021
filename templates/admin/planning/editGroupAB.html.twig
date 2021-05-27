@@ -1,6 +1,169 @@
 {% extends "layouts/admin.html.twig" %}
 
+{% block javascripts %}
+
+    var modal =  document.getElementById('myModal');
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function (){
+    modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+    modal.style.display = "none";
+    }
+
+
+    window.onclick = function (event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
+    }
+
+{% endblock %}
+
 {% block admin_content %}
 
-    cul
+    <h1 class="text-center my-4"> Edition des Groupes A/B </h1> </br>
+
+    <section class="px-5">
+
+
+
+        <form>
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <tbody>
+                    <tr>
+
+                        <td><div class="align-items-center text-black bg-white border border-dark rounded-pill m-2 w-50" >
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°5
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°7
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°2
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <div class="align-items-center text-black bg-white border border-dark rounded-pill  w-50 m-2 ">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°1
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°10
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        Sujet n°100
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Associer à un jury
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Choix jury et créneau</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Jury
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Michel</a></li>
+                                    <li><a class="dropdown-item" href="#">Albert</a></li>
+                                    <li><a class="dropdown-item" href="#">George</a></li>
+                                </ul>
+
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Créneaux
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">8h-12h</a></li>
+                                    <li><a class="dropdown-item" href="#">12h-15h</a></li>
+                                    <li><a class="dropdown-item" href="#">15h-17h</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="button" class="btn btn-primary">Sauvegarder</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </form>
+    </section>
+
+    </div>
+    </div>
+    </div>
+
+
+    <!-- /#page-content-wrapper -->
+
+
 {% endblock %}
