@@ -45,3 +45,11 @@ password_reset:
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+jury:
+    path: /composition-jury
+    controller: App\Controller\Admin\JuryController::index
+
+groupAB:
+    path: /composition-des-groupes
+    controller: App\Controller\Admin\GroupABController::index
