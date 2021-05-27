@@ -5,7 +5,7 @@
 		<div class="mx-auto col-md-11">
 			<div class="card card-fluid">
 				<h6 class="card-header">
-					Profile
+					Profil
 				</h6>
 				<!-- .card-body -->
 				<div
@@ -19,13 +19,13 @@
 							<!-- form column -->
 							<div class="col-md-6 mb-3">
 								<label for="input01">Nom</label>
-								<input type="text" class="form-control" id="input01" value="Nom" required="">
+								<input type="text" class="form-control" id="input01" value="{{ app.user.nomEval }}" required="">
 							</div>
 							<!-- /form column -->
 							<!-- form column -->
 							<div class="col-md-6 mb-3">
 								<label for="input02">Prénom</label>
-								<input type="text" class="form-control" id="input02" value="Prénom" required="">
+								<input type="text" class="form-control" id="input02" value="{{ app.user.prenomEval }}" required="">
 							</div>
 							<!-- /form column -->
 						</div>
@@ -33,20 +33,20 @@
 						<!-- .form-group -->
 						<div class="form-group">
 							<label for="input03">Adresse e-mail</label>
-							<input type="email" class="form-control" id="input03" value="utilisateur@univ-lorraine.fr" required="">
+							<input type="email" class="form-control" id="input03" value="{{ app.user.email }}" required="">
 						</div>
 						<!-- /.form-group -->
 						<!-- .form-group -->
 						<div class="form-group">
 							<label for="input04">Nouveau mot de passe</label>
-							<input type="password" class="form-control" id="input04" value="secret" required="">
+							<input type="password" class="form-control" id="input04" required="">
 						</div>
 						<!-- /.form-group -->
 						<!-- .form-group -->
 						<div class="form-group">
 							<label for="input05">Identifiant de connexion</label>
-							<input type="text" class="form-control" id="input05" value="bent10" required="">
-							<small class="text-muted">Dolores reiciendis, eos accusamus nobis at omnis consequuntur culpa tempore saepe animi.</small>
+							<input type="text" class="form-control" id="input05" value="{{ app.user.login }}" required="">
+							<small class="text-muted">Cet identifiant est unique et vous permet de vous connecter à la plateforme.</small>
 						</div>
 						<!-- /.form-group -->
 						<hr>

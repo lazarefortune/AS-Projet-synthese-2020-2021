@@ -23,6 +23,14 @@ security:
             anonymous: false
             lazy: true
             provider: app_user_provider
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
@@ -42,14 +50,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/mot-de-passe/recuperation, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/email,   roles: ROLE_REDACTEUR }
+        - { path: ^/email,   roles: ROLE_EVALUATOR }
         - { path: ^/, roles: ROLE_USER }
 
 
     role_hierarchy:
-        ROLE_REDACTEUR: ROLE_USER
-        ROLE_ADMIN:       [ROLE_REDACTEUR]
+        ROLE_EVALUATOR: ROLE_USER
+        ROLE_ADMIN:       [ROLE_EVALUATOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

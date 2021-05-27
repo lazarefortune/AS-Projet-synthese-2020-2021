@@ -38,10 +38,6 @@ maintenance:
     path: /maintenance
     controller: App\Controller\MaintenanceController::index
 
-login:
-    path: /connexion
-    controller: App\Controller\Auth\AuthController::login
-
 password_reset:
     path: /mot-de-passe/recuperation
     controller: App\Controller\Auth\AuthController::password_reset_form
