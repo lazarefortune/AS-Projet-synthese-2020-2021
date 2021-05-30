@@ -1,28 +1,5 @@
 {% extends "layouts/admin.html.twig" %}
 
-{% block javascripts %}
-
-    var modal =  document.getElementById('myModal');
-    var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function (){
-    modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-    modal.style.display = "none";
-    }
-
-
-    window.onclick = function (event) {
-    if (event.target == modal) {
-    modal.style.display = "none";
-    }
-    }
-
-{% endblock %}
-
 {% block admin_content %}
 
     <h1 class="text-center my-4"> Edition des Groupes A/B </h1> </br>
@@ -32,138 +9,108 @@
 
 
         <form>
-            <div class="table-responsive">
-                <table class="table table-borderless">
+
+
+                <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+                    <caption style="caption-side: top">Groupe A</caption>
+                    <thead>
+                    <tr>
+                        <th style="width: 20%" scope="col">N° sujet</th>
+                        <th style="width: 40%" scope="col">NOM</th>
+                        <th style="width: 40%" scope="col">Prenom</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     <tr>
 
-                        <td><div class="align-items-center text-black bg-white border border-dark rounded-pill m-2 w-50" >
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°5
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
+                        <td>1</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
 
-                        <td>
-                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°7
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
+                        <td>1</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
 
-                        <td>
-                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°2
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
+                    </tbody>
+                    <tbody>
+                        <tr>
+
+                            <td>2</td>
+                            <td>michel</td>
+                            <td>mi</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>2</td>
+                            <td>michou</td>
+                            <td>ro</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>2</td>
+                            <td>michou</td>
+                            <td>ro</td>
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                    <tr>
+
+                        <td>3</td>
+                        <td>michel</td>
+                        <td>mi</td>
                     </tr>
 
                     <tr>
 
-                        <td>
-                            <div class="align-items-center text-black bg-white border border-dark rounded-pill  w-50 m-2 ">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°1
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°10
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="align-items-center text-black bg-white border border-dark rounded-pill w-50 m-2">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        Sujet n°100
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </td>
+                        <td>3</td>
+                        <td>michou</td>
+                        <td>ro</td>
                     </tr>
-
                     </tbody>
-                </table>
+                </table><table style="width: 45%; display: inline-table" class="table table-bordered">
+                <caption style="caption-side: top">Groupe B</caption>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%" scope="col">N° sujet</th>
+                            <th style="width: 40%" scope="col">NOM</th>
+                            <th style="width: 40%" scope="col">Prenom</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Associer à un jury
-                </button>
+                            <td>4</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Choix jury et créneau</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Jury
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Michel</a></li>
-                                    <li><a class="dropdown-item" href="#">Albert</a></li>
-                                    <li><a class="dropdown-item" href="#">George</a></li>
-                                </ul>
+                            <td>4</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
 
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Créneaux
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">8h-12h</a></li>
-                                    <li><a class="dropdown-item" href="#">12h-15h</a></li>
-                                    <li><a class="dropdown-item" href="#">15h-17h</a></li>
-                                </ul>
-                            </div>
+                            <td>4</td>
+                            <td>@twitter</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                <button type="button" class="btn btn-primary">Sauvegarder</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="d-flex justify-content-between w-75 mt-6 mx-auto">
+                <button class="btn btn-outline-danger" type="reset">Modifier</button>
+                <button class="btn btn-success" type="submit">Enregistrer</button>
             </div>
-
-
-
 
         </form>
     </section>
-
-    </div>
-    </div>
-    </div>
-
-
-    <!-- /#page-content-wrapper -->
 
 
 {% endblock %}
