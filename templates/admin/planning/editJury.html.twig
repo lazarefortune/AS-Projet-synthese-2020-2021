@@ -7,140 +7,167 @@
 
     <h1 class="text-center my-4"> Edition des Jurys </h1> </br>
 
-    <section style="margin: 50px">
+    <!-- Première partie avec 2 tableaux -->
 
-        <button type="button" class="btn btn-primary btn-sm ">Matin</button>
-        <button type="button" class="btn btn-secondary btn-sm">Après-midi</button>
+    <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+        <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
 
-    </section>
-
-
-
-    <table class="table table-borderless">
+        <!-- Button trigger modal -->
+        <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ajouter +
+            </button></caption>
+        <thead>
+        <tr>
+            <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-10:00</th>
+            <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+        </tr>
+        </thead>
         <tbody>
         <tr>
 
-            <td><div class="align-items-center text-black bg-white border border-dark rounded-pill m-2 w-auto" >
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            AKLI Jugurta / Groupe 5-11-6-4
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
-
-            <td>
-                <div class="align-items-center text-black bg-white border border-dark rounded-pill m-2">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            HELL Mikaël / Groupe 2-9-3-4
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
-
-            <td>
-                <div class="align-items-center text-black bg-white border border-dark rounded-pill m-2">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            GRATIEN Lucas / Groupe 8-10-6
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
+            <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+            <td style="width: 35%">Richard</td>
+            <td style="width: 40%">Cramé</td>
         </tr>
-
         <tr>
 
-            <td>
-                <div class="align-items-center text-black bg-white border border-dark rounded-pill m-2 ">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            DUTERTRE David / Groupe 7-11-6
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
-
-            <td>
-                <div class="align-items-center text-black bg-white border border-dark rounded-pill m-2">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            LARROCHE Pierre / Groupe 4-5-6
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
-
-            <td>
-                <div class="align-items-center text-black bg-white border border-dark rounded-pill m-2">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            KIENER David / Groupe 8-7-6-5
-                        </div>
-                        <button type="button" class="btn-close btn-close-black me-2 m-auto btn-outline-dark" aria-label="Close"></button>
-                    </div>
-                </div>
-            </td>
+            <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+            <td>Michel</td>
+            <td>Frais</td>
         </tr>
 
         </tbody>
-    </table>
 
-
-    <button type="button" class="btn btn-secondary m-4 mt-5">Ajouter +</button>
-
+    </table><table style="width: 45%; display: inline-table" class="table table-bordered ">
+    <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Associer à un jury
-    </button>
+    <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter +
+        </button></caption>
+    <thead>
+    <tr>
+        <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-10:00</th>
+        <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+        <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+        <td style="width: 35%">Richard</td>
+        <td style="width: 40%">Cramé</td>
+    </tr>
+    <tr>
+
+        <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+        <td>Riz</td>
+        <td>Thon</td>
+    </tr>
+
+    <tr>
+
+        <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+        <td>David</td>
+        <td>Source</td>
+    </tr>
+
+    <tr>
+
+        <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+        <td>Albert</td>
+        <td>To</td>
+    </tr>
+
+    </tbody>
+
+<!-- Deuxième série de 2 tableaux -->
+
+</table>
+
+    <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+
+        <!-- Button trigger modal -->
+        <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ajouter +
+            </button></caption>
+        <thead>
+        <tr>
+            <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">10:15-11:45</th>
+            <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+            <td style="width: 35%">Richard</td>
+            <td style="width: 40%">Cramé</td>
+        </tr>
+        <tr>
+
+            <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+            <td>Michel</td>
+            <td>Frais</td>
+        </tr>
+
+        </tbody>
+
+    </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+
+    <!-- Button trigger modal -->
+    <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter +
+        </button></caption>
+    <thead>
+    <tr>
+        <th style="width: 20%; border: solid black 2px; text-align: center"" scope="col">10:15-12:00</th>
+        <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+        <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+        <td style="width: 35%">Richard</td>
+        <td style="width: 40%">Cramé</td>
+    </tr>
+    <tr>
+
+        <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+        <td>Riz</td>
+        <td>Thon</td>
+    </tr>
+
+    </tbody>
+
+</table>
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Choix jury et créneau</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Choix de l'évaluateur à ajouter</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                        Jury
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Michel</a></li>
-                        <li><a class="dropdown-item" href="#">Albert</a></li>
-                        <li><a class="dropdown-item" href="#">George</a></li>
-                    </ul>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nom de l'évaluateur" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
 
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Créneaux
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">8h-12h</a></li>
-                        <li><a class="dropdown-item" href="#">12h-15h</a></li>
-                        <li><a class="dropdown-item" href="#">15h-17h</a></li>
-                    </ul>
                 </div>
 
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Ajouter</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary">Sauvegarder</button>
                 </div>
             </div>
         </div>
 
     </div>
 
-    </div>
-    </div>
-    </div>
     <!-- /#page-content-wrapper -->
 
 {% endblock %}
