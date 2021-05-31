@@ -1,19 +1,41 @@
 {% extends "layouts/admin.html.twig" %}
 
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/Jury.css') }}" rel="stylesheet">
+{% endblock %}
+
 
 {% block admin_content %}
 
-    <!-- CONTENU DE LA PAGE A PLACER ICI -->
 
-    <h1 class="text-center my-4"> Edition des Jurys </h1> </br>
+    <h1 class="text-center my-4"> Edition des Jurys </h1>
 
+    <!-- .page-navs -->
+    <nav class="page-navs mb-4">
+        <!-- .nav-scroller -->
+        <div class="row nav-scroller">
+            <!-- .nav -->
+            <div class="nav nav-center nav-tabs offset-md-1 col-md-10" id="nav-tabs" role="tablist">
+                <a href="#nav-matin" class="nav-link active" id="nav-matin-tab" data-toggle="tab" role="tab" aria-controls="nav-list" aria-selected="true">Matin</a>
+                <a href="#nav-Aprem" class="nav-link" id="nav-Aprem-tab" data-toggle="tab" role="tab" aria-controls="nav-addform" aria-selected="false">Après-midi</a>
+            </div>
+            <!-- /.nav -->
+        </div>
+        <!-- /.nav-scroller -->
+    </nav>
+
+    <div class="row tab-content justify-content-center" id="nav-tabContent">
+
+    <!-- Onglet Matin -->
+
+    <div class="col-md-10 tab-pane fade show active" id="nav-matin" role="tabpanel" aria-labelledby="nav-matin-tab">
     <!-- Première partie avec 2 tableaux -->
 
     <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
         <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
 
         <!-- Button trigger modal -->
-        <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalMatin">
                 Ajouter +
             </button></caption>
         <thead>
@@ -42,7 +64,7 @@
     <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
 
     <!-- Button trigger modal -->
-    <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalMatin">
             Ajouter +
         </button></caption>
     <thead>
@@ -88,7 +110,7 @@
     <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
 
         <!-- Button trigger modal -->
-        <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalMatin">
                 Ajouter +
             </button></caption>
         <thead>
@@ -116,12 +138,12 @@
     </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
 
     <!-- Button trigger modal -->
-    <caption style="text-align: center"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalMatin">
             Ajouter +
         </button></caption>
     <thead>
     <tr>
-        <th style="width: 20%; border: solid black 2px; text-align: center"" scope="col">10:15-12:00</th>
+        <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">10:15-12:00</th>
         <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
     </tr>
     </thead>
@@ -145,7 +167,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalMatin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -167,7 +189,171 @@
         </div>
 
     </div>
+    </div>
 
-    <!-- /#page-content-wrapper -->
+    <!-- Onglet Après-midi -->
+
+    <div class="col-md-10 tab-pane fade " id="nav-Aprem" role="tabpanel" aria-labelledby="nav-Aprem-tab">
+        <!-- Première partie avec 2 tableaux -->
+
+        <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+            <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
+
+            <!-- Button trigger modal -->
+            <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprem">
+                    Ajouter +
+                </button></caption>
+            <thead>
+            <tr>
+                <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">13:30-15:30</th>
+                <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+                <td style="width: 35%">Richard</td>
+                <td style="width: 40%">Cramé</td>
+            </tr>
+            <tr>
+
+                <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+                <td>Michel</td>
+                <td>Frais</td>
+            </tr>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+                <td>David</td>
+                <td>Source</td>
+            </tr>
+
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+                <td>Albert</td>
+                <td>To</td>
+            </tr>
+
+            </tbody>
+
+        </table><table style="width: 45%; display: inline-table" class="table table-bordered ">
+            <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
+
+            <!-- Button trigger modal -->
+            <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprem">
+                    Ajouter +
+                </button></caption>
+            <thead>
+            <tr>
+                <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">13:50-15:30</th>
+                <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+                <td style="width: 35%">Richard</td>
+                <td style="width: 40%">Cramé</td>
+            </tr>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
+                <td>Riz</td>
+                <td>Thon</td>
+            </tr>
+
+            </tbody>
+
+            <!-- Deuxième série de 2 tableaux -->
+
+        </table>
+
+        <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+
+            <!-- Button trigger modal -->
+            <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprem">
+                    Ajouter +
+                </button></caption>
+            <thead>
+            <tr>
+                <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">16:00-18:00</th>
+                <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+                <td style="width: 35%">Richard</td>
+                <td style="width: 40%">Cramé</td>
+            </tr>
+            <tr>
+
+                <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+                <td>Michel</td>
+                <td>Frais</td>
+            </tr>
+
+            </tbody>
+
+        </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+
+            <!-- Button trigger modal -->
+            <caption style="text-align: center"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprem">
+                    Ajouter +
+                </button></caption>
+            <thead>
+            <tr>
+                <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">16:00-18:00</th>
+                <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+                <td style="width: 35%">Richard</td>
+                <td style="width: 40%">Cramé</td>
+            </tr>
+            <tr>
+
+                <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
+                <td>Riz</td>
+                <td>Thon</td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalAprem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Choix de l'évaluateur à ajouter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Nom de l'évaluateur" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Ajouter</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
 
 {% endblock %}
