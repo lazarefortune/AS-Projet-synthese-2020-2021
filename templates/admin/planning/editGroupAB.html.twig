@@ -1,110 +1,295 @@
 {% extends "layouts/admin.html.twig" %}
 
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/Jury.css') }}" rel="stylesheet">
+{% endblock %}
+
+
 {% block admin_content %}
 
-<h1 class="text-center my-4"> Edition des Groupes A/B </h1> </br>
 
-<section class="px-5">
-    <form>           <!-- Tableau Groupe A -->
-        <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
-            <caption style="caption-side: top; text-align: center; color: black"><b>Groupe A</b></caption>
+    <h1 class="text-center my-4"> Edition des Groupes </h1>
+
+    <!-- .page-navs -->
+    <nav class="page-navs mb-4">
+        <!-- .nav-scroller -->
+        <div class="row nav-scroller">
+            <!-- .nav -->
+            <div class="nav nav-center nav-tabs offset-md-1 col-md-10" id="nav-tabs" role="tablist">
+                <a href="#nav-GroupA" class="nav-link active" id="nav-A-tab" data-toggle="tab" role="tab" aria-controls="nav-list" aria-selected="true">Groupe A</a>
+                <a href="#nav-GroupB" class="nav-link" id="nav-B-tab" data-toggle="tab" role="tab" aria-controls="nav-addform" aria-selected="false">Groupe B</a>
+            </div>
+            <!-- /.nav -->
+        </div>
+        <!-- /.nav-scroller -->
+    </nav>
+
+    <div class="row tab-content justify-content-center" id="nav-tabContent">
+
+        <!-- Onglet Matin -->
+
+        <div class="col-md-10 tab-pane fade show active" id="nav-GroupA" role="tabpanel" aria-labelledby="nav-A-tab">
+            <!-- Première partie avec 2 tableaux -->
+
+            <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"> <button type="button" class="btn btn-primary">Modifier</button></caption>
                 <thead>
-                    <tr>
-                        <th style="width: 20%" scope="col">N° sujet</th>
-                        <th style="width: 40%" scope="col">NOM</th>
-                        <th style="width: 40%" scope="col">Prenom</th>
-                    </tr>
+                <tr>
+                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
+                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                <tr>
 
-                        <td>1</td>
-                        <td>Otto</td>
-                        <td>CHio</td>
-                    </tr>
-                    <tr>
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
 
-                        <td>1</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
+                    <td>Projet n°1</td>
+                    <td>Michel</td>
+                    <td>Frais</td>
+                </tr>
 
-                        <td>2</td>
-                        <td>michel</td>
-                        <td>mi</td>
-                    </tr>
-
-                    <tr>
-
-                        <td>2</td>
-                        <td>person</td>
-                        <td>ro</td>
-                    </tr>
-
-                    <tr>
-
-                        <td>2</td>
-                        <td>micha</td>
-                        <td>ro</td>
-                    </tr>
                 </tbody>
 
-                <tbody>
-                    <tr>
+            </table><table style="width: 45%; display: inline-table" class="table table-bordered ">
+                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
 
-                        <td>3</td>
-                        <td>michel</td>
-                        <td>mi</td>
-                    </tr>
+                <!-- Button Modifier -->
+                <caption style="text-align: center"> <button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
+                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°1</td>
+                    <td>Riz</td>
+                    <td>Thon</td>
+                </tr>
 
                 <tr>
 
-                    <td>3</td>
-                    <td>michou</td>
-                    <td>ro</td>
+                    <td>Projet n°9</td>
+                    <td>David</td>
+                    <td>Source</td>
                 </tr>
-                </tbody>         <!-- Tableau Groupe B -->
-        </table><table style="width: 45%; display: inline-table" class="table table-bordered">
-            <caption style="caption-side: top; text-align: center; color: black"><b>Groupe B</b></caption>
+
+                <tr>
+
+                    <td>Projet n°2</td>
+                    <td>Albert</td>
+                    <td>To</td>
+                </tr>
+
+                </tbody>
+
+                <!-- Deuxième série de 2 tableaux -->
+
+            </table>
+
+            <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"> <button type="button" class="btn btn-primary">Modifier</button></caption>
                 <thead>
-                    <tr>
-                        <th style="width: 20%" scope="col">N° sujet</th>
-                        <th style="width: 40%" scope="col">NOM</th>
-                        <th style="width: 40%" scope="col">Prenom</th>
-                    </tr>
+                <tr>
+                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:30-18:00</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                <tr>
 
-                        <td>4</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
-                    </tr>
-                    <tr>
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
 
-                        <td>4</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
+                    <td>Projet n°9</td>
+                    <td>Michel</td>
+                    <td>Frais</td>
+                </tr>
 
-                        <td>4</td>
-                        <td>pers</td>
-                        <td>itter</td>
-                    </tr>
                 </tbody>
-        </table>
 
-    <div class="d-flex justify-content-between w-50 mt-6 mx-auto">
-        <button class="btn btn-outline-danger" type="reset">Modifier</button>
-        <button class="btn btn-success" type="submit">Enregistrer</button>
+            </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"> <button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°9</td>
+                    <td>Riz</td>
+                    <td>Thon</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Onglet Après-midi -->
+
+        <div class="col-md-10 tab-pane fade " id="nav-GroupB" role="tabpanel" aria-labelledby="nav-B-tab">
+            <!-- Première partie avec 2 tableaux -->
+
+            <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"><button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
+                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°1</td>
+                    <td>Michel</td>
+                    <td>Frais</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°2</td>
+                    <td>David</td>
+                    <td>Source</td>
+                </tr>
+
+                <tr>
+
+                    <td>Projet n°9</td>
+                    <td>Albert</td>
+                    <td>To</td>
+                </tr>
+
+                </tbody>
+
+            </table><table style="width: 45%; display: inline-table" class="table table-bordered ">
+                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"><button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
+                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°2</td>
+                    <td>Riz</td>
+                    <td>Thon</td>
+                </tr>
+
+                </tbody>
+
+                <!-- Deuxième série de 2 tableaux -->
+
+            </table>
+
+            <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"><button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:30-18:00</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°1</td>
+                    <td>Michel</td>
+                    <td>Frais</td>
+                </tr>
+
+                </tbody>
+
+            </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+
+                <!-- Button Modifier -->
+                <caption style="text-align: center"><button type="button" class="btn btn-primary">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td style="width: 25%">Projet n°6</td>
+                    <td style="width: 25%">Richard</td>
+                    <td style="width: 25%">Cramé</td>
+                </tr>
+                <tr>
+
+                    <td>Projet n°2</td>
+                    <td>Riz</td>
+                    <td>Thon</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
     </div>
-
-    </form>
-</section>
-
 
 {% endblock %}
