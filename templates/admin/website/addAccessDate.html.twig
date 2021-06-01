@@ -1,0 +1,45 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+    
+    <div class="container p-5">
+       
+        <form action="" method="post">
+
+            <h3 class="text-center mb-5">Ajouter un créneaux d'accès au site</h3>
+
+            <div class="row">
+            <div class="col-md-6">
+                <h4>Date de début</h4>
+                <input class="form-control" type="date" name="" id=""> 
+                <input class="form-control mt-2" type="time" name="" id="">
+            </div>
+            <div class="col-md-6">
+                <h4>Date de fin</h4>
+                <input class="form-control" type="date" name="" id=""> 
+                <input class="form-control mt-2" type="time" name="" id="">
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <h4>Roles</h4>
+            <div class="col-md-5">
+                <select class="form-select" aria-label="test">
+                    <option selected>Selectionner</option>
+                    <option value="['ROLE_ADMIN',['ROLE_ADMIN','ROLE_EVALUATOR']]">@Tous</option>
+                    <option value="['ROLE_ADMIN']">@Admin</option>
+                    <option value="['ROLE_EVALUATOR']">@EValuateur</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn btn-success mt-4" type="submit"> <i class="fas fa-plus"></i> Ajouter ce crénaux</button> </th>
+        
+        
+        </form>
+
+        
+    
+    </div>
+
+{% endblock %}

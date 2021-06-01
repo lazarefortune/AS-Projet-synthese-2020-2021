@@ -1,0 +1,44 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+
+<section class="mx-5">               
+    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Nom de l'évaluateur : <i>Nom_évaluateur</i></span></p>
+    <p class="ml-3 mb-3">Groupe n° {{ groupId }} : Nom_du_projet</i></p>
+    <h1 class="text-center my-4">Evaluation des posters</h1> </br>
+
+    <form>
+        <div class="table-responsive">
+            <table class="table table-hover my-4">
+                <thead>
+                    <tr>
+                        <th scope="col" class="align-middle text-center">Nom de l'étudiant</td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Qualité du rapport </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">% de travail réalisé</td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Moyenne</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for id in 0..3 %} {# nb_etudiants #}
+                        <tr>
+                            <td class="text-center">Nom . prénom</td>
+                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="mx-4 text-right">
+                <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger mr-3">Annuler</button></a>
+                <button class="btn btn-success" type="submit">Valider</button>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

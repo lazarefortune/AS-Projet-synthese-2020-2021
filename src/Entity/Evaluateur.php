@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\EvaluateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=EvaluateurRepository::class)
  */
@@ -20,6 +20,7 @@ class Evaluateur implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=3,max=10, minMessage="minErrorMessage",maxMessage="Votre nom est trop long")
      */
     private $nom_eval;
 

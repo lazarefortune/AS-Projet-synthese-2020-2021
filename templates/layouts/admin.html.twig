@@ -251,12 +251,12 @@
 													<span class="menu-text">Calendrier</span>
 												</a>
 											</li>
-											<li class="menu-item">
+											{# <li class="menu-item">
 												<a href="{{ path('maintenance') }}" class="menu-link">
 													<span class="menu-icon fas fa-eye"></span>
 													<span class="menu-text">Consulter</span>
 												</a>
-											</li>
+											</li> #}
 											<li class="menu-item has-child">
 												<a href="#" class="menu-link " data-bs-toggle="collapse" data-bs-target="#edition-collapse" aria-expanded="true">
 													<span class="menu-icon fas fa-edit"></span>
@@ -266,14 +266,29 @@
 												<div class="ml-4 collapse " id="edition-collapse">
 													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 														<li>
-															<a href="{{ path('maintenance') }}" class="link-dark text-muted">le jury</a>
+															<a href="{{ path('edit_jury') }}" class="link-dark text-muted">le jury</a>
 														</li>
+														{# <li>
+															<a href="{{ path('show_groupAB') }}" class="link-dark text-muted">groupes A/B</a>
+														</li> #}
+													</ul>
+												</div>
+											</li>
+											<li class="menu-item has-child">
+												<a href="#" class="menu-link " data-bs-toggle="collapse" data-bs-target="#consulter-collapse" aria-expanded="true">
+													<span class="menu-icon fas fa-eye"></span>
+													<span class="menu-text dropdown-toggle">Consulter</span>
+												</a>
+												<!-- child menu -->
+												<div class="ml-4 collapse " id="consulter-collapse">
+													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 														<li>
-															<a href="{{ path('maintenance') }}" class="link-dark text-muted">groupes A/B</a>
+															<a href="{{ path('show_groupAB') }}" class="link-dark text-muted">groupes A/B</a>
 														</li>
 													</ul>
 												</div>
 											</li>
+											
 											<!-- .gestion des notes -->
 											<li class="menu-header">Gestion des notes
 											</li>
@@ -281,7 +296,7 @@
 											<li class="menu-item">
 												<a href="{{ path('group_list') }}" class="menu-link {{ app.request.get('_route') == 'group_list' ? 'active' }}">
 													<span class="menu-icon fas fa-th-list"></span>
-													<span class="menu-text">Liste des groupes</span>
+													<span class="menu-text">Liste des projets</span>
 												</a>
 											</li>
 											<li class="menu-item">
@@ -297,7 +312,7 @@
 											<li class="menu-item">
 												<a href="{{ path('evaluator_list') }}" class="menu-link {{ app.request.get('_route') == 'evaluator_list' ? 'active' }}">
 													<span class="menu-icon fas fa-users"></span>
-													<span class="menu-text">Liste des encadrants</span>
+													<span class="menu-text">Liste des évaluateurs</span>
 												</a>
 											</li>
 											<!-- .menu-gestion blobale -->
@@ -312,7 +327,7 @@
 												<div class="ml-4 collapse" id="access-collapse">
 													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 														<li>
-															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Définir les dates</a>
+															<a href="{{ path('define_dates') }}" class="link-dark text-muted">Définir les dates</a>
 														</li>
 														<li>
 															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Accès personalisé</a>
