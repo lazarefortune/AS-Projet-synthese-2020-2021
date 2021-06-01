@@ -1,0 +1,153 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+    
+    <div class="container p-5">
+        <div class="row">
+            <h4 class="text-center">Liste des créneaux d'accès au site</h4>
+
+
+            <div class="align-content-end mt-5 mb-2">
+                <a href="{{ path('add_define_dates') }}">
+                <button class="btn btn-sm btn-success " type="submit"> <i class="fas fa-plus"></i> Ajouter</button>
+            </a>
+            </div>
+            <table class="table caption-top">
+                <thead>
+                    <tr>
+                    <th scope="col">Ordre</th>
+                    <th scope="col">Date de debut</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Droits</th>
+                    <th scope="col">Motif</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# <tr>
+                    <th scope="row">1</th>
+                    <td> 
+                        <input class="form-control" type="date" name="" id="" value="2021-06-18" disabled> 
+                        <input class="form-control mt-2" type="time" name="" id="" value="00:01" disabled> 
+                    </td>
+                    <td> 
+                        <input class="form-control" type="date" name="" id="" value="2021-06-18" disabled> 
+                        <input class="form-control mt-2" type="time" name="" id="" value="23:59" disabled> 
+                    </td>
+                    <td>@Tous</td>
+                    </tr> #}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td> 18/06/2020 à 00h01 </td>
+                        <td> 18/06/2020 à 23h59 </td>
+                        <td>@Tous</td>
+                        <td>Soutenance</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        En poursuivant, vous <b class="text-danger">refuser</b> l'accès à la plateforme :
+                                        <br> à : <b>@Tous</b>
+                                        <br> du : <b>18/06/2021 à 00h01</b> au <b>18/06/2021 à 23h59</b>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-danger">Oui, continuer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td> 18/06/2020 à 00h01 </td>
+                        <td> 18/06/2020 à 23h59 </td>
+                        <td>@Evaluateur</td>
+                        <td>Soutenance</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        En poursuivant, vous <b class="text-danger">refuser</b> l'accès à la plateforme :
+                                        <br> à : <b>@Evaluateur</b>
+                                        <br> du : <b>18/06/2021 à 00h01</b> au <b>18/06/2021 à 23h59</b>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-danger">Oui, continuer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                
+                </tbody>
+            </table>
+            
+
+        </div>
+
+        {# <hr>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h4>Date de début</h4>
+                <input class="form-control" type="date" name="" id=""> 
+                <input class="form-control mt-2" type="time" name="" id="">
+            </div>
+            <div class="col-md-6">
+                <h4>Date de fin</h4>
+                <input class="form-control" type="date" name="" id=""> 
+                <input class="form-control mt-2" type="time" name="" id="">
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <h4>Roles</h4>
+            <div class="col-md-5">
+                <select class="form-select" aria-label="test">
+                    <option selected>Selectionner</option>
+                    <option value="['ROLE_ADMIN',['ROLE_ADMIN','ROLE_EVALUATOR']]">@Tous</option>
+                    <option value="['ROLE_ADMIN']">@Admin</option>
+                    <option value="['ROLE_EVALUATOR']">@EValuateur</option>
+                </select>
+            </div>
+        </div>
+
+            <button class="btn btn-success mt-4" type="submit"> <i class="fas fa-plus"></i> Ajouter</button> </th>
+        <div class="row mt-4">
+            
+        </div> #}
+
+        
+    
+    </div>
+
+{% endblock %}

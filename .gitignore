@@ -4,7 +4,7 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
-#env
+#env config
 .env
 
 # Email spool folder
@@ -54,3 +54,4 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+

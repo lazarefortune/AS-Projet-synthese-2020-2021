@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GroupController extends AbstractController
 {
+
     public function group_list(): Response
     {
 
@@ -33,4 +34,5 @@ class GroupController extends AbstractController
                 ]);
         }
     }
+ 
 }

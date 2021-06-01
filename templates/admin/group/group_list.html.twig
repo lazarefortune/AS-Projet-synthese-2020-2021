@@ -1,43 +1,50 @@
 {% extends "layouts/admin.html.twig" %}
-
+{# <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"> #}
 {% block admin_content %}
-    <h4 class="text-center my-4">liste des groupes</h4>
+<h3 class="text-center my-4">Liste des projets</h3>
 
-    <section class="px-5">            
-        <div class="input-group mb-1 w-75 mx-auto">
-            <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
-            </div>
-        </div>   
-        
-        <div class="table-responsive">
-            <table class="table table-hover my-5">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width:2%;"></td>
-                        <th scope="col" class="align-middle text-center min-vw-5" style="width:5%;">n°</td>
-                        <th scope="col" class="align-middle text-center" style="width:60%;">Titre du Projet</td>
-                        <th scope="col" class="align-middle text-center" style="width:30%;">Nom de l'encadrant</td>
-                        <th scope="col" class="align-middle text-center min-vw-5" style="width:5%;">Nombre d'étudiants</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for id in [1,2,3,4,5] %}
-                    <tr>
-                        <th><input class="align-bottom" type="radio" name="grp" value="groupe_1"></input></th>
-                        <td class="text-center align-middle"> {{ id }} </td>
-                        <td class=" pl-4 align-middle">Titre du projet </td>
-                        <td class="text-center align-middle"> Nom et prénom </td>
-                        <td class="text-center align-middle"> {{ id+3 }} </td>
-                        <td> <a href="{{ path('group_notes', {groupId: id}) }}"><button class="btn btn-outline-primary btn-sm">Notes</button></a> </td>
-                    </tr>
-                    {% endfor %}
-                    
-                </tbody>
-            </table>
-            
+<div>            
+    <div class="input-group w-50 mx-auto">
+        <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
         </div>
-        
-    </section>
+    </div> 
+
+    <div class="my-3 ml-5 w-75">
+        <h2 class="fs-3">23 Projets</h2>
+    </div>  
+
+    <div class="row">
+        {% for id in 1..6 %}
+            <div class="col-md-4">
+                    <div class="card card-fluid  p-3">
+                        <h6 class="mb-3" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nostrum voluptates,  </h6>
+                        <p class="font-italic fs-6">Nom de l'encadrant</p>
+                        <p class=" fs-6">Groupe n° {{ id }}</p>
+                        <div class="text-center">
+                            <a href="{{ path('group_notes', {groupId: id}) }}"><button type="button" class="btn btn-primary">Consulter</button></a>
+                        </div>
+                    </div>
+            </div>
+        {% endfor %}
+    
+    </div>
+    {# {% for id_1 in 0..5 %}
+        <div class="container d-flex">
+            {% for id_2 in 0..3 %}
+                {% set id = 1 + (id_1 * 4) + (id_2 % 4) %}
+                <div class="border border-secondary rounded m-3 p-3">
+                    <h1 class="fs-4">Titre du projet Titre du projet</h1>
+                    <h2 class="font-italic fs-6">Nom de l'encadrant</h2>
+                    <h2 class="font-italic fs-6">Groupe n° {{ id }}</h2>
+                    <div class="text-center">
+                        <a href="{{ path('group_notes', {groupId: id}) }}"><button type="button" class="btn btn-success">Consulter</button></a>
+                    </div>
+                </div>
+            {% endfor %}
+            </br>
+        </div>
+    {% endfor %}  #}
+</div>
 {% endblock %}
