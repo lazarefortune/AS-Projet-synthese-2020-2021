@@ -13,22 +13,23 @@
                 <thead>
                     <tr>
                         <th scope="col" class="align-middle text-center">Nom de l'étudiant</td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Qualité du rapport </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Qualité du rapport </br> <span class="font-weight-normal">/20 points. coeff. 1</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/20 points. coeff. 2</span></td>
+                        <th scope="col" class="align-middle text-center" style="width:16%">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/20 points. coeff. 2</span></td>
                         <th scope="col" class="align-middle text-center" style="width:16%">% de travail réalisé</td>
                         <th scope="col" class="align-middle text-center" style="width:16%">Moyenne</td>
                     </tr>
                 </thead>
+
                 <tbody>
                     {% for id in 0..3 %} {# nb_etudiants #}
                         <tr>
                             <td class="text-center">Nom . prénom</td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%" placeholder="note"></input></td>
+                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
+                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
+                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
+                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_pourcentage_1" type="number" min="0" max="100" size="2" required style="width:35%" placeholder="note"></input></td>
+                            <td id="moyenne" style="text-align:center;"></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -36,9 +37,13 @@
 
             <div class="mx-4 text-right">
                 <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger mr-3">Annuler</button></a>
-                <button class="btn btn-success" type="submit">Valider</button>
+            <button class="btn btn-success" type="submit">Valider</button>
             </div>
         </div>
     </form>
 </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/note.js') }}">
 {% endblock %}
