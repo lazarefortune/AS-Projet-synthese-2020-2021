@@ -3,7 +3,7 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-
+Documentation.txt
 #env config
 .env
 .idea
