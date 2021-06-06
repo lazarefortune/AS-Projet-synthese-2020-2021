@@ -1,7 +1,7 @@
 security:
     enable_authenticator_manager: true
     encoders:
-        App\Entity\Evaluateur: 
+        App\Entity\User: 
             algorithm: sha256
             encode_as_base64: false
             iterations: 1
@@ -12,7 +12,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Evaluateur
+                class: App\Entity\User
                 # property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
@@ -62,6 +62,7 @@ security:
 
 
     role_hierarchy:
-        ROLE_EVALUATOR: ROLE_USER
+        ROLE_ETUDIANT: ROLE_USER
+        ROLE_EVALUATOR: [ROLE_USER]
         ROLE_ADMIN:       [ROLE_EVALUATOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

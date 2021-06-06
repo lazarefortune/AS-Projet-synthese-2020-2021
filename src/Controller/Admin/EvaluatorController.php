@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Evaluateur;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
@@ -14,7 +14,7 @@ class EvaluatorController extends AbstractController
     {
 
         $entityManager = $this->getDoctrine()->getManager();
-        $donnees = $entityManager->getRepository(Evaluateur::class)->findAll();
+        $donnees = $entityManager->getRepository(User::class)->findAll();
         
         
             

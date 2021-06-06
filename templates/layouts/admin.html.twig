@@ -76,7 +76,7 @@
 										<!-- <span class="user-avatar user-avatar-md">
 																		<img src="assets/images/avatars/profile.jpg" alt="">
 																		</span> -->
-											<span class="account-summary pr-lg-4 d-none d-lg-block"> <span class="account-name">{{ app.user.nomEval }} {{ app.user.prenomEval }}</span>
+											<span class="account-summary pr-lg-4 d-none d-lg-block"> <span class="account-name">{{ app.user.nom }} {{ app.user.prenom }}</span>
 											{% if is_granted('ROLE_ADMIN') %}
 												<span class="account-description">Administrateur</span>
 											{% elseif is_granted('ROLE_EVALUATOR') %}

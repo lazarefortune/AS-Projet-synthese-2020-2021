@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Repository\EvaluateurRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,7 +17,7 @@ class AdminController extends AbstractController
     }
 
   
-public function usersList(EvaluateurRepository $users)
+public function usersList(UserRepository $users)
 {
     return $this->render('admin/users.html.twig', [
         'users' => $users->findAll(),

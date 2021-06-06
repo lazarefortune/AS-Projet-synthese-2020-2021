@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\Evaluateur;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,13 +67,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             throw new InvalidCsrfTokenException();
         }
 
-        // $user = $this->entityManager->getRepository(Evaluateur::class)->findOneBy([
+        // $user = $this->entityManager->getRepository(User::class)->findOneBy([
         //     'login' => $credentials['username']
         //     ]);
         
         $user = $this->entityManager->createQuery(
             'SELECT u
-            FROM App\Entity\Evaluateur u
+            FROM App\Entity\User u
             WHERE u.login = :query
             OR u.email = :query'
         )
