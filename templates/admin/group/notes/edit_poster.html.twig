@@ -1,7 +1,7 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block admin_content %}
-<section class="px-5">
+<div class="m-sm-0 m-md-2 m-lg-4">  
     <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupId }} / Nom_du_projet</i></p>                     
     <h3 class="text-center my-5">Edition des notes de poster</h3></br>
 
@@ -21,9 +21,9 @@
                     {% for id in [1,2,3,4] %}
                     <tr>
                         <td class="text-center">Nom . prénom</td>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
+                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="2" ></input></td>
+                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="2" ></input></td>
+                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="2"></input></td>
                         <td id="moyenne" style="text-align:center;"></td>
                     </tr>
                         
@@ -31,35 +31,36 @@
                     
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between w-75 mx-auto">
+            <div class="d-flex justify-content-between mx-auto">
                 <a class="link-dark text-muted" data-bs-toggle="modal" data-bs-target="#resetValue"><button class="btn btn-outline-danger">Réinitialiser</button></a>
                 <div>
                     <a href="{{ path('group_notes', {groupId: groupId}) }}" class="btn btn-danger">Annuler</a>
                     <button class="btn btn-success" type="submit">Enregistrer</button>
                 </div>
             </div>
-        </form>
-    </div>
-</section>
 
-
-{# <div class="modal fade" id="resetValue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger">Réinitialisation de la grille</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p> Cette action entraîne la suppression des notes de la grille. Êtes-vous sûr(e) de vouloir réinitialiser ?</p>
-                <div class="d-flex justify-content-between w-75 m-auto">
-                    <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary"  type="reset">Valider</button>
+            <div class="modal fade" id="resetValue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-danger">Réinitialisation de la grille</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p> Cette action entraîne la suppression des notes de la grille. Êtes-vous sûr(e) de vouloir réinitialiser ?</p>
+                            <div class="d-flex justify-content-between w-75 m-auto">
+                                <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary"  type="reset">Valider</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</div> #}
+</div>
+
+
 
 
 

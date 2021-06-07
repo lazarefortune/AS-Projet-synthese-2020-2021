@@ -1,15 +1,17 @@
 {% extends "layouts/admin.html.twig" %}
 
-{% block admin_content %}
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/notation.css') }}" rel="stylesheet">
+{% endblock %}
 
-<section class="mx-5">               
-    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Nom de l'évaluateur : <i>Nom_évaluateur</i></span></p>
-    <p class="ml-3 mb-3">Groupe n° {{ groupId }} : Nom_du_projet</i></p>
-    <h1 class="text-center my-4">Evaluation des posters</h1> </br>
+{% block admin_content %}
+<div class="m-sm-0 m-md-2 m-lg-4">        
+    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupId }} : Nom_du_projet</span></p>
+    <h1 class="text-center my-sm-0 my-lg-5">Evaluation du poster</h1>
 
     <form>
         <div class="table-responsive">
-            <table class="table table-hover my-4">
+            <table class="table table-hover my-sm-0 my-lg-4">
                 <thead>
                     <tr>
                         <th scope="col" class="align-middle text-center">Nom de l'étudiant</td>
@@ -23,27 +25,27 @@
 
                 <tbody>
                     {% for id in 0..3 %} {# nb_etudiants #}
-                        <tr>
-                            <td class="text-center">Nom . prénom</td>
-                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
-                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
-                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%" placeholder="note"></input></td>
-                            <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto min-vw-50" id="notes_pourcentage_1" type="number" min="0" max="100" size="2" required style="width:35%" placeholder="note"></input></td>
-                            <td id="moyenne" style="text-align:center;"></td>
-                        </tr>
+                    <tr>
+                        <td class="text-center">Nom . prénom</td>
+                        <td><input onchange="moyenne({{ id }})" class="form-control form-control-sm" style="text-align:center;" id="notes_rapport_{{ id }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td><input onchange="moyenne({{ id }})" class="form-control form-control-sm" style="text-align:center;" id="notes_travail_{{ id }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td><input onchange="moyenne({{ id }})" class="form-control form-control-sm" style="text-align:center;" id="notes_competences_{{ id }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td><input onchange="moyenne({{ id }})" class="form-control form-control-sm" style="text-align:center;" id="notes_pourcentage_{{ id }}" type="number" min="0" max="100" size="2" required></input></td>
+                        <td id="moyenne_{{ id }}" style="text-align:center; vertical-align: middle;"></td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
             <div class="mx-4 text-right">
-                <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger mr-3">Annuler</button></a>
-            <button class="btn btn-success" type="submit">Valider</button>
+                <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger btn-sm mr-3">Annuler</button></a>
+            <button class="btn btn-success btn-sm" type="submit">Valider</button>
             </div>
         </div>
     </form>
-</section>
+</div>
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/note.js') }}">
+    <script src="{{ asset('assets/js/moyenne.js') }}">
 {% endblock %}

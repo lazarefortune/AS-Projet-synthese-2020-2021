@@ -1,25 +1,35 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block stylesheets %}
-    <link href="{{ asset('assets/css/evaluator_note.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/notation.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block admin_content %}
-<h3 class="text-center my-4">Liste des projets</h3>
+<h3 class="text-center title">Liste des projets</h3>
 
-<div class="tab-pane fade show active" id="list-sout" role="tabpanel" aria-labelledby="list-sout">
-    {% for id in 0..5 %}
-        <div class="container d-flex">
-                <div class="m-3 p-3 cont_soutenance">
-                    <h1 class="fs-4">Titre du projet Titre du projet</h1>
-                    <h2 class="font-italic fs-6">Nom de l'encadrant</h2>
-                    <h2 class="font-italic fs-6">Groupe n° {{ id }}</h2>
+<div class="input-group search">
+    <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
+    </div>
+</div> 
+
+<div class="entete">
+    <h2 class="fs-3">23 Projets</h2>
+</div>
+
+<div class="row">
+    {% for id in 1..6 %}
+        <div class="col-md-4">
+                <div class="card card-fluid p-3 sujet">
+                    <h6 class="title_card mb-3" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nostrum voluptates,  </h6>
+                    <p class="nom_card font-italic">Nom de l'encadrant</p>
+                    <p class="grp_card">Groupe n° {{ id }}</p>
                     <div class="text-center">
-                        <a href="{{ path('eval_group_notes_sout', {groupId: id}) }}"><button type="button" class="btn btn-success mr-3"> Soutenance </button></a>
-                        <a href="{{ path('eval_group_notes_poster', {groupId: id}) }}"><button type="button" class="btn btn-primary"> Poster </button></a>
+                        <a href="{{ path('eval_group_notes_sout', {groupId: id}) }}"><button type="button" class="test btn btn-success mr-3">Soutenance</button></a>
+                        <a href="{{ path('eval_group_notes_poster', {groupId: id}) }}"><button type="button" class="btn btn-primary">Poster</button></a>
                     </div>
                 </div>
-            </br>
         </div>
     {% endfor %}
 </div>

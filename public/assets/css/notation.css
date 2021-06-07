@@ -1,0 +1,20 @@
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (max-width: 992px) {
+    p {font-size: small;}
+    div h1 {font-size:x-large;}
+    thead tr th{font-size: xx-small;}
+    thead tr th span{font-size: 0.7em;}
+    tbody{font-size: x-small;}
+
+    .entete{margin: 1em;}
+    .title{margin-bottom: 15px;}
+    .title_card{font-size: medium;}
+    .nom_card{font-size: small;}
+    .grp_card{font-size: small;}
+}
+
+@media (min-width: 992px){
+    .entete{margin: 1em;}
+    .search{width: 75%; margin: auto; margin-bottom: 30px;}
+    .title{margin: 1.5% 0;}
+}
