@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Evaluateur;
+use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
-    private function isPasswordValid(Evaluateur $eval,string $plainPassword, string $password): bool
+    private function isPasswordValid(User $eval,string $plainPassword, string $password): bool
     {
         $encoder = $this->encoderFactory->getEncoder($eval);
 
@@ -23,7 +23,7 @@ class UserController extends AbstractController
 
     public function index(Request $request, UserPasswordEncoderInterface $encoder){
 
-        // $user =  new Evaluateur();
+        // $user =  new User();
 
         
         $user = $this->getUser();

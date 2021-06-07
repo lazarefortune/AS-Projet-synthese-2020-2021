@@ -3,10 +3,10 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-
+Documentation.txt
 #env config
 .env
-
+.idea
 # Email spool folder
 /app/spool/*
 Documentation.txt
