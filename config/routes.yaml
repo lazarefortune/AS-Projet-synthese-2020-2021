@@ -52,9 +52,9 @@ account:
     path: /profil
     controller: App\Controller\UserController::index
 
-email:
-    path: /admin/email
-    controller: App\Controller\Admin\EmailController::index
+# email:
+#     path: /admin/email
+#     controller: App\Controller\Admin\EmailController::index
 
 maintenance:
     path: /maintenance
