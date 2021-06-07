@@ -11,12 +11,21 @@
 
 <div class=" m-0 m-md-5 m-lg-5 email-app">
     <main>
+        {% include 'layouts/flash-messages.html.twig' %}
+
         <p class="text-center">Nouveau message</p>
-        <form method="post" enctype="multipart/form-data">
-            <div class="form-row mb-0 mb-md-3">
+        
+        
+        
+
+        {# <form method="post" enctype="multipart/form-data"> #}
+        {{ form_start(formContact) }}
+              
+                    {# {{ form_widget(formContact.email, {'attr': {'class': 'form-control', 'placeholder' : 'test@univ-lorraine.fr'}}) }} #}
+            {# <div class="form-row mb-0 mb-md-3">
                 <label for="to" class="col-12 col-sm-12 col-md-12 col-lg-1 col-form-label">À</label>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-11">
-                    <input type="email" class="form-control" id="to" placeholder="" multiple>
+                    <input type="email" name="contact[email]" class="form-control" id="to" placeholder="" multiple>
                 </div>
             </div>
 
@@ -39,20 +48,20 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-11">
                     <input type="email" class="form-control" id="cc" placeholder="" multiple>
                 </div>
-            </div>
+            </div> #}
             <!-- <div class="form-row mb-3">
                 <label for="bcc" class="col-2 col-sm-1 col-form-label">BCC:</label>
                 <div class="col-10 col-sm-11">
                     <input type="email" class="form-control" id="bcc" placeholder="">
                 </div>
             </div> -->
-            <div class="form-row mb-0 mb-md-3">
+            {# <div class="form-row mb-0 mb-md-3">
                 <label for="subject" class="col-12 col-sm-12 col-md-12 col-lg-1 col-form-label">Objet</label>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-11">
-                    <input type="text" class="form-control" id="subject" placeholder="">
+                    <input type="text" class="form-control" name="objet" id="subject" placeholder="">
                 </div>
-            </div>
-            <div class="form-row mb-0 mb-md-3">
+            </div> #}
+            {# <div class="form-row mb-0 mb-md-3">
                 <label for="subject" class="col-12 col-sm-12 col-md-12 col-lg-1 col-form-label">Message</label>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-11">
                   <textarea class="form-control" id="message" rows="12"></textarea>
@@ -67,27 +76,39 @@
                 });
               </script> -->
                 </div>
-            </div>
-            <div class="form-row my-4 col-md-11 ml-auto">
+            </div> #}
+            {# <div class="form-row my-4 col-md-11 ml-auto">
               <label for="attachFiles">Joindre des fichiers : </label>
+              {{ form_widget(formContact.fichiers, {'attr': {'class': 'form-control','multiple' : 'true' , 'id' : "attachFiles", 'onchange': "javascript:updateList()"}}) }}
+
               <input type="file" class="form-control" id="attachFiles" name="attachFiles" multiple onchange="javascript:updateList()">
-              <!-- <div id="fileList" class="row">
+               <div id="fileList" class="row">
                 <small>vos fichiers</small>
-              </div> -->
-            </div>
+              </div> 
+            </div> #}
+            {{ form_rest(formContact) }}
+            <div id="fileList" class="row my-2">
+                {# <small>vos fichiers</small> #}
+            </div> 
             <script>
             updateList = function() {
-              var input = document.getElementById('attachFiles');
+              var input = document.getElementById('contact_fichiers');
               var output = document.getElementById('fileList');
               var children = "";
               for (var i = 0; i < input.files.length; ++i) {
                   children += '<li class="list-group-item">' + input.files.item(i).name + '</li>';
               }
-              output.innerHTML = '<ul class="list-group list-group-flush">'+children+'</ul>';
+              output.innerHTML = ' <small>Vos fichiers</small> <ul class="list-group list-group-flush">'+children+'</ul>';
+            }
+
+            deleteList = function(){
+              var output = document.getElementById('fileList');
+              var children = "";
+              output.innerHTML = '<ul class="list-group list-group-flush">'+children+'</ul>'; 
             }
             </script>
-            <div class="col-md-11 ml-auto form-group d-flex justify-content-between">
-              <button type="reset" class="btn btn-outline-danger">Annuler</button>
+            <div class="col-md-12 form-group d-flex justify-content-between">
+              <button type="reset" class="btn btn-outline-danger" onclick="javascript:deleteList()">Annuler</button>
               <button type="submit" class="btn btn-primary px-5"><i class="fas fa-paper-plane"></i> Envoyer</button>
             </div>
             <!-- <div class="row">
@@ -109,7 +130,8 @@
                 </div>
               </div>
             </div> -->
-        </form>
+            {{ form_end(formContact) }}
+        {# </form> #}
     </main>
 </div>
 
