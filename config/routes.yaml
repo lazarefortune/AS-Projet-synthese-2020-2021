@@ -72,6 +72,11 @@ add_define_dates:
     path: /admin/acces-au-site/ajouter
     controller: App\Controller\Admin\AccessController::add_dates_index
 
+
+planning:
+    path: /planning
+    controller: App\Controller\Admin\PlanningController::planning
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
@@ -85,6 +90,10 @@ show_groupAB:
     controller: App\Controller\Admin\GroupABController::show
 
 # Path view evaluator
+evaluator_home:
+    path: /eval
+    controller: App\Controller\Evaluator\EvaluatorController::index
+
 eval_group_list:
     path: /groupes
     controller: App\Controller\Evaluator\GroupController::group_list
@@ -96,3 +105,15 @@ eval_group_notes_sout:
 eval_group_notes_poster:
     path: /groupe/{groupId}/poster
     controller: App\Controller\Evaluator\GroupController::group_notes_poster
+
+planning_eval:
+    path: /eval/planning
+    controller: App\Controller\Evaluator\EvalPlanningController::planning
+
+maintenance_eval:
+    path: /eval/maintenance
+    controller: App\Controller\MaintenanceController::eval
+
+list_eval:
+    path: /eval/list
+    controller: App\Controller\Evaluator\EvalListController::list

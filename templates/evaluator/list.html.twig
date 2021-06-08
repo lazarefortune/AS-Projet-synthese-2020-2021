@@ -1,0 +1,82 @@
+{% extends "layouts/eval.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/evaluator.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block eval_content %}
+    <!-- tab-content -->
+    <div class="row tab-content justify-content-center mt-4">
+        <!-- .tabe-pane -->
+        <div class="col-md-10">
+            <!-- .card -->
+            <div class="card card-fluid">
+                <!-- .card-header -->
+                <div class="card-header">
+                    <span>Liste des évaluateurs</span>
+                </div>
+                <!-- /.card-header -->
+                <!-- .card-body -->
+                <div class="card-body">
+                    <!-- form-group -->
+                    <div class="form-group">
+                        <!-- .input-group -->
+                        <div class="input-group has-clearable">
+                            <button id="clear-search" type="button" class="close" aria-label="Close"><span
+                                        aria-hidden="true"><i class="fas fa-times-circle"></i></span></button>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            </div>
+                            <input id="table-search" type="text" class="form-control" placeholder="Recherche">
+                        </div>
+                        <!-- /.input-group -->
+                    </div>
+                    <!-- /.form-group -->
+                    <!-- .table-responsive -->
+                    <div class="table-responsive">
+                        <!-- .table -->
+                        <table id="all-eval" class="table">
+                            <!-- thead -->
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Titre projet</th>
+                                <th>Groupe</th>
+                            </tr>
+                            </thead>
+                            <!-- /thead -->
+                            <!-- tbody -->
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td> {{ user.nomEval }} </td>
+                                    <td> {{ user.prenomEval }} </td>
+                                    <td>
+                                        À définir
+                                    </td>
+                                    <td>
+                                        À définir
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <!-- /tbody -->
+                        </table>
+                        <!-- /.table -->
+                        {{ knp_pagination_render(users,'pagination.html.twig') }}
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-md-10 -->
+    </div>
+    <!-- /.tab-content -->
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/evaluator.js') }}"></script>
+{% endblock %}
