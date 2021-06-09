@@ -32,4 +32,16 @@ class EvaluatorController extends AbstractController
         ]);
     }
 
+    /**
+     *
+     * @Route("/update/{id}", name="update", methods={"GET","POST"})
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param $id
+     * @return Response
+     */
+    public function update(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+        $eval = $entityManager->getRepository(User::class)->find($id);
+    }
 }
