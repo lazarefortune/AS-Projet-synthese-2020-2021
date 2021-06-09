@@ -238,7 +238,7 @@ div.eval, div.encadrant {
     margin-left: 5px !important;
 }
 
-.form-group > input {
+.form-group > input, .form-group > select {
     border-radius: 4px !important;
     margin-left: 4px;
     border-width: 2px !important;
