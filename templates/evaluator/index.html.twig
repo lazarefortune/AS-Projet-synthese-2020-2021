@@ -1,0 +1,34 @@
+{% extends "layouts/eval.html.twig" %}
+
+{% block eval_content %}
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+            {# Ceci est la page d'accueil
+            <div class="card-metric mt-4">
+                Informations:
+            </div> #}
+
+            <div class="card card-fluid mt-4 p-3">
+                Bienvenue sur la page d'accueil
+                <input type="checkbox" class="custom-control-input">
+            </div>
+
+            <div class="alert alert-danger">
+                <span class="font-weight-bold">Informations:</span> <br>
+                <ul>
+                    <li>Certaines pages ne sont pas encore disponibles</li>
+                    <li>Toutes les fonctionnalités ne sont pas encore disponibles</li>
+                    <li>Les pages disponibles sont :
+                        <ol>
+                            <li>Consultation planning</li>
+                            <li>Edition des notes par groupe (soutenance et poster)</li>
+                            <li>Liste des encadrants, projets et groupe</li>
+                            <li>Mot de passe oublié</li>
+                            <li>Profil</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

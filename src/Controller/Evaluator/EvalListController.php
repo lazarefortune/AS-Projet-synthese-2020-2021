@@ -1,35 +1,35 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Evaluator;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Evaluateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EvaluatorController extends AbstractController
+/**
+ * @Route("/eval/list", name="list_eval")
+ */
+class EvalListController extends AbstractController
 {
-    public function list(Request $request, PaginatorInterface $paginator, UserRepository $repository): Response
+    public function list(Request $request, PaginatorInterface $paginator): Response
     {
 
         $entityManager = $this->getDoctrine()->getManager();
-        // $donnees = $entityManager->getRepository(User::class)->findAll();
-        $donnees =  $repository->findByRole("EVALUATOR");
-        $encadrants = array();
+        $donnees = $entityManager->getRepository(Evaluateur::class)->findAll();
+
+
+
         $users = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
             6 // Nombre de résultats par page
         );
-        
-        return $this->render('admin/evaluator/list.html.twig', [
+
+        return $this->render('evaluator/list.html.twig', [
             'users' => $users
         ]);
     }
-
 }

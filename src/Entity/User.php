@@ -67,21 +67,21 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Projet", mappedBy="idEval")
      */
     private $idProjet;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Groupe", mappedBy="idEvalPost")
      */
     private $idGroupeEvalPost;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Groupe", mappedBy="idEvalSout")
      */
@@ -301,4 +301,8 @@ class User implements UserInterface
         return $this;
     }
 
+    public function leadProject(): bool
+    {
+        return !$this->getIdProjet()->isEmpty();
+    }
 }

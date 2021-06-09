@@ -303,7 +303,7 @@
             "ref": "13350583a83fa636bf45a5fb62da3bdc73be52a1"
         },
         "files": [
-            "config/packages/lock.yaml"
+            "./config/packages/lock.yaml"
         ]
     },
     "symfony/mailer": {
@@ -402,6 +402,9 @@
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
     },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
+    },
     "symfony/process": {
         "version": "v5.2.4"
     },
@@ -418,7 +421,7 @@
         "version": "v5.2.4"
     },
     "symfony/rate-limiter": {
-        "version": "v5.2.7"
+        "version": "v5.2.10"
     },
     "symfony/routing": {
         "version": "5.1",
