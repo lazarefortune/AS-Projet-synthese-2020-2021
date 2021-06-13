@@ -1,0 +1,94 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+<div class="vue_content">        
+    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupe.numero }} / {{ groupe.idProjet.titre }}</span></p>
+    <h1 class="text-center my-sm-0 my-lg-5">Evaluation individuelle</h1>
+
+    <form>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="eval_title align-middle">Nom de l'étudiant</th>
+                        <th scope="col" class="eval_title align-middle">Qualité du rapport </br> <span>/20 points. coeff. 1</span></th>
+                        <th scope="col" class="eval_title align-middle">Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></th>
+                        <th scope="col" class="eval_title align-middle">Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></th>
+                        <th scope="col" class="eval_title align-middle">Pourcentage travail réalisé</th>
+                        <th scope="col" class="eval_title align-middle">Moyenne</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for etudiant in etudiants %}
+                    <tr>
+                        <td class="eval_name">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
+                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_rapport_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_travail_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_competences_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
+                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_pourcentage_{{ etudiant.idEtud }}" type="number" min="0" max="100" size="2" required></input></td>
+                        <td class="eval_input" id="note_moyenne_{{ etudiant.idEtud }}" style="text-align:center;"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between w-75 mx-auto bouton">
+                <div>
+                    {# Btn Retour #}
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#retourGroupe">Retour</button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Les notes insérées / modifiées seront perdues si vous quitter cette page.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <a  href="{{ path('eval_group_list') }}"  type="button" class="btn btn-primary">Continuer</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Btn Save #}
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#save" disabled>Enregistrer</button>
+                    <!-- Modal -->
+                    {# <div class="modal fade" id="save" tabindex="-1" aria-labelledby="saveLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Enregistrement des notes</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Les notes insérées sont envoyées à la base de données.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary" type="submit">Continuer</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div> #}
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/indiv_moy.js') }}"></script>
+{% endblock %}

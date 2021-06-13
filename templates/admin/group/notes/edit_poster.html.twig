@@ -1,61 +1,115 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block admin_content %}
-<div class="m-sm-0 m-md-2 m-lg-4">  
-    <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupId }} / Nom_du_projet</i></p>                     
+<div class="m-sm-0 m-md-2 m-lg-4"> 
+
+    <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupe.numero }} / {{ groupe.idProjet.titre }}</i></p>
     <h3 class="text-center my-5">Edition des notes de poster</h3></br>
 
     <div class="table-responsive">
         <form>
             <table class="table table-hover mb-5">
+                <table class="table table-hover mb-5">
                 <thead>
                     <tr>
-                        <th scope="col" class="align-middle text-center">Nom de l'évaluateur</td>
-                        <th scope="col" class="align-middle text-center">Qualité de la présentation </br> <span class="font-weight-normal">/20 points. coeff. 1</span></td>
-                        <th scope="col" class="align-middle text-center">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/20 points. coeff. 1</span></td>
-                        <th scope="col" class="align-middle text-center">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/20 points. coeff. 1</span></td>
-                        <th scope="col" class="align-middle text-center">Moyenne </br></td>
+                        <th scope="col" class="align-middle text-center">
+                            {% for eval in groupe.idProjet.idEval %}
+                                {{ eval.nom }}   
+                            {% endfor %}
+                        </th>
+                        <th scope="col" class="align-middle text-center">Qualité de la présentation </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+                        <th scope="col" class="align-middle text-center">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+                        <th scope="col" class="align-middle text-center">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+                        <th scope="col" class="align-middle text-center">Moyenne</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    {% for id in [1,2,3,4] %}
+                    {% for etudiant in etudiants %}
                     <tr>
-                        <td class="text-center">Nom . prénom</td>
-                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="2" ></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="2" ></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle mx-auto min-vw-50" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="2"></input></td>
+                        <th class="text-center align-middle">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</th>
+                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
+                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
+                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
                         <td id="moyenne" style="text-align:center;"></td>
                     </tr>
-                        
                     {% endfor %}
-                    
                 </tbody>
             </table>
             <div class="d-flex justify-content-between mx-auto">
-                <a class="link-dark text-muted" data-bs-toggle="modal" data-bs-target="#resetValue"><button class="btn btn-outline-danger">Réinitialiser</button></a>
+                {# Btn réinitialiser #}
                 <div>
-                    <a href="{{ path('group_notes', {groupId: groupId}) }}" class="btn btn-danger">Annuler</a>
-                    <button class="btn btn-success" type="submit">Enregistrer</button>
-                </div>
-            </div>
-
-            <div class="modal fade" id="resetValue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-danger">Réinitialisation de la grille</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p> Cette action entraîne la suppression des notes de la grille. Êtes-vous sûr(e) de vouloir réinitialiser ?</p>
-                            <div class="d-flex justify-content-between w-75 m-auto">
-                                <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary"  type="reset">Valider</button>
+                    {# <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reinitialisation">Réinitialiser</button> #}
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reinitialisation">Réinitialiser</button>
+                <!-- Modal -->
+                    {# <div class="modal fade" id="reinitialisation" tabindex="-1" aria-labelledby="reinitialisationLabel" aria-hidden="true"> #}
+                    <div class="modal fade" id="reinitialisation" tabindex="-1" aria-labelledby="reinitialisationLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Réinitialisation des notes</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Toutes les valeurs seront supprimées !
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <input class="btn btn-primary" type="reset" value="Réinitialiser"></input>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    {# Btn Retour #}
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#retourGroupe">Retour</button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Les notes insérées / modifiées seront perdues si vous quitter cette page.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <a  href="{{ path('group_notes', {groupId: groupId}) }}"  type="button" class="btn btn-primary">Continuer</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Btn Save #}
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#save" disabled>Enregistrer</button>
+                    <!-- Modal -->
+                    {# <div class="modal fade" id="save" tabindex="-1" aria-labelledby="saveLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Enregistrement des notes</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Les notes insérées sont envoyées à la base de données.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary" type="submit">Continuer</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div> #}
+
+                </div>
+
             </div>
+
         </form>
     </div>
 </div>
@@ -68,5 +122,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/note.js') }}">
+    <script src="{{ asset('assets/js/note.js') }}"></script>
 {% endblock %}

@@ -44,6 +44,24 @@ class Groupe
      */
     private $heureSout;
 
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="sout_rapport", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $soutRapport = '0.00';
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="sout_avancement", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $soutAvancement = '0.00';
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="sout_competences", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $soutCompetences = '0.00';
     /**
      * @var string|null
      *
@@ -51,6 +69,24 @@ class Groupe
      */
     private $noteSout = '0.00';
 
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="poster_rapport", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $posterRapport = '0.00';
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="poster_avancement", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $posterAvancement = '0.00';
+    // /**
+    //  * @var string|null
+    //  *
+    //  * @ORM\Column(name="poster_competences", type="decimal", precision=4, scale=2, nullable=true, options={"default"="0.00"})
+    //  */
+    // private $posterCompetences = '0.00';
     /**
      * @var string|null
      *
@@ -206,6 +242,78 @@ class Groupe
         return $this;
     }
 
+    // public function getSoutRapport(): ?string
+    // {
+    //     return $this->soutRapport;
+    // }
+
+    // public function setSoutRapport(?string $soutRapport): self
+    // {
+    //     $this->soutRapport = $soutRapport;
+
+    //     return $this;
+    // }
+
+    // public function getSoutAvancement(): ?string
+    // {
+    //     return $this->soutAvancement;
+    // }
+
+    // public function setSoutAvancement(?string $soutAvancement): self
+    // {
+    //     $this->soutAvancement = $soutAvancement;
+
+    //     return $this;
+    // }
+
+    // public function getSoutCompetences(): ?string
+    // {
+    //     return $this->soutCompetences;
+    // }
+
+    // public function setSoutCompetences(?string $soutCompetences): self
+    // {
+    //     $this->soutCompetences = $soutCompetences;
+
+    //     return $this;
+    // }
+
+    // public function getposterRapport(): ?string
+    // {
+    //     return $this->posterRapport;
+    // }
+
+    // public function setposterRapport(?string $posterRapport): self
+    // {
+    //     $this->posterRapport = $posterRapport;
+
+    //     return $this;
+    // }
+
+    // public function getPosterAvancement(): ?string
+    // {
+    //     return $this->posterAvancement;
+    // }
+
+    // public function setPosterAvancement(?string $posterAvancement): self
+    // {
+    //     $this->posterAvancement = $posterAvancement;
+
+    //     return $this;
+    // }
+
+    // public function getPosterCompetences(): ?string
+    // {
+    //     return $this->posterCompetences;
+    // }
+
+    // public function setPosterCompetences(?string $posterCompetences): self
+    // {
+    //     $this->posterCompetences = $posterCompetences;
+
+    //     return $this;
+    // }
+
     public function getNoteSout(): ?string
     {
         return $this->noteSout;
@@ -242,10 +350,10 @@ class Groupe
         return $this;
     }
 
-    // public function getIdProjet(): ?Projet
-    // {
-    //     return $this->idProjet;
-    // }
+    public function getIdProjet()
+    {
+        return $this->idProjet;
+    }
 
     public function setIdProjet(?Projet $idProjet): self
     {

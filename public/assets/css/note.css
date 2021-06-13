@@ -1,0 +1,62 @@
+.sujet{
+    overflow:auto;
+}
+
+.criteres{
+    width: 25%;
+    border-right: black solid 2px;
+    font-weight: bold;
+}
+
+.recap_note, .eval_name, td.valeur, .eval_input{
+    text-align: center;
+    vertical-align: middle;
+    flex-shrink: 1;
+}
+
+.eval_title, .recap{
+    font-weight: normal;
+}
+
+tbody td span, thead th span{
+    color: rgba(0, 0, 0, .65);
+}
+
+
+@media (max-width: 992px) {
+    
+    p {font-size: small;}
+    div h1 {font-size:x-large; color: #346cb0; margin-top: 25px;}
+    table{margin-top: 10px;}
+    thead tr th{font-size: smaller; text-align: center;}
+    tbody td{font-size: 1.15em;}
+    tbody td span{font-size: 0.85em;}
+    tbody{font-size: x-small;}
+    
+    .criteres{min-width: 150px;}
+    .entete{visibility: hidden; margin:0.1em;}
+    .title{margin-bottom: 15px;}
+    .nom_card{font-size: small;}
+    .grp_card{font-size: small;}
+    .eval_title{font-size: 0.5em; min-width: 60px;}
+    .eval_title span{font-size: 0.85em;}
+    .eval_name{font-size: x-small;}
+    
+}
+
+@media (min-width: 992px){
+    div h1 {color: #346cb0; margin-top: 50px;}
+    table{margin-top: 50px;}
+    th{max-width: 300px;}
+    thead tr th{font-size: larger; text-align: center; vertical-align: middle;}
+    tbody td{font-size: 1.3em;}
+    tbody td span{font-size: 0.8em;}
+    
+    .criteres{min-width: 450px; width: 70%;}
+    .vue_content{margin: 3%;}
+    .entete{margin: 1em;}
+    .search{width: 75%; margin: auto; margin-bottom: 30px;}
+    .title{margin: 1.5% 0;}
+    .bouton{margin-top: 50px;}
+    .eval_title{width: 150px;}
+}

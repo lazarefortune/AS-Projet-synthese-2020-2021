@@ -232,16 +232,21 @@ class Etudiant
         return $this;
     }
 
-    // public function getIdUser(): ?User
-    // {
-    //     return $this->idUser;
-    // }
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
 
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
 
         return $this;
+    }
+
+    public function idGroupeEtud()
+    {
+        return $this->idGroupeEtud;
     }
 
 

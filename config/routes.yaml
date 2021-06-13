@@ -96,3 +96,11 @@ eval_group_notes_sout:
 eval_group_notes_poster:
     path: /groupe/{groupId}/poster
     controller: App\Controller\Evaluator\GroupController::group_notes_poster
+
+eval_group_notes_indiv:
+    path: /groupe/{groupId}/individuelle
+    controller: App\Controller\Evaluator\GroupController::group_notes_indiv
+
+eval_group_final:
+    path: /groupe/{groupId}/final
+    controller: App\Controller\Evaluator\GroupController::group_notes_final

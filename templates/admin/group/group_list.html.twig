@@ -1,50 +1,48 @@
 {% extends "layouts/admin.html.twig" %}
-{# <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"> #}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block admin_content %}
 <h3 class="text-center my-4">Liste des projets</h3>
-
-<div>            
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
-        </div>
-    </div> 
-
-    <div class="my-3 ml-5 w-75">
-        <h2 class="fs-3">23 Projets</h2>
-    </div>  
-
-    <div class="row">
-        {% for id in 1..6 %}
-            <div class="col-md-4">
-                    <div class="card card-fluid  p-3">
-                        <h6 class="mb-3" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nostrum voluptates,  </h6>
-                        <p class="font-italic fs-6">Nom de l'encadrant</p>
-                        <p class=" fs-6">Groupe n° {{ id }}</p>
-                        <div class="text-center">
-                            <a href="{{ path('group_notes', {groupId: id}) }}"><button type="button" class="btn btn-primary">Consulter</button></a>
-                        </div>
-                    </div>
-            </div>
-        {% endfor %}
-    
+          
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary btn-sm" type="button">Rechercher</button>
     </div>
-    {# {% for id_1 in 0..5 %}
-        <div class="container d-flex">
-            {% for id_2 in 0..3 %}
-                {% set id = 1 + (id_1 * 4) + (id_2 % 4) %}
-                <div class="border border-secondary rounded m-3 p-3">
-                    <h1 class="fs-4">Titre du projet Titre du projet</h1>
-                    <h2 class="font-italic fs-6">Nom de l'encadrant</h2>
-                    <h2 class="font-italic fs-6">Groupe n° {{ id }}</h2>
-                    <div class="text-center">
-                        <a href="{{ path('group_notes', {groupId: id}) }}"><button type="button" class="btn btn-success">Consulter</button></a>
-                    </div>
+</div> 
+
+<div class="entete">
+    <h2 class="fs-3">{{ total }} Projets</h2>
+</div>
+
+<div class="row">
+    {% for groupe in groupes %}
+        <div class="col-md-4">
+            <div class="card card-fluid p-3 sujet">
+                <h6 class="title_card mb-3">{{ groupe.idProjet.titre }}</h6>
+                <p class="nom_card font-italic">
+                <ul>
+                    {% for eval in groupe.idProjet.idEval %}
+                        <li> {{ eval.nom }} </li>
+                    {% endfor %}
+                </ul>
+                </p>
+                <p class="grp_card">
+                    Groupe n°{{ groupe.numero }} :
+                    {% for etudiant in etudiants %}
+                        {% if groupe.numero == etudiant.idGroupeEtud.numero %}
+                            {{ etudiant.idUser.nom }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <div class="text-center">
+                    <a href="{{ path('group_notes', {groupId: groupe.id}) }}"><button type="button" class="btn btn-primary">Consulter</button></a>
                 </div>
-            {% endfor %}
-            </br>
+            </div>
         </div>
-    {% endfor %}  #}
+    {% endfor %}
 </div>
 {% endblock %}
