@@ -2,18 +2,39 @@ home:
     path: /
     controller: App\Controller\HomeController::index
 
+# group_list:
+#     path: /admin/groupes
+#     controller: App\Controller\Admin\GroupController::group_list
+
+# group_notes:
+#     path: /admin/groupe/{groupId}/notes
+#     controller: App\Controller\Admin\GroupController::group_notes
+
+# group_notes_edit:
+#     path: /admin/groupe/{groupId}/edit/{typeEval}
+#     defaults:
+#         typeEval: soutenance
+#     controller: App\Controller\Admin\GroupController::edit_note
+
+
+
+# evaluator_list:
+#     path: /admin/evaluateurs
+#     controller: App\Controller\Admin\EvaluatorController::list
+
+
 group_list:
-    path: /groupes
+    path: /admin/groupes
     controller: App\Controller\Admin\GroupController::group_list
 
 group_notes:
-    path: /groupe/{groupId}/notes
+    path: /admin/groupe/{groupId}/notes
     controller: App\Controller\Admin\GroupController::group_notes
 
 group_notes_edit:
-    path: /groupe/{groupId}/edit/{typeEval}
+    path: /admin/groupe/{groupId}/edit/{typeEval}
     defaults:
-        typeEval: sout
+        typeEval: soutenance
     controller: App\Controller\Admin\GroupController::edit_note
 
 # group_notes_edit_poster:
@@ -22,17 +43,18 @@ group_notes_edit:
 #         typeEval: poster
 #     controller: App\Controller\Admin\GroupController::edit_note
 
-account:
-    path: /profile
-    controller: App\Controller\UserController::index
 
 evaluator_list:
-    path: /evaluateurs
+    path: /admin/evaluateurs
     controller: App\Controller\Admin\EvaluatorController::list
 
-email:
-    path: /email
-    controller: App\Controller\Admin\EmailController::index
+account:
+    path: /profil
+    controller: App\Controller\UserController::index
+
+# email:
+#     path: /admin/email
+#     controller: App\Controller\Admin\EmailController::index
 
 maintenance:
     path: /maintenance
@@ -42,9 +64,18 @@ password_reset:
     path: /mot-de-passe/recuperation
     controller: App\Controller\Auth\AuthController::password_reset_form
 
+define_dates:
+    path: /admin/acces-au-site
+    controller: App\Controller\Admin\AccessController::dates_index
+
+add_define_dates:
+    path: /admin/acces-au-site/ajouter
+    controller: App\Controller\Admin\AccessController::add_dates_index
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
 
 jury:
     path: /composition-jury
@@ -53,3 +84,25 @@ jury:
 groupAB:
     path: /composition-des-groupes
     controller: App\Controller\Admin\GroupABController::index
+
+edit_jury:
+    path: /composition-des-jury
+    controller: App\Controller\Admin\JuryController::show
+
+show_groupAB:
+    path: /composition-des-groupes
+    controller: App\Controller\Admin\GroupABController::show
+
+# Path view evaluator
+eval_group_list:
+    path: /groupes
+    controller: App\Controller\Evaluator\GroupController::group_list
+
+eval_group_notes_sout:
+    path: /groupe/{groupId}/soutenance
+    controller: App\Controller\Evaluator\GroupController::group_notes_sout
+
+eval_group_notes_poster:
+    path: /groupe/{groupId}/poster
+    controller: App\Controller\Evaluator\GroupController::group_notes_poster
+

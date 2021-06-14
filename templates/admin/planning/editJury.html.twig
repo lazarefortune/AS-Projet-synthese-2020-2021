@@ -8,6 +8,9 @@
 {% block admin_content %}
 
 
+
+
+
     <h1 class="text-center my-4"> Edition des Jurys </h1>
 
     <!-- .page-navs -->
@@ -45,18 +48,20 @@
                 </tr>
                 </thead>
                 <tbody>
+
+                {% for user in users %}
+
+                {% if user.nom == "CAZENAVE" or user.nom == "GRIVEL" %}
                 <tr>
 
                     <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
-                    <td style="width: 35%">Richard</td>
-                    <td style="width: 40%">Cramé</td>
-                </tr>
-                <tr>
 
-                    <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
-                    <td>Michel</td>
-                    <td>Frais</td>
+                    <td style="width: 35%"> {{ user.nom }} </td>
+
+                    <td style="width: 40%">{{ user.prenom }}</td>
                 </tr>
+                {% endif %}
+                {% endfor %}
 
                 </tbody>
 
@@ -74,32 +79,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {% for user in users %}
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
-                    <td style="width: 35%">Richard</td>
-                    <td style="width: 40%">Cramé</td>
-                </tr>
-                <tr>
+                    {% if user.nom == "DUTERTRE" or user.nom == "HELL" %}
+                        <tr>
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
-                    <td>Riz</td>
-                    <td>Thon</td>
-                </tr>
+                            <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
 
-                <tr>
+                            <td style="width: 35%"> {{ user.nom }} </td>
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
-                    <td>David</td>
-                    <td>Source</td>
-                </tr>
-
-                <tr>
-
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px"></td>
-                    <td>Albert</td>
-                    <td>To</td>
-                </tr>
+                            <td style="width: 40%">{{ user.prenom }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
 
                 </tbody>
 
@@ -120,18 +112,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {% for user in users %}
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
-                    <td style="width: 35%">Richard</td>
-                    <td style="width: 40%">Cramé</td>
-                </tr>
-                <tr>
+                    {% if user.nom == "LAROCHE" or user.nom == "KIENER" or user.nom == "MICHEL" %}
+                        <tr>
 
-                    <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
-                    <td>Michel</td>
-                    <td>Frais</td>
-                </tr>
+                            <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+
+                            <td style="width: 35%"> {{ user.nom }} </td>
+
+                            <td style="width: 40%">{{ user.prenom }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
 
                 </tbody>
 
@@ -148,18 +141,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {% for user in users %}
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
-                    <td style="width: 35%">Richard</td>
-                    <td style="width: 40%">Cramé</td>
-                </tr>
-                <tr>
+                    {% if user.nom == "GINOUX" or user.nom == "SPENGLER" %}
+                        <tr>
 
-                    <td style="border-left: solid white 1px; border-bottom: solid white 1px"></td>
-                    <td>Riz</td>
-                    <td>Thon</td>
-                </tr>
+                            <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+
+                            <td style="width: 35%"> {{ user.nom }} </td>
+
+                            <td style="width: 40%">{{ user.prenom }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
 
                 </tbody>
 

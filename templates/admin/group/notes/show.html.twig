@@ -2,79 +2,49 @@
 
 {% block admin_content %}
 
-<section id="soutenance" class="mx-5">               
-                     <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Group n° {{ groupId }} / Nom_du_projet</i>
-                     <a class="btn btn-primary btn-sm" style="float: right;" href="{{ path('group_list') }}" role="button">Liste des groupes</a></p>
-                     <h3 class="text-center my-4">Evaluation de la soutenance <span class="font-weight-normal lead">(coeff. 1)</span></h3> </br>
-               
-                     
-                        <div class="table-responsive"> <!-- d-flex-->
-                           <table class="table table-hover mb-4">
-                              <thead>
-                                 <tr>
-                                    <th scope="col" class="align-middle text-center">Nom de l'évaluateur</td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Qualité de la présentation </br> <span class="font-weight-normal"> coeff. 1 </br>/5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Travail réalisé. Etat d'avancement du projet </br> <span class="font-weight-normal"> coeff. 1 </br> /5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Utilisation de compétences nouvelles </br> <span class="font-weight-normal">coeff. 1 </br> /5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Moyenne </br> <span class="font-weight-normal">/5 points </span></td>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 {% for id in [1,2,3,4] %}
-                                 <tr>
-                                    <th class="text-center align-middle">Nom et prénom</th>
-                                    <td class="text-center align-middle"> 12 </td>
-                                    <td class="text-center align-middle"> 12 </td>
-                                    <td class="text-center align-middle"> 12 </td>
-                                    <td class="text-center align-middle"> 12 </td>
-                                 </tr>
-                                    
-                                 {% endfor %}
-                                
-                              </tbody>
-                           </table>
-                           <div class="mx-4 text-right">
-                                <button class="btn btn-outline-primary"><i class="far fa-file-pdf"></i>  Télécharger</button>
-                                <a href="{{ path('group_notes_edit', {groupId: groupId, typeEval: "soutenance"}) }}"><button class="btn btn-outline-dark ml-5">Modifier</button></a>
-                           </div>
-                        </div>
-                     
-                  </section>
-                  <section id="poster" class="mx-5 mb-5">
-                     <h3 class="text-center my-4">Evaluation du poster <span class="font-weight-normal lead">(coeff. 1)</span></h3> </br>
-               
-                     
-                        <div class="table-responsive">
-                           <table class="table table-hover mb-4">
-                              <thead>
-                                 <tr>
-                                    <th scope="col" class="align-middle text-center">Nom de l'évaluateur</td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Qualité de la présentation </br> <span class="font-weight-normal"> coeff. 1 </br>/5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Travail réalisé. Etat d'avancement du projet </br> <span class="font-weight-normal"> coeff. 1 </br> /5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Utilisation de compétences nouvelles </br> <span class="font-weight-normal">coeff. 1 </br> /5 points </span></td>
-                                    <th scope="col" class="align-middle text-center" style="width:18%">Moyenne </br> <span class="font-weight-normal">/5 points </span></td>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 {% for id in [1,2,3,4] %}
-                                 <tr>
-                                    <th class="text-center align-middle">Nom et prénom</th>
-                                    <td class="text-center align-middle"> 14 </td>
-                                    <td class="text-center align-middle"> 14 </td>
-                                    <td class="text-center align-middle"> 14 </td>
-                                    <td class="text-center align-middle"> 14 </td>
-                                 </tr>
-                                    
-                                 {% endfor %}
-                                 
-                              </tbody>
-                           </table>
-                           <div class="mx-4 text-right">
-                                <button class="btn btn-outline-primary"><i class="far fa-file-pdf"></i>  Télécharger</button>
-                                <a href="{{ path('group_notes_edit', {groupId: groupId, typeEval: "poster"}) }}"><button class="btn btn-outline-dark ml-5">Modifier</button></a>
-                           </div>
-                        </div>
-                     
-                  </section>
-    
+   <div class="mx-5 mb-5">         
+      <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Group n° {{ groupId }} / Nom_du_projet</i>
+      <a class="btn btn-primary btn-sm" style="float: right;" href="{{ path('group_list') }}" role="button">Liste des groupes</a></p>
+   </div>
+
+   {% for eval in [1,2] %}
+      {% if eval == 1 %}
+         {% set eval = "soutenance" %}
+      {% else %}
+         {% set eval = "poster" %}
+      {% endif %}
+      <section id="{{eval}}" class="mx-5">
+         <h1 class="text-center my-4 fs-2">Evaluation {{ eval }}</h1>
+         <div class="table-responsive">
+            <table class="table table-hover">      
+               <thead>
+                  <tr>
+                     <th scope="col" class="align-middle text-center">Nom de l'évaluateur</td>
+                     <th scope="col" class="align-middle text-center" style="width:18%">Qualité de la présentation </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
+                     <th scope="col" class="align-middle text-center" style="width:18%">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
+                     <th scope="col" class="align-middle text-center" style="width:18%">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
+                     <th scope="col" class="align-middle text-center" style="width:18%">Moyenne </br> <span class="font-weight-normal">/5 points </span></td>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for id in [1,2,3,4] %}
+                     <tr>
+                        <th class="text-center align-middle">Nom . Prénom</th>
+                        <td class="text-center align-middle"> 3.5 </td>
+                        <td class="text-center align-middle"> 3 </td>
+                        <td class="text-center align-middle"> 4 </td>
+                        <td class="text-center align-middle"> 3.5 </td>
+                     </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+            <div class="text-right mr-5">
+               <a href="{{ path('group_notes_edit',{groupId: groupId, typeEval: eval}) }}"><button class="btn btn-outline-secondary" style="width: 10%;">Modifier</button></a>
+            </div>
+         </div>
+      </section>
+   {% endfor %}
+   <div class="text-center mx-5 mt-3">
+      <button class="btn btn-outline-primary" style="width: 20%;"><i class="far fa-file-pdf"></i>  Télécharger</button>
+   </div>
 {% endblock %}

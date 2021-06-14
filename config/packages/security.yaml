@@ -1,7 +1,7 @@
 security:
     enable_authenticator_manager: true
     encoders:
-        App\Entity\Evaluateur: 
+        App\Entity\User: 
             algorithm: sha256
             encode_as_base64: false
             iterations: 1
@@ -12,7 +12,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Evaluateur
+                class: App\Entity\User
                 # property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
@@ -29,6 +29,16 @@ security:
               #  path:     /
               #   by default, the feature is enabled by checking a
                #  checkbox in the login form (see below), uncomment the
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                domain: ~
+                name: REMEMBER_DEMO
+                samesite: lax
+                # token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
              #   always_remember_me: true
             guard:
@@ -57,6 +67,7 @@ security:
 
 
     role_hierarchy:
-        ROLE_EVALUATOR: ROLE_USER
+        ROLE_ETUDIANT: ROLE_USER
+        ROLE_EVALUATOR: [ROLE_USER]
         ROLE_ADMIN:       [ROLE_EVALUATOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

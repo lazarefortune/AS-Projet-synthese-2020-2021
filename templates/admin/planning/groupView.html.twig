@@ -1,0 +1,71 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block admin_content %}
+
+
+
+
+
+    <h1 class="text-center my-4">Groupes A/B </h1> </br>
+
+    <section class="px-5">
+        <form>           <!-- Tableau Groupe A -->
+            <table style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
+                <caption style="caption-side: top; text-align: center; color: black"><b>Groupe A</b></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%" scope="col">N° sujet</th>
+                    <th style="width: 40%" scope="col">NOM</th>
+                    <th style="width: 40%" scope="col">Prenom</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for etudiant in etudiants %}
+                    {% if etudiant.demiGroupe == "1.2" %}
+                        <tr>
+
+                            <td>{{ etudiant.IdGroupeEtud.idProjet.numProjet }}</td>
+                            <td>{{ etudiant.idUser.nom }}</td>
+                            <td>{{ etudiant.idUser.prenom }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+                </tbody>         <!-- Tableau Groupe B -->
+            </table><table style="width: 45%; display: inline-table" class="table table-bordered">
+                <caption style="caption-side: top; text-align: center; color: black"><b>Groupe B</b></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%" scope="col">N° sujet</th>
+                    <th style="width: 40%" scope="col">NOM</th>
+                    <th style="width: 40%" scope="col">Prenom</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for etudiant in etudiants %}
+                    {% if etudiant.demiGroupe == "2.1" %}
+                        <tr>
+
+                            <td>{{ etudiant.IdGroupeEtud.idProjet.numProjet }}</td>
+                            <td>{{ etudiant.idUser.nom }}</td>
+                            <td>{{ etudiant.idUser.prenom }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {# <div class="d-flex justify-content-between w-50 mt-6 mx-auto">
+                <button class="btn btn-outline-danger" type="reset">Imprimer</button>
+                <button class="btn btn-success" type="submit">Enregistrer</button>
+            </div> #}
+
+            <div class="text-center mx-5 mt-3">
+                <button class="btn btn-outline-primary" style="width: 20%;"><i class="far fa-file-pdf"></i>  Télécharger</button>
+            </div>
+
+        </form>
+    </section>
+
+{% endblock %}
