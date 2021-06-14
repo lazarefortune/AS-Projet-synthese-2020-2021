@@ -23,17 +23,52 @@
                     </tr>
                 </thead>
 
+                {% for etudiant in etudiants %}
+                {{ dump(etudiant.idUser.prenom) }}
+                {% endfor %}
+                
                 <tbody>
-                    {% for etudiant in etudiants %}
+                    {# {% for etudiant in etudiants %} #}
                     <tr>
-                        <td class="eval_name">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
-                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_rapport_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_travail_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_competences_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                        <td class="eval_input"><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_pourcentage_{{ etudiant.idEtud }}" type="number" min="0" max="100" size="2" required></input></td>
-                        <td class="eval_input" id="note_moyenne_{{ etudiant.idEtud }}" style="text-align:center;"></td>
+                        {# <td class="eval_name">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td> #}
+                        <td class="eval_name"></td>
+                        <td class="eval_input">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="rapport"
+                            id="note_rapport_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ form.noteTutRapport.vars.value }}" required></input>
+                            {% do form.noteTutRapport.setRendered %}
+                        {# <input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_rapport_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input> #}
+                        </td>
+                        <td class="eval_input">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="travail"
+                            id="note_travail_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ form.noteTutTrav.vars.value }}" required></input>
+
+                            {# <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_travail_{{ groupe.numero }}"
+                            value="{{ form.soutAvancement.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input> #}
+                            {% do form.noteTutTrav.setRendered %}
+                        {# <input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_travail_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input> #}
+                        </td>
+                        <td class="eval_input">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="compétences"
+                            id="note_competences_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ form.noteTutCompet.vars.value }}" required></input>
+                            {% do form.noteTutCompet.setRendered %}
+
+                            {# <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_competences_{{ groupe.numero }}"
+                            value="{{ form.soutCompetences.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input> #}
+                        {# <input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_competences_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required></input> #}
+                        </td>
+                        <td class="eval_input">
+                            <input type="number" min="0" max="100" size="2" class="form-control-sm" name="pourcentage"
+                            id="note_pourcentage_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ form.pourcentTravail.vars.value }}" required></input>
+                            {% do form.pourcentTravail.setRendered %}
+
+                            {# <input type="number" min="0" max="100" size="2" step="0.5" class="form-control-sm" id="note_pourcentage_{{ groupe.numero }}"
+                            value="{{ form.soutCompetences.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input> #}
+                        {# <input onchange="moyenne({{ etudiant.idEtud }})" class="form-control form-control-sm" id="note_pourcentage_{{ etudiant.idEtud }}" type="number" min="0" max="100" size="2" required></input> #}
+                        </td>
+                        {# <td class="eval_input" id="note_moyenne_{{ etudiant.idEtud }}" style="text-align:center;"></td> #}
+                        <td class="eval_input" id="note_moyenne_" style="text-align:center;"></td>
                     </tr>
-                    {% endfor %}
+                    {# {% endfor %} #}
                 </tbody>
             </table>
 
@@ -62,7 +97,7 @@
                     </div>
 
                     {# Btn Save #}
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#save" disabled>Enregistrer</button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#save">Enregistrer</button>
                     <!-- Modal -->
                     {# <div class="modal fade" id="save" tabindex="-1" aria-labelledby="saveLabel" aria-hidden="true">
                         <div class="modal-dialog">

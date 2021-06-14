@@ -1,7 +1,7 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block stylesheets %}
-    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/notation.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block admin_content %}
@@ -23,21 +23,22 @@
         <div class="col-md-4">
                 <div class="card card-fluid p-3 sujet">
                     <h6 class="title_card mb-3">{{ groupe.idProjet.titre }}</h6>
-                    <p class="nom_card font-italic">
                     <ul>
-                        {% for eval in groupe.idProjet.idEval %}
-                            <li> {{ eval.nom }} </li>
-                        {% endfor %}
-                    </ul>
-                    </p>
-                    <p class="grp_card">
-                    Groupe n°{{ groupe.numero }} :
-                    {% for etudiant in etudiants %}
-                        {% if groupe.numero == etudiant.idGroupeEtud.numero %}
-                            {{ etudiant.idUser.nom }}
-                        {% endif %}
+                    <p class="nom_card font-italic">
+                    {% for eval in groupe.idProjet.idEval %}
+                        <li> {{ eval.nom }} </li>
                     {% endfor %}
                 </p>
+                <p class="grp_card">
+                    Groupe n°{{ groupe.numero }} :
+                        <ul>
+                    {% for etudiant in etudiants %}
+                            {% if groupe.numero == etudiant.idGroupeEtud.numero %}
+                                <li class="liste_etud">{{ etudiant.idUser.nom }}</li>
+                            {% endif %}
+                    {% endfor %}
+                        </ul>
+                </ul>
                     <div class="row">
                         <div class="text-center">
                             <a href="{{ path('eval_group_notes_sout', {groupId: groupe.id}) }}"><button type="button" class="btn btn-outline-success m-2">Soutenance</button></a>

@@ -23,20 +23,22 @@
         <div class="col-md-4">
             <div class="card card-fluid p-3 sujet">
                 <h6 class="title_card mb-3">{{ groupe.idProjet.titre }}</h6>
-                <p class="nom_card font-italic">
                 <ul>
+                    <p class="nom_card font-italic">
                     {% for eval in groupe.idProjet.idEval %}
                         <li> {{ eval.nom }} </li>
                     {% endfor %}
-                </ul>
                 </p>
                 <p class="grp_card">
                     Groupe n°{{ groupe.numero }} :
+                        <ul>
                     {% for etudiant in etudiants %}
-                        {% if groupe.numero == etudiant.idGroupeEtud.numero %}
-                            {{ etudiant.idUser.nom }}
-                        {% endif %}
+                            {% if groupe.numero == etudiant.idGroupeEtud.numero %}
+                                <li>{{ etudiant.idUser.nom }}</li>
+                            {% endif %}
                     {% endfor %}
+                        </ul>
+                </ul>
                 </p>
                 <div class="text-center">
                     <a href="{{ path('group_notes', {groupId: groupe.id}) }}"><button type="button" class="btn btn-primary">Consulter</button></a>

@@ -5,6 +5,7 @@ namespace App\Controller\Evaluator;
 use App\Entity\Groupe;
 use App\Entity\Etudiant;
 use App\Form\SoutType;
+use App\Form\EvalEtudiantType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,8 +61,8 @@ class GroupController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             $groupe->setSoutRapport($test);
-            $groupe->setSoutRapport($test);
-            $groupe->setSoutRapport($test);
+            // $groupe->setSoutRapport($test);
+            // $groupe->setSoutRapport($test);
             // $repo->persist($groupe);
             // $repo->flush();
 
@@ -102,7 +103,7 @@ class GroupController extends AbstractController
             ]);
     }
 
-    public function group_notes_indiv(int $groupId): Response
+    public function group_notes_indiv(int $groupId, Request $request, ManagerRegistry $managerRegistry): Response
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo->find($groupId);
@@ -111,11 +112,56 @@ class GroupController extends AbstractController
         $etudiants = $repo2->findBy([
             'idGroupeEtud' => $groupId
         ]);
+        // dump($etudiants);
+        // die;
+        
+        foreach ($etudiants as $etudiant){
+            $i = 0;
+            $form = $this->createForm(EvalEtudiantType::class, $etudiant);
+            // dump($etudiant);
+            dump($etudiant);
+        }
+        // dump($form);
+        // die;
+        $form->handleRequest($request);
+
+        dump($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $groupe->setNoteTutRapport($request->request->get('rapport'));
+            // $groupe->setNoteTutTrav($request->request->get('travail'));
+            // $groupe->setNoteTutCompet($request->request->get('compétences'));
+            // $groupe->setPourcentTravail($request->request->get('pourcentage'));
+            // todo MOYENNE
+
+            dump($request->request->get('rapport'));
+            // dump($request->request->get('travail'));
+            // dump($request->request->get('compétences'));
+            // dump($request->request->get('pourcentage'));
+
+
+            // $repo->persist($groupe);
+            // $repo->flush();
+
+            $em = $managerRegistry->getManager();
+            $em->persist($groupe);
+            $em->flush();
+            // dump($request->request->get('note_rapport_{{ groupe.numero }}'));
+            // $groupe->setSoutRapport($request->request->get('note_rapport_{{ groupe.numero }}'));
+            // $repo = $managerRegistry->getManager();
+            // redirection
+        
+            $this->addFlash('success', 'Notes mis à jour avec succès');
+        }
+
+
 
         return $this->render('evaluator/group/notes/students_eval.html.twig',[
             'groupId' => $groupId,
             'groupe' => $groupe,
-            'etudiants' => $etudiants
+            'etudiants' => $etudiants,
+            'form' => $form->createView(),
             ]);
     }
 

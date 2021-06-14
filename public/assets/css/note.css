@@ -41,6 +41,7 @@ tbody td span, thead th span{
     .eval_title{font-size: 0.5em; min-width: 60px;}
     .eval_title span{font-size: 0.85em;}
     .eval_name{font-size: x-small;}
+    li.liste_etud{font-size: xx-small;}
     
 }
 
