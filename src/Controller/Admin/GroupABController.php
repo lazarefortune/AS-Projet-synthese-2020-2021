@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Controller\Admin;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
-use App\Entity\Etudiant;
+use App\Entity\Projet;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -38,13 +40,17 @@ class GroupABController extends AbstractController
 
     }
 
-    public function index(): Response{
+    public function index(UserRepository $repo): Response{
 
-        $repo = $this->getDoctrine()->getRepository(Etudiant::class);
-        $etudiants = $repo->findAll();
+        //$repoUser = $this->getDoctrine()->getRepository(User::class);
+        $repoProjet = $this->getDoctrine()->getRepository(Projet::class);
 
-        return $this->render('admin/planning/groupView.html.twig',
-            ['etudiants' => $etudiants]);
+        $projets = $repoProjet->findAll();
+        $users = $repo->findByRole("EVALUATOR");
+
+        return $this->render('admin/planning/editGroupAB.html.twig',
+            ["users" => $users,
+                "projets" => $projets]);
 
     }
 
