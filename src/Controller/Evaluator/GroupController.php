@@ -15,6 +15,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class GroupController extends AbstractController
 {
     
+    public function list_note(): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupes = $repo->findAll();
+
+        $total = count($groupes);
+
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findAll();
+
+        return $this->render('evaluator/group/group_list.html.twig', [
+            'groupes'   => $groupes,
+            'etudiants' => $etudiants,
+            'total'     => $total
+        ]);
+    }
+    
     public function group_list(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);

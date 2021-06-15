@@ -1,0 +1,46 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+<div class="vue_content">        
+    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupe.numero }} / {{ groupe.idProjet.titre }}</span></p>
+    <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-primary">Retour</button></a>
+    <h1 class="text-center my-sm-0 my-lg-5">Ensemble des notes</h1>
+
+    <form>
+        <div class="table-responsive">
+            <table id="id_table" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="recap align-middle" style="width: 10%">Evaluateur</th>
+                        <th scope="col" class="recap align-middle" style="width: 10%">Etudiant</th>
+                        <th scope="col" class="recap align-middle" style="width: 18,75%">Note individuelle </br><span>/20 pts</span></th>
+                        <th scope="col" class="recap align-middle" style="width: 18,75%">Note soutenance </br><span>/20 pts</span></th>
+                        <th scope="col" class="recap align-middle" style="width: 18,75%">Note poster </br><span>/20 pts</span></th>
+                        <th scope="col" class="recap align-middle" style="width: 18,75%">Note finale </br><span>/20 pts</span></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for etudiant in etudiants %}
+                    <tr>
+                        <td class="recap_note">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
+                        <td class="recap_note" id="note_indiv">15.20</td>
+                        <td class="recap_note" id="note_sout">11.50</td>
+                        <td class="recap_note" id="note_poster">12.54</td>
+                        <td class="recap_note" id="note_finale" style="text-align:center;"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/final_moy.js') }}"></script>
+{% endblock %}

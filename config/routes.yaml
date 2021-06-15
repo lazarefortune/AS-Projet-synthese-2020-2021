@@ -23,6 +23,10 @@ home:
 #     controller: App\Controller\Admin\EvaluatorController::list
 
 
+list_note:
+    path: /admin/liste_notes
+    controller: App\Controller\Admin\GroupController::list_note
+
 group_list:
     path: /admin/groupes
     controller: App\Controller\Admin\GroupController::group_list
