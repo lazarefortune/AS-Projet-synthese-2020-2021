@@ -195,9 +195,9 @@
                            <input type="text" class="form-control" placeholder="Nom de l'évaluateur" aria-label="Username" aria-describedby="basic-addon1">
                        </div>
                             <div class="table-div" style="overflow: scroll; max-height: 400px;">
-                                <table class="table table-bordered">
+                                <table id="table_ligne" class="table table-bordered noboucle">
                                     <caption style="caption-side: top">Evaluateur sélectionné :</caption>
-                                    <tbody style="overflow: scroll;">
+                                    <tbody id="bud" style="overflow: scroll;">
                                     {% for projet in projets %}
                                         {% for user in users %}
                                             {% if user.idUser == projet.idEval[0].idUser %}

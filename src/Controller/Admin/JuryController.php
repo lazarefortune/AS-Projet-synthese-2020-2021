@@ -16,6 +16,7 @@ class JuryController extends AbstractController
         //$repo = $this->getDoctrine()->getRepository(User::class);
         $users = $repo->findByRole("EVALUATOR");
 
+
         return $this->render('admin/planning/editJury.html.twig',
             ['users' => $users]);
     }

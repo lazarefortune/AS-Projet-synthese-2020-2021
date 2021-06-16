@@ -7,10 +7,6 @@
 
 {% block admin_content %}
 
-
-
-
-
     <h1 class="text-center my-4"> Edition des Jurys </h1>
 
     <!-- .page-navs -->
@@ -54,7 +50,7 @@
                 {% if user.nom == "CAZENAVE" or user.nom == "GRIVEL" %}
                 <tr>
 
-                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0"></td>
+                    <td style=" border-bottom: solid white 1px; border-left: solid white 1px; width: 0">{{ user.IdUser.idProjet.numProjet }}</td>
 
                     <td style="width: 35%"> {{ user.nom }} </td>
 
@@ -161,31 +157,33 @@
 
 
             <!-- Modal -->
-            <div class="modal fade" id="modalMatin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal" id="modalMatin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Choix de l'évaluateur à ajouter</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Nom de l'évaluateur" aria-label="Username" aria-describedby="basic-addon1">
-                                <table class="table table-bordered">
-                                    <caption style="caption-side: top">Evaluateur sélectionné :</caption>
-                                    <tbody>
-                                    <tr>
-                                        <td style="border: solid white 1px;width: 15%">Albert</td>
-                                        <td style="border: solid white 1px;width: 15%">Sucre</td>
-                                        <td style="border: solid white 1px;width: 50%"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-bordered">
 
+                                <tbody>
+
+                                {% for user in users %}
+                                    <tr>
+
+                                        <td style="border: solid black 1px;width: 15%">{{ user.nom }}</td>
+                                        <td style="border: solid black 1px;width: 15%">{{ user.prenom }}</td>
+                                        <td style="border: solid white 1px;width: 50%"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
 
-                        <div class="modal-footer mt-5">
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Ajouter</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                         </div>
