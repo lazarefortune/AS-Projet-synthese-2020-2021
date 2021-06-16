@@ -52,6 +52,10 @@ account:
     path: /profil
     controller: App\Controller\UserController::index
 
+account_eval:
+    path: /eval/profil
+    controller: App\Controller\UserController::index_eval
+
 # email:
 #     path: /admin/email
 #     controller: App\Controller\Admin\EmailController::index
@@ -71,11 +75,6 @@ define_dates:
 add_define_dates:
     path: /admin/acces-au-site/ajouter
     controller: App\Controller\Admin\AccessController::add_dates_index
-
-
-planning:
-    path: /planning
-    controller: App\Controller\Admin\PlanningController::planning
 
 #index:
 #    path: /
@@ -121,3 +120,8 @@ list_eval:
 update_eval:
     path: /eval/{id}
     controller: App\Controller\Admin\EvaluatorController::update
+
+
+change_promo:
+    path: /changer-de-promo
+    controller: App\Controller\HomeController::index

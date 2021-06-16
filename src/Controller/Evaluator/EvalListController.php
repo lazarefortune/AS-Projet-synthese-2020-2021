@@ -2,25 +2,23 @@
 
 namespace App\Controller\Evaluator;
 
-use App\Entity\Evaluateur;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/eval/list", name="list_eval")
  */
 class EvalListController extends AbstractController
 {
-    public function list(Request $request, PaginatorInterface $paginator): Response
+    public function list(Request $request, PaginatorInterface $paginator, UserRepository $repository): Response
     {
 
         $entityManager = $this->getDoctrine()->getManager();
-        $donnees = $entityManager->getRepository(Evaluateur::class)->findAll();
-
-
+        $donnees = $repository->findByRole("EVALUATOR");
 
         $users = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
