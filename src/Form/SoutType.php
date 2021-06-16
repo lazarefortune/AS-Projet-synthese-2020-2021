@@ -24,9 +24,9 @@ class SoutType extends AbstractType
             //     ]     
             // ]
             // )
-            ->add('soutRapport')
-            ->add('soutAvancement')
-            ->add('soutCompetences')
+            // ->add('soutRapport')
+            // ->add('soutAvancement')
+            // ->add('soutCompetences')
             // ->add('noteSout')
         ;
     }

@@ -1,52 +1,17 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block admin_content %}
+
 <div class="m-sm-2 m-md-2 m-lg-4">  
-    
     <p><i style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupe.numero }} / {{ groupe.idProjet.titre }}</i></p>
     <h3 class="text-center my-5">Edition des notes de soutenance</h3> </br>
 
-    <div class="table-responsive">
-        <form method="post">
-            <table class="table table-hover mb-5">
-                <thead>
-                    <tr>
-                        <th scope="col" class="align-middle text-center">
-                            {% for eval in groupe.idProjet.idEval %}
-                                {{ eval.nom }}   
-                            {% endfor %}
-                        </th>
-                        <th scope="col" class="align-middle text-center">Qualité de la présentation </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
-                        <th scope="col" class="align-middle text-center">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
-                        <th scope="col" class="align-middle text-center">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
-                        <th scope="col" class="align-middle text-center">Moyenne</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    {% for etudiant in etudiants %}
-                    <tr>
-                        <th class="text-center align-middle">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</th>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_rapport_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_travail_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
-                        <td><input onchange="moyenne()" class="form-control align-middle text-center mx-auto" id="notes_competences_1" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
-                        <td id="moyenne" style="text-align:center;"></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-between w-75 mx-auto">
-                <a class="link-dark text-muted" data-bs-toggle="modal" data-bs-target="#resetValue"><button class="btn btn-outline-danger">Réinitialiser</button></a>
-                <div>
-                    <a href="{{ path('group_notes', {groupId: groupId}) }}" class="btn btn-danger">Annuler</a>
-                    <button class="btn btn-success" type="submit">Enregistrer</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    {% include 'layouts/flash-messages.html.twig' %}
+
+    <form method="post">
+        {% include "layouts/notation/admin/array/table.html.twig" %}
+    </form>
 </div>
-
-
 {% endblock %}
 
 {% block javascripts %}

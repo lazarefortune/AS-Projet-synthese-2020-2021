@@ -13,86 +13,93 @@
 
     {% include 'layouts/flash-messages.html.twig' %}
 
-    {{ form_start(formSout) }}
+    {# {{ form_start(formSout) }} #}
+    <form action="POST">
     
-    <div class="table-responsive size_tab">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="criteres">Critères</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                {# <tbody>
-                    <tr>
-                        <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
+        <div class="table-responsive size_tab">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="criteres">Critères</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    {# <tbody>
+                        <tr>
+                            <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
 
-                        {# <input onchange="moyenne({{ groupId }})" class="form-control form-control-sm" id="note_rapport_{{ groupId }}" 
-                        type="number" min="0" max="20" size="2" step="0.5" required></input> #}
+                            {# <input onchange="moyenne({{ groupId }})" class="form-control form-control-sm" id="note_rapport_{{ groupId }}" 
+                            type="number" min="0" max="20" size="2" step="0.5" required></input> #}
 
-{#
-                        <td class="valeur">
-                            {{ form_row(formSout.soutRapport, 
-                            {'attr': {
-                                'class': "moyenne{{ groupe.numero }}",
-                                'type': "number"}}
-                             ) }}
-                        </td>
-                    </tr>
-                </tbody> #}
-                <tbody>
-                    <tr>
-                        <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
-                        <td class="valeur">
-                            {# {% if not formSout.soutRapport.vars.valid %} #}
-                            {# {% set formSout.soutRapport.vars.value = null %} #}
-                            {# {{ dump(formSout.soutRapport.vars) }} #}
-                            {# <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_rapport_{{ groupe.numero }}"
-                            value="{{ formSout.soutRapport.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input> #}
+    {#
+                            <td class="valeur">
+                                {{ form_row(formSout.soutRapport, 
+                                {'attr': {
+                                    'class': "moyenne{{ groupe.numero }}",
+                                    'type': "number"}}
+                                ) }}
+                            </td>
+                        </tr>
+                    </tbody> #}
+                    <tbody>
+                        <tr>
+                            <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
+                            <td class="valeur">
+                                {# {% if not formSout.soutRapport.vars.valid %} #}
+                                {# {% set formSout.soutRapport.vars.value = null %} #}
+                                {# {{ dump(formSout.soutRapport.vars) }} #}
+                                {# <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_rapport_{{ groupe.numero }}"
+                                value="{{ formSout.soutRapport.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input> #}
 
 
-                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="rapport"
-                            id="note_rapport_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ formSout.soutRapport.vars.value }}" required></input>
-                            {% do formSout.soutRapport.setRendered %}
-                            {# {{ form_widget(formSout.soutRapport) }} #}
 
-                            {# {{ dump(formSout.soutRapport.vars.valid) }} #}
-                            {# {{ dump(formSout.soutRapport.vars.value) }}
-                            {{ dump(formSout.soutRapport.vars) }} #}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></td>
-                        <td class="valeur">
-                        {# {{ form_widget(formSout.soutAvancement) }} #}
-                        <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_travail_{{ groupe.numero }}"
-                        value="{{ formSout.soutAvancement.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input>
-                        {% do formSout.soutAvancement.setRendered %}
-                        </td>
-                    </tr>
-                    <tr>
-                        {# <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
-                        <td class="valeur">{{ form_widget(formSout.soutCompetences) }}</td> #}
-                        <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
-                        {# <td class="valeur"><input onchange="moyenne()" class="form-control form-control-sm" id="note_competences_{{ groupId }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td> #}
-                        <td class="valeur">
-                        <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_competences_{{ groupe.numero }}"
-                        value="{{ formSout.soutCompetences.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input>
-                        {% do formSout.soutCompetences.setRendered %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Moyenne</td>
-                        <td id="note_moyenne_{{ groupId }}" class="valeur"></td>
-                    </tr>
-                </tbody>
-                <button type="submit">ajouter</button>
-            </table>
+                                <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="rapport"
+                                id="note_rapport_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="" required></input>
 
-        {# </div> #}
-    </div>
+                                {# <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" name="rapport"
+                                id="note_rapport_{{ groupe.numero }}" onchange="moyenne({{ groupe.numero }})" value="{{ formSout.soutRapport.vars.value }}" required></input>
+                                {% do formSout.soutRapport.setRendered %} #}
+                                {# {{ form_widget(formSout.soutRapport) }} #}
 
-    {{ form_end(formSout) }}
+                                {# {{ dump(formSout.soutRapport.vars.valid) }} #}
+                                {# {{ dump(formSout.soutRapport.vars.value) }}
+                                {{ dump(formSout.soutRapport.vars) }} #}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></td>
+                            <td class="valeur">
+                            {# {{ form_widget(formSout.soutAvancement) }} #}
+                            {#! <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_travail_{{ groupe.numero }}"
+                            value="{{ formSout.soutAvancement.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input>
+                            {% do formSout.soutAvancement.setRendered %} #}
+                            </td>
+                        </tr>
+                        <tr>
+                            {# <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
+                            <td class="valeur">{{ form_widget(formSout.soutCompetences) }}</td> #}
+                            <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
+                            {# <td class="valeur"><input onchange="moyenne()" class="form-control form-control-sm" id="note_competences_{{ groupId }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td> #}
+                            <td class="valeur">
+                            {#! <input type="number" min="0" max="20" size="2" step="0.5" class="form-control-sm" id="note_competences_{{ groupe.numero }}"
+                            value="{{ formSout.soutCompetences.vars.value }}" onchange="moyenne({{ groupe.numero }})" required></input>
+                            {% do formSout.soutCompetences.setRendered %} #}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Moyenne</td>
+                            <td id="note_moyenne_{{ groupId }}" class="valeur"></td>
+                        </tr>
+                    </tbody>
+                    <button type="submit">ajouter</button>
+                </table>
+
+            {# </div> #}
+        </div>
+    </form>
+    
+
+    {# {{ form_end(formSout) }} #}
 
     {# <form>
         <div class="table-responsive size_tab">

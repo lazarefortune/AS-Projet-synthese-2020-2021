@@ -89,6 +89,11 @@ show_groupAB:
     controller: App\Controller\Admin\GroupABController::show
 
 # Path view evaluator
+
+eval_list_note:
+    path: /liste_notes
+    controller: App\Controller\Admin\GroupController::list_note
+
 eval_group_list:
     path: /groupes
     controller: App\Controller\Evaluator\GroupController::group_list

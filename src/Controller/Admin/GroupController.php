@@ -10,6 +10,27 @@ use Symfony\Component\HttpFoundation\Response;
 class GroupController extends AbstractController
 {
 
+    public function list_note(): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupes = $repo->findAll();
+
+        $total = count($groupes);
+
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findAll();
+
+        // foreach($groupes as $groupes){
+        //     dump(count($etudiants));
+        // }
+
+        return $this->render('admin/group/list_notes.html.twig', [
+            'groupes'   => $groupes,
+            'etudiants' => $etudiants,
+            'total'     => $total
+        ]);
+    }
+
     public function group_list(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
@@ -54,6 +75,7 @@ class GroupController extends AbstractController
         ]);
 
         if ($typeEval == "soutenance") {
+            $this->addFlash('success', 'Notes mis à jour avec succès');
             return $this->render('admin/group/notes/edit_sout.html.twig',[
                 'groupId' => $groupId,
                 'groupe' => $groupe,
