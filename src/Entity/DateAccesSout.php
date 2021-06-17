@@ -35,6 +35,13 @@ class DateAccesSout
      */
     private $dateFin;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motif", type="string", nullable=false)
+     */
+    private $motif;
+
     public function getIdDSout(): ?int
     {
         return $this->idDSout;
@@ -64,5 +71,15 @@ class DateAccesSout
         return $this;
     }
 
+    public function getMotif(): ?string
+    {
+        return $this->motif;
+    }
 
+    public function setMotif(string $motif): self
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
 }

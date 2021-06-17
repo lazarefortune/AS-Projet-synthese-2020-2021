@@ -1,45 +1,74 @@
 {% extends "layouts/admin.html.twig" %}
 
 {% block admin_content %}
-    
-    <div class="container p-5">
-       
-        <form action="" method="post">
 
-            <h3 class="text-center mb-5">Ajouter un créneaux d'accès au site</h3>
+	<div class="container ">
 
-            <div class="row">
-            <div class="col-md-6">
-                <h4>Date de début</h4>
-                <input class="form-control" type="date" name="" id=""> 
-                <input class="form-control mt-2" type="time" name="" id="">
-            </div>
-            <div class="col-md-6">
-                <h4>Date de fin</h4>
-                <input class="form-control" type="date" name="" id=""> 
-                <input class="form-control mt-2" type="time" name="" id="">
-            </div>
-        </div>
 
-        <div class="row mt-4">
-            <h4>Roles</h4>
-            <div class="col-md-5">
-                <select class="form-select" aria-label="test">
-                    <option selected>Selectionner</option>
-                    <option value="['ROLE_ADMIN',['ROLE_ADMIN','ROLE_EVALUATOR']]">@Tous</option>
-                    <option value="['ROLE_ADMIN']">@Admin</option>
-                    <option value="['ROLE_EVALUATOR']">@EValuateur</option>
-                </select>
-            </div>
-        </div>
+		<div class="align-content-end mb-2">
+			<a href="{{ path('define_dates') }}">
+				<button class="btn btn-sm btn-primary " type="button">
+					<i class="fas fa-list"></i>
+					Liste des créneaux</button>
+			</a>
+		</div>
 
-        <button class="btn btn-success mt-4" type="submit"> <i class="fas fa-plus"></i> Ajouter ce crénaux</button> </th>
-        
-        
-        </form>
+		<div class="card mt-3">
+			<div class="card-header">
+				<h5 class="text-center">Ajouter un créneaux d'accès au site</h5>
 
-        
-    
-    </div>
+			</div>
+			<div class="card-body">
+				{{ form_start(formDateAccess) }}
 
+
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Date de début</h4>
+						{# <input class="form-control" type="date" name="" id="">  #}
+						{# <input class="form-control mt-2" type="time" name="" id=""> #}
+						{{ form_row(formDateAccess.dateDebut) }}
+					</div>
+					<div class="col-md-6">
+						<h4>Date de fin</h4>
+						{# <input class="form-control" type="date" name="" id="">  #}
+						{# <input class="form-control mt-2" type="time" name="" id=""> #}
+						{{ form_row(formDateAccess.dateFin) }}
+					</div>
+				</div>
+
+				<div class="row mt-4">
+					<div class="col-md-5">
+						<h4>Roles</h4>
+						<select class="form-select" aria-label="test">
+							<option>Selectionner</option>
+							<option selected value="['ROLE_ADMIN',['ROLE_ADMIN','ROLE_EVALUATOR']]">@Tous (Evaluateur + Etudiant)</option>
+							<option value="['ROLE_ADMIN']">@Evaluateur</option>
+							<option value="['ROLE_EVALUATOR']">@Etudiant</option>
+						</select>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-5">
+						<h4>Motif</h4>
+						<select name="date_access_sout[motif]" class="form-select" aria-label="motif">
+							<option value="soutenance">Soutenance</option>
+							<option value="avant soutenance">Avant la soutenance</option>
+							<option value="saisie des disponibilites">Saisie des disponibilités</option>
+							<option value="consultation">Consultation des notes</option>
+						</select>
+						{% do formDateAccess.motif.setRendered %}
+					</div>
+				</div>
+
+				<button class="btn btn-success mt-4" type="submit">
+					<i class="fas fa-plus"></i>
+					Ajouter ce crénaux</button>
+
+
+				{{ form_end(formDateAccess) }}
+			</div>
+		</div>
+
+
+	</div>
 {% endblock %}

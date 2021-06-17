@@ -1,20 +1,19 @@
-{% extends "layouts/admin.html.twig" %}
+{% extends "layouts/eval.html.twig" %}
 
-{% block admin_content %}
-
+{% block eval_content %}
     <div class="row">
         <div class="col-md-9 mx-auto">
             {# Ceci est la page d'accueil
             <div class="card-metric mt-4">
-                Informations: 
+                Informations:
             </div> #}
 
             <div class="card card-fluid mt-4 p-3">
-                <p>Bienvenue sur la page d'accueil des <strong>administrateurs</strong> </p>
+                <p>Bienvenue sur la page d'accueil des <b>évaluateurs</b></p>
                 <input type="checkbox" class="custom-control-input">
             </div>
 
-            <div class="alert alert-success">
+            <div class="alert alert-info">
                 <h5>La plateforme sera bientôt mise à jour! No stress ;-) </h5>
                 <span class="font-weight-bold">Informations:</span> <br>
                 <ul>
@@ -22,9 +21,6 @@
                     <li>Toutes les fonctionnalités ne sont pas encore disponibles</li>
                 </ul>
             </div>
-            
         </div>
-        
     </div>
-    
 {% endblock %}

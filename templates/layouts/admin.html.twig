@@ -49,7 +49,9 @@
 						</button>
 						<!-- /toggle aside menu -->
 						<a href="{{ path('home') }}">
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28" viewbox="0 0 351 100"></a>
+							<p class="text-center my-auto">Mode Admin</p>
+							{# <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28" viewbox="0 0 351 100"> #}
+						</a>
 						</div>
 						<!-- /.top-bar-brand -->
 						<!-- .top-bar-list -->
@@ -76,7 +78,7 @@
 										<!-- <span class="user-avatar user-avatar-md">
 																		<img src="assets/images/avatars/profile.jpg" alt="">
 																		</span> -->
-											<span class="account-summary pr-lg-4 d-none d-lg-block"> <span class="account-name">{{ app.user.nom }} {{ app.user.prenom }}</span>
+										<span class="account-summary pr-lg-4 d-none d-lg-block"> <span class="account-name">{{ app.user.nom }} {{ app.user.prenom }}</span>
 											{% if is_granted('ROLE_SUPER_ADMIN') %}
 												<span class="account-description">Super Admin</span>
 											{% elseif is_granted('ROLE_ADMIN') %}
@@ -99,7 +101,7 @@
 										<a class="dropdown-item" href="{{ path('account') }}">
 											<i class="dropdown-icon fas fa-user-cog"></i>
 											Profil</a>
-										<a class="dropdown-item" href="{{ path('maintenance') }}">
+										<a class="dropdown-item" href="{{ path('evaluator_home') }}">
 											<i class="dropdown-icon fas fa-people-arrows"></i>
 											Passer évaluateur</a>
 										<a class="dropdown-item" href="{{ path('app_logout') }}">
@@ -165,7 +167,7 @@
 											<i class="dropdown-icon fas fa-user-cog"></i>
 											Profil
 										</a>
-										<a class="dropdown-item" href="{{ path('maintenance') }}">
+										<a class="dropdown-item" href="{{ path('evaluator_home') }}">
 											<i class="dropdown-icon fas fa-people-arrows"></i>
 											Passer évaluateur</a>
 										<a class="dropdown-item" href="{{ path('app_logout') }}">
@@ -202,7 +204,7 @@
 											<li class="menu-item has-child">
 												<a href="#" class="menu-link " data-bs-toggle="collapse" data-bs-target="#students-collapse" aria-expanded="true">
 													<span class="menu-icon fas fa-users"></span>
-													<span class="menu-text dropdown-toggle">AS 2020-2021</span>
+													<span class="menu-text dropdown-toggle">{{ app.session.get('promo').typePromo }} {{ app.session.get('promo').anneeUniv }} </span>
 												</a>
 												<!-- child menu -->
 												<div class="ml-4 show collapse " id="students-collapse">
@@ -221,44 +223,44 @@
 															<h5 class="modal-title" id="staticBackdropLabel">Choix de la promotion</h5>
 															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
+														<form method="post" action="{{ path('change_promo') }}">
 														<div class="modal-body">
 															Selectionner une promotion
-															<form class="mt-2">
-																<div class="form-check">
-																	<input class="form-check-input" type="radio" name="promoName" id="checkPromo1" >
+																<select class="form-select mt-3" name="promo" aria-label="Default select year">
+																	{% for promo in (app.session.get('promos')) %}
+																		{# {{ dump(promo) }} #}
+																		<option value="{{ promo.id }}" {{ app.session.get('promo').id == promo.id ? 'selected' }}> {{ promo.nomPromo }} </option>
+																	{% endfor %}
+																</select>
+																{# <div class="form-check">
+																	<input class="form-check-input" type="radio" name="typePromo" id="checkPromo1" value="AS" {{ app.session.get('promo')[0].typePromo == 'AS' ? 'checked' }}>
 																	<label class="form-check-label" for="flexRadioDefault1">
 																		Année spéciale
 																	</label>
 																</div>
 																<div class="form-check">
-																	<input class="form-check-input" type="radio" name="promoName" id="checkPromo2" checked>
+																	<input class="form-check-input" type="radio" name="typePromo" id="checkPromo2" value="2A" {{ app.session.get('promo')[0].typePromo == '2A' ? 'checked' }}>
 																	<label class="form-check-label" for="flexRadioDefault2">
 																		Deuxième année
 																	</label>
 																</div>
-																<select class="form-select mt-3" aria-label="Default select year">
+																<input type="number" class="form-control" name="anneeUniv" id="" value="{{ app.session.get('promo')[0].anneeUniv }}"> #}
+																{# <select class="form-select mt-3" aria-label="Default select year">
 																	<option value="2021" selected>2020-2021</option>
 																	<option value="2020">2019-2020</option>
-																</select>
-															</form>
+																</select> #}
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-															<button type="button" class="btn btn-primary">Changer</button>
+															<button type="sumbit" class="btn btn-primary">Changer</button>
 														</div>
+														</form>
 													</div>
 												</div>
 											</div>
 
 											<!-- .menu Organisation -->
 											<li class="menu-header">Ordre de passage
-											</li>
-
-											<li class="menu-item">
-												<a href="{{ path('maintenance') }}" class="menu-link">
-													<span class="menu-icon fas fa-calendar-day"></span>
-													<span class="menu-text">Calendrier</span>
-												</a>
 											</li>
 											{# <li class="menu-item">
 												<a href="{{ path('maintenance') }}" class="menu-link">
@@ -368,12 +370,12 @@
 														<li>
 															<a href="{{ path('define_dates') }}" class="link-dark text-muted">Définir les dates</a>
 														</li>
-														<li>
+														{# <li>
 															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Accès personalisé</a>
 														</li>
 														<li>
 															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Gestion des utilisateurs</a>
-														</li>
+														</li> #}
 													</ul>
 												</div>
 											</li>

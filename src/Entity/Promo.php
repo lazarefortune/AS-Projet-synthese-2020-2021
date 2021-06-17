@@ -22,16 +22,16 @@ class Promo
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="annee_univ", type="date", nullable=false)
+     * @ORM\Column(name="annee_univ", type="string", nullable=false)
      */
     private $anneeUniv;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="type_promo", type="simple_array", length=0, nullable=false)
+     * @ORM\Column(name="type_promo", type="string", length=0, nullable=false)
      */
     private $typePromo;
 
@@ -78,7 +78,7 @@ class Promo
         return $this->id;
     }
 
-    public function getAnneeUniv(): ?\DateTimeInterface
+    public function getAnneeUniv(): ?string
     {
         return $this->anneeUniv;
     }
@@ -90,7 +90,7 @@ class Promo
         return $this;
     }
 
-    public function getTypePromo(): ?array
+    public function getTypePromo(): ?string
     {
         return $this->typePromo;
     }
