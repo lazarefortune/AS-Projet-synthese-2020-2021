@@ -115,25 +115,25 @@ div.table-responsive {
     width:98% !important;
 }
 
-#all-eval > tbody > tr > td:first-child > input {
+#eval > tbody > tr > td:first-child > input {
     margin-left: 2px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
-#all-eval > tbody > tr > td:nth-child(2) {
+#eval > tbody > tr > td:nth-child(2) {
     width: 25%;
 }
 
-#all-eval > tbody > tr > td:nth-child(3) {
+#eval > tbody > tr > td:nth-child(3) {
     width: 25%;
 }
 
-#all-eval > tbody > tr > td:nth-child(4) {
+#eval > tbody > tr > td:nth-child(4) {
     width: 10%;
 }
 
-#all-eval > tbody > tr > td:nth-child(5) {
-    width: 30%;
+#eval > tbody > tr > td:nth-child(5) {
+    width: 40%;
 }
 
 input[type="checkbox"] {
@@ -182,7 +182,7 @@ div.eval, div.encadrant {
 .btn.btn-danger {
     background-color: rgb(202, 15, 15)!important;
     border-bottom-color: rgb(202, 15, 15)!important;
-    color: white;
+    color: white !important;
 }
 
 .btn.btn-danger:hover {
@@ -298,6 +298,10 @@ div.eval, div.encadrant {
 
 .modal-title.text-danger{
     color:rgb(175, 16, 16)!important;
+}
+
+#eval_roles, #eval_update_roles {
+    margin-left: 5px !important;
 }
 
 

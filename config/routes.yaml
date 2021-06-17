@@ -48,6 +48,14 @@ evaluator_list:
     path: /admin/evaluateurs
     controller: App\Controller\Admin\EvaluatorController::list
 
+update_eval:
+    path: /admin/evaluateurs/modifier/{id}
+    controller: App\Controller\Admin\EvaluatorController::update
+
+delete_eval:
+    path: /admin/evaluateurs/supprimer/{id}
+    controller: App\Controller\Admin\EvaluatorController::delete
+
 account:
     path: /profil
     controller: App\Controller\UserController::index
@@ -118,6 +126,4 @@ list_eval:
     path: /eval/list
     controller: App\Controller\Evaluator\EvalListController::list
 
-update_eval:
-    path: /eval/{id}
-    controller: App\Controller\Admin\EvaluatorController::update
+
