@@ -1,0 +1,21 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+<div class="vue_content"> 
+    {% include "layouts/notation/admin/header_allnotes.html.twig" %}
+    <h1 class="text-center">Liste des notes de poster</h1>
+
+    {% for eval in evals %}
+        <div class="w-50 m-auto">
+            <p style="float:left;">L'évaluateur {{ eval.nom}} {{eval.prenom}} a évalué le groupe {{ groupe.numero }} </p>
+            <a style="float:right;" href="{{ path('eval_group_notes_poster', {groupId: groupe.id}) }}"  type="button" class="btn btn-primary">Consulter</a>
+            </br></br>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

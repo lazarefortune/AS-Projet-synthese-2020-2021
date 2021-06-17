@@ -74,4 +74,21 @@ class EvalSoutNotationRepository extends ServiceEntityRepository
         ]);
         
     }
+
+    public function selectAllNotesSout($idGroupe){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT id_eval_sout
+            FROM eval_sout
+            WHERE id_groupe_eval_sout = :idGroupe;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'idGroupe' => $idGroupe,
+        ]);
+        
+        return $stmt->fetchAllAssociative();
+    }
 }

@@ -15,102 +15,49 @@
 
     {{ form_start(formNotation) }}
         <div class="table-responsive size_tab">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="criteres">Critères</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
-                            <td class="valeur">
-                                <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_rapport_{{ groupe.numero }}"
-                                value="{{ notes['poster_qual_pres'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[qualPres]"  required></input>
-                                {% do formNotation.qualPres.setRendered %}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></td>
-                            <td class="valeur">
-                                <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_travail_{{ groupe.numero }}"
-                                value="{{ notes['poster_trav'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[trav]" required></input>
-                                {% do formNotation.trav.setRendered %}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
-                            <td class="valeur">
-                                <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_competences_{{ groupe.numero }}"
-                                value="{{ notes['poster_compet'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[compet]" required></input>
-                                {% do formNotation.compet.setRendered %}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Moyenne</td>
-                            <td class="valeur">
-                                <input id="note_moyenne_{{ groupe.numero }}" type="text" class="form control form-control-sm"
-                                value="{{ notes['poster_moyenne'] }}"  name="eval_notation[moyenne]"  ></input>
-                                {% do formNotation.moyenne.setRendered %}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button class="btn btn-success" type="submit">Mettre à jour</button>
-        </div>
-    {{ form_end(formNotation) }}
-
-
-
-
-
-
-
-
-
-
-{# 
-
-
-    <form>
-        <div class="table-responsive">
             <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="criteres">Critères</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
+                {% include 'layouts/notation/array/theader_group.html.twig' %}
                 <tbody>
                     <tr>
-                        <td>Qualité du rapport </br> <span>/20 points. coeff. 1</span></td>
-                        <td class="valeur"><input onchange="moyenne({{ groupId }})" class="form-control form-control-sm" id="note_rapport_{{ groupId }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                    <tr>
+                        <td>Qualité de la présentation </br> <span>/20 points. coeff. 1</span></td>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_rapport_{{ groupe.numero }}"
+                            value="{{ notes['poster_qual_pres'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[qualPres]"  required></input>
+                            {% do formNotation.qualPres.setRendered %}
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></td>
-                        <td class="valeur"><input onchange="moyenne({{ groupId }})" class="form-control form-control-sm" id="note_travail_{{ groupId }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                    <tr>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_travail_{{ groupe.numero }}"
+                            value="{{ notes['poster_trav'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[trav]" required></input>
+                            {% do formNotation.trav.setRendered %}
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
-                        <td class="valeur"><input onchange="moyenne({{ groupId }})" class="form-control form-control-sm" id="note_competences_{{ groupId }}" type="number" min="0" max="20" size="2" step="0.5" required></input></td>
-                    <tr>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_competences_{{ groupe.numero }}"
+                            value="{{ notes['poster_compet'] }}" onchange="moyenne({{ groupe.numero }})" name="eval_notation[compet]" required></input>
+                            {% do formNotation.compet.setRendered %}
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>Moyenne</td>
-                        <td id="note_moyenne_{{ groupId }}" class="valeur"></td>
-                    <tr>
+                        <td class="valeur">
+                            <input id="note_moyenne_{{ groupe.numero }}" type="text" class="form control form-control-sm"
+                            value="{{ notes['poster_moyenne'] }}"  name="eval_notation[moyenne]"  ></input>
+                            {% do formNotation.moyenne.setRendered %}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-
-            <div class="d-flex justify-content-between w-75 mx-auto bouton">
-                <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger">Retour</button></a>
-                <button class="btn btn-success" type="submit">Valider</button>
-            </div>
+            <button class="btn btn-success" type="submit">Mettre à jour</button>
         </div>
-    </form> #}
+    {{ form_end(formNotation) }}
 </div>
 {% endblock %}
 

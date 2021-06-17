@@ -7,8 +7,8 @@
 {% block admin_content %}
 
 
-<div class="vue_content">        
-    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Groupe n° {{ groupe.numero }} / {{ groupe.idProjet.titre }}</span></p>
+<div class="vue_content">    
+{% include "layouts/notation/user/header.html.twig" %}
     <h1 class="text-center my-sm-0 my-lg-5">Evaluation individuelle</h1>
 
     {% include 'layouts/flash-messages.html.twig' %}
@@ -71,24 +71,6 @@
             </div>
         </div>
     </form>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#retourGroupe">Retour</button>
-    <div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Les notes insérées / modifiées seront perdues si vous quitter cette page.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <a  href="{{ path('eval_group_list') }}" class="btn btn-primary">Continuer</a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
 </div>
 {% endblock %}
 

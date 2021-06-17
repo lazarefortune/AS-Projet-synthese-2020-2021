@@ -82,8 +82,8 @@
             <div class="btn-group-vertical w-25 mr-5" style="float:right">
                 <button class="btn btn-primary">Mettre à jour</button>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-outline-primary">Soutenance</button>
-                    <button type="button" class="btn btn-outline-primary">Poster</button>
+                    <a href="{{ path('list_notes_eval', {groupId: groupe.id, typeEval: "soutenance"}) }}"  type="button" class="btn btn-outline-primary">Soutenance</a>
+                    <a href="{{ path('list_notes_eval', {groupId: groupe.id, typeEval: "poster"}) }}"  type="button" class="btn btn-outline-primary">Poster</a>
                 </div>
             </div>
         </div>

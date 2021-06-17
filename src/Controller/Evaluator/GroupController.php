@@ -3,8 +3,10 @@
 namespace App\Controller\Evaluator;
 
 use App\Entity\Groupe;
+use App\Entity\Projet;
 use App\Entity\Etudiant;
 use App\Form\EvalNotationType;
+use App\Repository\EvalGroupeRepository;
 use App\Repository\EvalSoutNotationRepository;
 use App\Repository\EvalPosterNotationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,6 +65,7 @@ class GroupController extends AbstractController
             'idGroupeEtud' => $groupId
         ]);
         $var = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
+        dump("test 1 ", $var);
         //  if note exists
         if($var){
             // update row note sout
@@ -227,6 +230,61 @@ class GroupController extends AbstractController
             'groupe' => $groupe,
             'etudiants' => $etudiants
             ]);
+    }
+
+    // affiche la liste des groupes pour la gestion des soutenances
+    public function showNoteGroupSout(){
+
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        
+        $groupes = $repo->findAll();
+        // dd($groupes);
+        $total = count($groupes);
+
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findAll();
+
+        return $this->render('evaluator/group/notes/soutenance/group_list.html.twig', [
+            'groupes'   => $groupes,
+            'etudiants' => $etudiants,
+            'total'     => $total
+        ]);
+    }
+    
+    // affiche la liste des groupes pour la gestion des posters
+    public function showNoteGroupPost(){
+
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupes = $repo->findAll();
+
+        $total = count($groupes);
+
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findAll();
+
+        return $this->render('evaluator/group/notes/poster/group_list.html.twig', [
+            'groupes'   => $groupes,
+            'etudiants' => $etudiants,
+            'total'     => $total
+        ]);
+    }
+    
+    // affiche la liste des groupes dont l'utilisateur est encadrant
+    public function showNoteGroupIndiv(){
+
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupes = $repo->findAll();
+
+        $total = count($groupes);
+
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findAll();
+
+        return $this->render('evaluator/group/notes/indiv/group_list.html.twig', [
+            'groupes'   => $groupes,
+            'etudiants' => $etudiants,
+            'total'     => $total
+        ]);
     }
  
 }

@@ -74,4 +74,21 @@ class EvalPosterNotationRepository extends ServiceEntityRepository
         ]);
         
     }
+
+    public function selectAllNotesPoster($idGroupe){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT id_eval_post
+            FROM eval_poster
+            WHERE id_groupe_eval_post = :idGroupe;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'idGroupe' => $idGroupe,
+        ]);
+        
+        return $stmt->fetchAllAssociative();
+    }
 }
