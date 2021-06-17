@@ -30,74 +30,77 @@
 
         <div class="col-md-10 tab-pane fade show active" id="nav-GroupA" role="tabpanel" aria-labelledby="nav-A-tab">
             <!-- Première partie avec 2 tableaux -->
-
-            <table id="matin_A" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
-                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"> <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
-                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-
-            </table>
-            <table style="width: 45%; display: inline-table" class="table table-bordered ">
-                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"> <button type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
-                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="row">
+                <table id="matin_A" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+                    <!-- Button Modifier -->
+                    <caption style="text-align: center"> <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                        <tr>
+                            <th colspan=5 style="caption-side: top; color: black; text-align: center; border: solid black 2px">
+                                <b>Jurys de soutenances <br> Amphi A</b>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
+                            <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="4">Groupes à évaluer <br> 1-6-9-2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
 
-                </tbody>
+                    </tbody>
+
+                </table>
+                <table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+                    <caption style="text-align: center"><button disabled type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                    <tr>
+                        <th colspan=5 style="caption-side: top; color: black; text-align: center; border: solid black 2px">
+                            <b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
+                        <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="4">Posters à évaluer <br> 1-6-9-2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
 
-            </table>
+                    </tbody>
+                </table>
+            </div>
 <!-- Deuxième série de 2 tableaux -->
-            <table id="aprem_A" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+            <div class="row">
+                <table id="aprem_A" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
 
-                <!-- Button Modifier -->
-                <caption style="text-align: center"> <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:30-18:00</th>
-                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-
-            </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"> <button type="button"  class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
-                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
+                    <!-- Button Modifier -->
+                    <caption style="text-align: center"> <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                    <tr>
+                        <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:30-18:00</th>
+                        <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="4">Groupes à évaluer <br> 1-6-9-2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
 
-                </tbody>
+                    </tbody>
+                </table>
+                <table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+                    <caption style="text-align: center"><button disabled type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                    <tr>
+                        <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
+                        <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="4">Posters à évaluer <br> 1-6-9-2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            </table>
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
@@ -106,46 +109,49 @@
 
 
         <!-- Onglet Après-midi -->
-
         <div class="col-md-10 tab-pane fade " id="nav-GroupB" role="tabpanel" aria-labelledby="nav-B-tab">
             <!-- Première partie avec 2 tableaux -->
-
-            <table id="matin_B" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered ">
-                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys de soutenances <br> Amphi A</b></caption>
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"><button type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
-                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-
-            </table><table style="width: 45%; display: inline-table" class="table table-bordered ">
-                <caption style="caption-side: top; color: black; text-align: center; border: solid black 2px"><b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b></caption>
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"><button type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
-                    <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="row">
+                <table id="matin_B" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
+                    <!-- Button Modifier -->
+                    <caption style="text-align: center"><button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                    <tr>
+                        <th colspan=5 style="caption-side: top; color: black; text-align: center; border: solid black 2px">
+                            <b>Jurys de soutenances <br> Amphi A</b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:00-11:45</th>
+                        <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="4">Groupes à évaluer <br> 1-6-9-2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
 
-                </tbody>
+                    </tbody>
+                </table>
+                <table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
+                    <!-- Button Modifier -->
+                    <caption style="text-align: center"><button disabled type="button" class="btn btn-primary btn-modal">Modifier</button></caption>
+                    <thead>
+                    <tr>
+                        <th colspan=4 style="caption-side: top; color: black; text-align: center; border: solid black 2px">
+                            <b>Jurys d'évaluation des posters <br> Couloir du 3ème étage, bâtiment A</b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 20%; border-left: solid black 2px; text-align: center" scope="col">8:15-12:00</th>
+                        <th style="width: 40%; border-right: solid black 2px; border-left: solid black 2px; text-align: center" scope="col" colspan="4">Posters à évaluer <br> 1-6-9-2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                <!-- Deuxième série de 2 tableaux -->
 
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
             <table id="aprem_B" style="width: 45%; display: inline-table; margin-right: 10%" class="table table-bordered mt-5">
 
                 <!-- Button Modifier -->
@@ -153,22 +159,7 @@
                 <thead>
                 <tr>
                     <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:30-18:00</th>
-                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Groupes à évaluer <br> 1-6-9-2</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-
-            </table><table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
-
-                <!-- Button Modifier -->
-                <caption style="text-align: center"><button type="button" class="btn btn-primary  btn-modal">Modifier</button></caption>
-                <thead>
-                <tr>
-                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
-                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="2">Posters à évaluer <br> 1-6-9-2</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="4">Groupes à évaluer <br> 1-6-9-2</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -177,7 +168,23 @@
                 </tbody>
 
             </table>
+            <table style="width: 45%; display: inline-table" class="table table-bordered mt-5">
 
+                <!-- Button Modifier -->
+                <caption style="text-align: center"><button disabled type="button" class="btn btn-primary  btn-modal">Modifier</button></caption>
+                <thead>
+                <tr>
+                    <th style="width: 20%; border: solid black 2px; text-align: center" scope="col">13:50-18:00</th>
+                    <th style="width: 40%; border: solid black 2px; text-align: center" scope="col" colspan="4">Posters à évaluer <br> 1-6-9-2</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+
+            </table>
+            </div>
         </div>
     </div>
 
@@ -197,14 +204,21 @@
                             <div class="table-div" style="overflow: scroll; max-height: 400px;">
                                 <table id="table_ligne" class="table table-bordered noboucle">
                                     <caption style="caption-side: top">Evaluateur sélectionné :</caption>
+
+                                    <colgroup>
+                                        <col style="border-bottom: solid white 1px; border-left: solid white 1px; width: 0;">
+                                        <col style="width: 35%">
+                                        <col style=style="width: 40%">
+                                    </colgroup>
                                     <tbody id="bud" style="overflow: scroll;">
                                     {% for projet in projets %}
                                         {% for user in users %}
                                             {% if user.idUser == projet.idEval[0].idUser %}
+
                                                 <tr class="row-set" id="{{projet.id}}-{{user.idUser}}" data-dest="" onclick="addtolist(this.id)">
-                                                    <td style="border-bottom: solid white 1px; border-left: solid white 1px; width: 0;">{{projet.numProjet}} <p style="display:none;"> {{projet.titre}} </p></td>
-                                                    <td style="width: 35%"> {{ user.nom }} </td>
-                                                    <td style="width: 40%">{{ user.prenom }}</td>
+                                                    <td>{{projet.numProjet}} <p style="display:none;"> {{projet.titre}} </p></td>
+                                                    <td> {{ user.nom }} </td>
+                                                    <td>{{ user.prenom }}</td>
                                                 </tr>
                                             {% endif %}
                                         {% endfor %}

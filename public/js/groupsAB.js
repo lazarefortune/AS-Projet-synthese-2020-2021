@@ -12,7 +12,9 @@ $(".btn-modal").click(function(){
 function addtolist(id){
    let row = document.getElementById(id);
    let table = document.getElementById(row.getAttribute("data-dest")).lastElementChild;
-   table.innerHTML += "<tr>"+row.innerHTML +"<td><button type=\"button\" onclick=\"move(this,'up');\" >up</button><button type=\"button\" onclick=\"move(this,'down');\" >down</button></td><td><button type=\"button\" onclick='suppression(this)' >-</button></td></tr>";
+   let new_row_id= id + "_main";
+   table.innerHTML += "<tr>"+row.innerHTML +"<td><button type=\"button\" onclick=\"moveUp(this.parentElement.parentElement);\" >up</button><button type=\"button\" onclick=\"moveDown(this.parentElement.parentElement);\" >down</button></td><td><button type=\"button\" onclick='deleteLine(this.parentElement.parentElement)' >-</button></td></tr>";
+   table.lastElementChild.id=new_row_id;
    removefromlist(id);
 }
 
@@ -20,24 +22,37 @@ function removefromlist(id){
    document.getElementById(id).remove();
 }
 
-/*
-function deplacerLigne(inputObj, cible)
-{
-   //on initialise nos variables
-   var ligne = document.getElementById("bud").rows[inputObj];//on copie la ligne
-   var nouvelle = document.getElementById("bud").insertRow(cible);//on insère la nouvelle ligne
-   var cellules = ligne.cells;
+function moveUp(line){
 
-   //on boucle pour pouvoir agir sur chaque cellule
-   for(var i=0; i<cellules.length; i++)
-   {
-      nouvelle.insertCell(-1).innerHTML += cellules[i].innerHTML;//on copie chaque cellule de l'ancienne à la nouvelle ligne
-   }
-
-   //on supprimer l'ancienne ligne
-   document.getElementById("tableau").deleteRow(ligne.rowIndex);//on met ligne.rowIndex et non pas source car le numéro d'index a pu changer
 }
-*/
+function moveDown(line){
+
+}
+
+function deleteLine(line){
+   let counter = 0;
+   let tbody=document.getElementById('bud');
+   let new_row = tbody.insertRow(-1);
+    let new_id = line.id.substring(0,line.id.length-5);
+   new_row.id = new_id;
+   console.log(new_row.id+" = "+line.id);
+   new_row.setAttribute("data-dest","");
+   new_row.classList.add("row-set");
+   $(line.children).each(function(){
+      if(counter<3){
+         let cell = new_row.insertCell(-1);
+         cell.innerHTML = this.parentElement.children[counter].innerHTML
+         counter++;
+      }
+   });
+   console.log(new_row);
+   tbody.insertRow(new_row);
+   let row = document.getElementById(new_id);
+   console.log(row.id);
+   removefromlist(line.id);
+   row.onclick = addtolist(row.id);
+}
+
 
 function move(inputObj,direction){
    let tr=inputObj.parentElement.parentElement,
@@ -65,15 +80,6 @@ function move(inputObj,direction){
    }
 }
 
-
-function suppression(inputObj)
-{
-   let tr=inputObj.parentElement.parentElement,
-       tbody=document.getElementById('bud');
-
-   tbody.deleteRow(tr);
-
-}
 
 /*
 function deplaceLigne(oEvent){
