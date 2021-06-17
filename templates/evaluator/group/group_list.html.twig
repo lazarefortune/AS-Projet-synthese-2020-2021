@@ -5,40 +5,16 @@
 {% endblock %}
 
 {% block admin_content %}
-<h3 class="text-center title">Liste des projets</h3>
-
-<div class="input-group search">
-    <input id="input_search" type="search" class="form-control" placeholder="Titre de projet, nom d'encadrant" aria-label="groupSearch" aria-describedby="basic-addon2" onKeyUp="findItem()">
-    <button type="button" class="btn btn-primary" onclick="findItem();">
-        <i class="fas fa-search"></i>
-    </button>
-</div> 
-
-<div class="entete">
-    <h2 class="fs-3">{{ total }} Projets</h2>
+<div>
+    {% include "layouts/notation/searchbar.html.twig" %} 
 </div>
 
 <div class="row">
     {% for groupe in groupes %}
         <div class="col-md-4">
             <div class="card card-fluid p-3 sujet">
-                <h6 class="title_card mb-3">{{ groupe.idProjet.titre }}</h6>
-                <ul>
-                <p class="nom_card font-italic">
-                {% for eval in groupe.idProjet.idEval %}
-                    <li> {{ eval.nom }} </li>
-                {% endfor %}
-            </p>
-            <p class="grp_card">
-                Groupe n°{{ groupe.numero }} :
-                    <ul>
-                {% for etudiant in etudiants %}
-                        {% if groupe.numero == etudiant.idGroupeEtud.numero %}
-                            <li class="liste_etud">{{ etudiant.idUser.nom }}</li>
-                        {% endif %}
-                {% endfor %}
-                    </ul>
-            </ul>
+            {% include "layouts/notation/card_proj.html.twig" %}
+            
                 <div class="row">
                     <div class="text-center">
                         <a href="{{ path('eval_group_notes_sout', {groupId: groupe.id}) }}"><button type="button" class="btn btn-outline-success m-2">Soutenance</button></a>
@@ -59,29 +35,6 @@
         </div>
     {% endfor %}
 </div>
-
-{# <div class="row">
-    {% for id in 1..6 %}
-        <div class="col-md-4">
-                <div class="card card-fluid p-3 sujet">
-                    <h6 class="title_card mb-3" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nostrum voluptates,  </h6>
-                    <p class="nom_card font-italic">Nom de l'encadrant</p>
-                    <p class="grp_card">Groupe n° {{ id }}</p>
-                    <div class="row">
-                        <div class="text-center col-md-4 col-lg-12">
-                            <a href="{{ path('eval_group_notes_sout', {groupId: id}) }}"><button type="button" class="btn btn-outline-success m-2">Soutenance</button></a>
-                            <a href="{{ path('eval_group_notes_poster', {groupId: id}) }}"><button type="button" class="btn btn-outline-primary m-2">Poster</button></a>
-                            <a href="{{ path('eval_group_notes_indiv', {groupId: id}) }}"><button type="button" class="btn btn-outline-warning m-2">Individuelle</button></a>
-                        </div>
-                        <div class="text-center">
-                            <a href="{{ path('eval_group_final', {groupId: id}) }}"><button type="button" class="btn btn-outline-dark mt-2 ">Final_note</button></a>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    {% endfor %}
-</div> #}
-
 {% endblock %}
 
 {% block javascripts %}

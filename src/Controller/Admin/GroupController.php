@@ -20,10 +20,6 @@ class GroupController extends AbstractController
         $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
         $etudiants = $repo2->findAll();
 
-        // foreach($groupes as $groupes){
-        //     dump(count($etudiants));
-        // }
-
         return $this->render('admin/group/list_notes.html.twig', [
             'groupes'   => $groupes,
             'etudiants' => $etudiants,
@@ -57,11 +53,14 @@ class GroupController extends AbstractController
         $etudiants = $repo2->findBy([
             'idGroupeEtud' => $groupId
         ]);
+
+        // $notes_sout = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
+        // $notes_sout = $evalSoutNotationRepo->findIsEvalNotationPoster($this->getUser()->getIdUser(), $groupe->getId(), "eval_poster");
         
         return $this->render('admin/group/notes/show.html.twig',[
             'groupId' => $groupId,
             'groupe' => $groupe,
-            'etudiants' => $etudiants
+            'etudiants' => $etudiants,
             ]);
     }
 

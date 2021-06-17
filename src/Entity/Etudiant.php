@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Etudiant
@@ -32,6 +33,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="note_tut_rapport", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=20, minMessage = "c'est pas hlel")
      */
     private $noteTutRapport;
 
@@ -39,6 +41,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="note_tut_trav", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=20)
      */
     private $noteTutTrav;
 
@@ -46,6 +49,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="note_tut_compet", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=20)
      */
     private $noteTutCompet;
 
@@ -53,6 +57,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="pourcent_travail", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=100)
      */
     private $pourcentTravail;
 
@@ -67,6 +72,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="note_tut_20", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=20)
      */
     private $noteTut20;
 
@@ -74,6 +80,7 @@ class Etudiant
      * @var string|null
      *
      * @ORM\Column(name="note_finale", type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Range(min=0, max=20)
      */
     private $noteFinale;
 

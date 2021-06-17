@@ -24,5 +24,5 @@ function moyenne(id){
         }
     }
     
-    document.getElementById("note_moyenne_"+id).innerHTML = parseFloat(somme/n).toFixed(2);;
+    document.getElementById("note_moyenne_"+id).value = parseFloat(somme/n).toFixed(2);;
 }

@@ -18,6 +18,14 @@
     font-weight: normal;
 }
 
+/* .headeer{
+    position: fixed; 
+    margin-top: 0px;
+    background-color: white;
+    width: 100%; 
+    z-index:1;
+} */
+
 tbody td span, thead th span{
     color: rgba(0, 0, 0, .65);
 }
