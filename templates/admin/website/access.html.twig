@@ -2,77 +2,71 @@
 
 {% block admin_content %}
     
-    <div class="container p-5">
+    <div class="container">
         <div class="row">
             <h4 class="text-center">Liste des créneaux d'accès au site</h4>
 
+            {% include 'layouts/flash-messages.html.twig' %}
 
             <div class="align-content-end mt-5 mb-2">
                 <a href="{{ path('add_define_dates') }}">
-                <button class="btn btn-sm btn-success " type="submit"> <i class="fas fa-plus"></i> Ajouter</button>
+                <button class="btn btn-sm btn-success " type="button"> <i class="fas fa-plus"></i> Ajouter un créneau</button>
             </a>
             </div>
             <table class="table caption-top">
                 <thead>
                     <tr>
-                    <th scope="col">Ordre</th>
-                    <th scope="col">Date de debut</th>
-                    <th scope="col">Date de fin</th>
-                    <th scope="col">Droits</th>
-                    <th scope="col">Motif</th>
-                    <th scope="col">Actions</th>
+                        <th scope="col">n°</th>
+                        <th scope="col">Date de debut</th>
+                        <th scope="col">Date de fin</th>
+                        <th scope="col">Droits</th>
+                        <th scope="col">Motif</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {# <tr>
-                    <th scope="row">1</th>
-                    <td> 
-                        <input class="form-control" type="date" name="" id="" value="2021-06-18" disabled> 
-                        <input class="form-control mt-2" type="time" name="" id="" value="00:01" disabled> 
-                    </td>
-                    <td> 
-                        <input class="form-control" type="date" name="" id="" value="2021-06-18" disabled> 
-                        <input class="form-control mt-2" type="time" name="" id="" value="23:59" disabled> 
-                    </td>
-                    <td>@Tous</td>
-                    </tr> #}
-                    <tr>
-                        <th scope="row">1</th>
-                        <td> 18/06/2020 à 00h01 </td>
-                        <td> 18/06/2020 à 23h59 </td>
-                        <td>@Tous</td>
-                        <td>Soutenance</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                    {% for dateTime in allDate %}
+                        
+                        <tr>
+                            <th scope="row"> {{ dateTime.idDSout }} </th>
+                            <td> {{ dateTime.dateDebut|date('d/m/Y') }} à {{ dateTime.dateDebut|date('H:i:s') }} </td>
+                            <td> {{ dateTime.dateFin|date('d/m/Y') }} à {{ dateTime.dateFin|date('H:i:s') }} </td>
+                            <td>@Tous</td>
+                            <td> {{ dateTime.motif }} </td>
+                            <td>
+                                <a href="{{ path('edit_define_dates', { id: dateTime.idDSout }) }}">
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDateTime{{ dateTime.idDSout }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        En poursuivant, vous <b class="text-danger">refuser</b> l'accès à la plateforme :
-                                        <br> à : <b>@Tous</b>
-                                        <br> du : <b>18/06/2021 à 00h01</b> au <b>18/06/2021 à 23h59</b>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                        <button type="button" class="btn btn-danger">Oui, continuer</button>
-                                    </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteDateTime{{ dateTime.idDSout }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            En poursuivant, vous <b class="text-danger">refuser</b> l'accès à la plateforme :
+                                            <br> à : <b>@Tous</b>
+                                            <br> du : <b>{{ dateTime.dateDebut|date('d/m/Y') }} à {{ dateTime.dateDebut|date('H:i') }}</b> au <b>{{ dateTime.dateFin|date('d/m/Y') }} à {{ dateTime.dateFin|date('H:i') }}</b>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="button" class="btn btn-danger">Oui, continuer</button>
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {# <tr>
                         <th scope="row">2</th>
                         <td> 18/06/2020 à 00h01 </td>
                         <td> 18/06/2020 à 23h59 </td>
@@ -107,7 +101,7 @@
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                    </tr> #}
                 
                 </tbody>
             </table>

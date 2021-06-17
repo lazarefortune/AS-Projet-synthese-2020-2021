@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -21,6 +23,9 @@ class UserController extends AbstractController
         return $encoder->isPasswordValid($password, $plainPassword, null);
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function index(Request $request, UserPasswordEncoderInterface $encoder){
 
         // $user =  new User();
@@ -73,6 +78,9 @@ class UserController extends AbstractController
         ]);
     }
     
+    /**
+     * @IsGranted("ROLE_EVALUATOR")
+     */
     public function index_eval(Request $request, UserPasswordEncoderInterface $encoder){
 
         // $user =  new User();

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DateAccessRepository;
 use App\Repository\PromoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,9 +11,34 @@ use Twig\Environment;
 
 class HomeController extends AbstractController
 {
-    public function index(PromoRepository $promoRepo, Request $request) {
+    public function index(PromoRepository $promoRepo, Request $request, DateAccessRepository $dateAccessRepo) {
         
+        $roles = $this->getUser()->getRoles();
         $hasAccess = $this->isGranted('ROLE_ADMIN');
+        if (!$hasAccess) {
+            dump("on a pas admin");
+            $allDateAccess = $dateAccessRepo->findAll();
+            $nowDateTime = new \DateTime();
+            $compteur = 0;
+            foreach ($allDateAccess as $date) {
+                // dump(new \DateTime(date_format($date->getDateDebut(), "Y-m-d H:i:s")));
+                $dateDebut = $date->getDateDebut();
+                $dateFin = $date->getDateFin();
+                $hasAvalaibleDate = ($nowDateTime <= $dateFin && $nowDateTime >= $dateDebut);
+                if ($hasAvalaibleDate) {
+                    $compteur += 1;
+                    break;
+                }
+                
+            }
+            if ($compteur == 0) {
+                $this->addFlash('success', 'La plateforme est inaccessible à cette date');
+                return $this->redirectToRoute('app_logout');
+            }
+
+            // dd($allDateAccess);
+        }
+        
         if (!$hasAccess) {
             
             return $this->render('evaluator/index.html.twig');
