@@ -103,7 +103,7 @@ class GroupController extends AbstractController
             }
         }
     
-        return $this->render('evaluator/group/notes/students_sout.html.twig',[
+        return $this->render('evaluator/group/notes/soutenance/students_sout.html.twig',[
             'groupId' => $groupId,
             'formNotation' => $formNotation->createView(),
             'groupe' => $groupe,
@@ -161,7 +161,7 @@ class GroupController extends AbstractController
             }
         }
 
-        return $this->render('evaluator/group/notes/students_poster.html.twig',[
+        return $this->render('evaluator/group/notes/poster/students_poster.html.twig',[
             'groupId' => $groupId,
             'formNotation' => $formNotation->createView(),
             'groupe' => $groupe,
@@ -208,7 +208,7 @@ class GroupController extends AbstractController
             $this->addFlash('success', 'Les notes ont été enregistrées avec succès');
 
         }
-        return $this->render('evaluator/group/notes/students_eval.html.twig',[
+        return $this->render('evaluator/group/notes/indiv/students_eval.html.twig',[
             'groupe' => $groupe,
             'etudiants' => $etudiants,
             ]);
@@ -235,9 +235,8 @@ class GroupController extends AbstractController
     public function showNoteGroupSout(){
 
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
-        
         $groupes = $repo->findAll();
-        // dd($groupes);
+
         $total = count($groupes);
 
         $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);

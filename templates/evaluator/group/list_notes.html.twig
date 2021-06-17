@@ -12,7 +12,6 @@
         <table id="id_table" class="table table-hover">
             <thead>
                 <tr>
-                    {# <th scope="col" class="recap align-middle" style="width: 10%">Evaluateur</th> #}
                     <th scope="col" class="recap align-middle" style="width: 10%">Etudiant</th>
                     <th scope="col" class="recap align-middle" style="width: 18,75%">Note individuelle </br><span>/20 pts</span></th>
                     <th scope="col" class="recap align-middle" style="width: 18,75%">Note soutenance </br><span>/20 pts</span></th>
@@ -23,10 +22,8 @@
 
             <tbody>
                 {% for groupe in groupes %}
-                    {% set i = 0 %}
                     {% for etudiant in etudiants %}
                         {% if groupe.numero == etudiant.idGroupeEtud.numero %}
-                        {% set i = i + 1 %}
                             <tr>
                                 <td class="recap_note">{{ etudiant.idUser.nom }}</td>
                                 <td class="recap_note" id="note_indiv">15.20</td>
@@ -36,8 +33,6 @@
                             </tr>
                         {% endif %}
                 {% endfor %}
-                <tfoot></tfoot>
-                    {# {{ dump(i) }} #}
             {% endfor %}
             </tbody>
         </table>

@@ -1,11 +1,29 @@
-{% extends "layouts/eval.html.twig" %}
+{% extends "layouts/admin.html.twig" %}
 
 {% block stylesheets %}
     <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block eval_content %}
-
+{% block admin_content %}
+{# modal btn retour #}
+<div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Les notes non enregistrées seront <b>perdues</b> si vous quitter cette page.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <a href="{{ path('group_notes', {groupId: groupe.id}) }}"  type="button" class="btn btn-primary">Continuer</a>
+        </div>
+        </div>
+    </div>
+</div>
+{# fin modal #}
 
 <div class="vue_content">    
 {% include "layouts/notation/user/header.html.twig" %}
