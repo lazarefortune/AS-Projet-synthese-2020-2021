@@ -88,15 +88,29 @@ show_groupAB:
     controller: App\Controller\Admin\GroupABController::show
 
 download_show:
-    path: /composition-des-groupes
+    path: /composition-des-groupes/download
     controller: App\Controller\Admin\GroupABController::downloadShow
+
+
+group_notes_sout:
+    path: /groupe/{groupId}/{idEval}/modif-soutenance
+    controller: App\Controller\Admin\GroupController::group_notes_sout
+
+group_notes_poster:
+    path: /groupe/{groupId}/{idEval}/modif-poster
+    controller: App\Controller\Admin\GroupController::group_notes_poster
+
+group_notes_indiv:
+    path: /groupe/{groupId}/modif-individuelle
+    controller: App\Controller\Admin\GroupController::group_notes_indiv
+
 
 # Path view evaluator
 
 
 eval_list_note:
     path: /liste_notes
-    controller: App\Controller\Admin\GroupController::list_note
+    controller: App\Controller\Evaluator\GroupController::list_note
 
 evaluator_home:
     path: /eval

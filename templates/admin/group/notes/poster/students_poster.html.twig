@@ -1,17 +1,38 @@
-{% extends "layouts/eval.html.twig" %}
+{% extends "layouts/admin.html.twig" %}
 
 {% block stylesheets %}
     <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
 {% endblock %}
 
 
-{% block eval_content %}
+{% block admin_content %}
+{# modal btn retour #}
+<div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Les notes non enregistrées seront <b>perdues</b> si vous quitter cette page.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <a href="{{ path('list_notes_eval', {groupId: groupe.id, typeEval: "poster"}) }}"  type="button" class="btn btn-primary">Continuer</a>
+        </div>
+        </div>
+    </div>
+</div>
+{# fin modal #}
 
-<div class="vue_content">        
-{% include "layouts/notation/user/header.html.twig" %}
+<div class="vue_content">
+    {% include "layouts/notation/user/header.html.twig" %}
+    
     <h1 class="text-center">Evaluation du poster</h1>
+    <h6> Nom de l'évaluateur : {{ eval.nom }} {{ eval.prenom }} </h6>
 
-    {% include 'layouts/flash-messages.html.twig' %}
+    {% include 'layouts/flash-messages.html.twig' %} 
 
     {{ form_start(formNotation) }}
         <div class="table-responsive size_tab">
@@ -49,7 +70,7 @@
                         <td>Moyenne</td>
                         <td class="valeur">
                             <input id="note_moyenne_{{ groupe.numero }}" type="text" class="form control form-control-sm"
-                            value="{{ notes['poster_moyenne'] }}"  name="eval_notation[moyenne]"  ></input>
+                            value="{{ notes['poster_moyenne'] }}"  name="eval_notation[moyenne]" readonly></input>
                             {% do formNotation.moyenne.setRendered %}
                         </td>
                     </tr>

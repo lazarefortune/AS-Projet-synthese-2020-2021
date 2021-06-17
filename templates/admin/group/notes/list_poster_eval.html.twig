@@ -9,13 +9,16 @@
     {% include "layouts/notation/admin/header_allnotes.html.twig" %}
     <h1 class="text-center">Liste des notes de poster</h1>
 
+    <div class="w-50 m-auto">
+        {% include 'layouts/flash-messages.html.twig' %}
+    </div>
+
+    <ul class="list-group w-75 m-auto">
     {% for eval in evals %}
-        <div class="w-50 m-auto">
-            <p style="float:left;">L'évaluateur {{ eval.nom}} {{eval.prenom}} a évalué le groupe {{ groupe.numero }} </p>
-            <a style="float:right;" href="{{ path('eval_group_notes_poster', {groupId: groupe.id}) }}"  type="button" class="btn btn-primary">Consulter</a>
-            </br></br>
-        </div>
+            <li class="list-group-item">{{ eval.nom}} {{eval.prenom}} 
+            <a style="float:right;" href="{{ path('group_notes_poster', {groupId: groupe.id, idEval: eval.idUser}) }}" class="btn btn-primary btn-sm">Modifier</a> </li>
     {% endfor %}
+    </ul>
 
 </div>
 {% endblock %}

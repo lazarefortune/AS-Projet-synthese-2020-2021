@@ -5,10 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Etudiant;
 use App\Entity\Groupe;
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\EvalNotationType;
 use App\Repository\EvalSoutNotationRepository;
 use App\Repository\EvalPosterNotationRepository;
-use Symfony\Component\HttpFoundation\Response;
 
 class GroupController extends AbstractController
 {
@@ -65,9 +67,6 @@ class GroupController extends AbstractController
         $etudiants = $repo2->findBy([
             'idGroupeEtud' => $groupId
         ]);
-
-        // $notes_sout = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
-        // $notes_sout = $evalSoutNotationRepo->findIsEvalNotationPoster($this->getUser()->getIdUser(), $groupe->getId(), "eval_poster");
         
         return $this->render('admin/group/notes/show.html.twig',[
             'groupId' => $groupId,
@@ -76,54 +75,26 @@ class GroupController extends AbstractController
             ]);
     }
 
-    // public function edit_note(int $groupId, string $typeEval){
-    //     $repo = $this->getDoctrine()->getRepository(Groupe::class);
-    //     $groupe = $repo->find($groupId);
-
-    //     $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
-    //     $etudiants = $repo2->findBy([
-    //         'idGroupeEtud' => $groupId
-    //     ]);
-
-    //     if ($typeEval == "soutenance") {
-    //         return $this->render('admin/group/notes/edit_sout.html.twig',[
-    //             'groupId' => $groupId,
-    //             'groupe' => $groupe,
-    //             'etudiants' => $etudiants
-    //         ]);
-    //     }
-    //     if ($typeEval == "poster") {
-    //         return $this->render('admin/group/notes/edit_poster.html.twig',[
-    //             'groupId' => $groupId,
-    //             'groupe' => $groupe,
-    //             'etudiants' => $etudiants
-    //             ]);
-    //     }
-    // }
-
     public function list_eval(int $groupId, string $typeEval, EvalSoutNotationRepository $evalSoutNotationRepo, EvalPosterNotationRepository $evalPosterNotationRepo){
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo->find($groupId);
-
-        //? VOIR group_notes_sout()    controller_eval
         
-        //todo get n° projet             $groupId
-        
-        //todo faire un repo
-        //todo créer une fonction qui liste les groupes
         $repo2 = $this->getDoctrine()->getRepository(User::class);
 
-        $evalsSout = $evalSoutNotationRepo->selectAllNotesSout($groupId, "eval_sout");
-        foreach ($evalsSout as $eval) {
-            $listEval[] = $repo2->find((int)$eval['id_eval_sout']);
-        }
-
-        $evalsPoster = $evalPosterNotationRepo->selectAllNotesPoster($groupId, "eval_poster");
-        foreach ($evalsPoster as $eval) {
-            $listEval[] = $repo2->find((int)$eval['id_eval_post']);
-        }
-
+        $listEval = [];
+        
         if ($typeEval == "soutenance") {
+            $evalsSout = $evalSoutNotationRepo->selectAllNotesSout($groupId);
+            foreach ($evalsSout as $eval) {
+                $listEval[] = $repo2->find((int)$eval['id_eval_sout']);
+            }
+            
+            if(!$listEval)
+                $this->addFlash(
+                   'info',
+                   'Aucun évalatueur à noter ce groupe'
+                );
+
             return $this->render('admin/group/notes/list_sout_eval.html.twig',[
                 'groupId' => $groupId,
                 'groupe'  => $groupe,
@@ -131,14 +102,182 @@ class GroupController extends AbstractController
             ]);
         }
         if ($typeEval == "poster") {
+            $evalsPoster = $evalPosterNotationRepo->selectAllNotesPoster($groupId);
+            foreach ($evalsPoster as $eval) {
+                $listEval[] = $repo2->find((int)$eval['id_eval_post']);
+            }
+
+            if(!$listEval)
+                $this->addFlash(
+                   'info',
+                   'Aucun évalatueur à noter ce groupe'
+                );
+
             return $this->render('admin/group/notes/list_poster_eval.html.twig',[
                 'groupId' => $groupId,
                 'groupe' => $groupe,
                 'evals'   => $listEval,
                 ]);
         }
+    }        
+        
+    public function group_notes_sout(int $groupId, int $idEval, Request $request, EvalSoutNotationRepository $evalSoutNotationRepo)
+    {
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $repo->find($groupId);
+
+        $repoUser = $this->getDoctrine()->getRepository(User::class);
+        $eval = $repoUser->find($idEval);
+        
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findBy([
+            'idGroupeEtud' => $groupId
+        ]);
+        $var = $evalSoutNotationRepo->findIsEvalNotationSout($idEval, $groupe->getId());
+        //  if note exists
+        if($var){
+            // update row note sout
+            $notes = $var[0];
+        }else{
+            // create row note sout
+            $notes = [
+                "sout_qual_pres" => null,
+                "sout_trav" => null,
+                "sout_compet" => null,
+                "sout_moyenne" => null
+            ];
+        }
+        
+        $formNotation = $this->createForm(EvalNotationType::class);
+        if($request->isMethod('post')){
+            $var = $evalSoutNotationRepo->findIsEvalNotationSout($idEval, $groupe->getId());
+            // get data of form
+            $datas = $request->request->all();
+            $datas = $datas["eval_notation"];
+            // on test si on a déjà noté ce groupe
+            if($var){
+                // update row 
+                $evalSoutNotationRepo->updateNoteGroupeSout($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $idEval, $groupe->getId());
+                $this->addFlash('success', 'Notes mis à jour avec succès');
+                
+                //update vue
+                $var = $evalSoutNotationRepo->findIsEvalNotationSout($idEval, $groupe->getId());
+                $notes = $var[0];
+            } else {
+                $this->addFlash('danger', 'Vous ne pouvez pas insérer de notes');
+
+            }
+        }
+    
+        return $this->render('admin/group/notes/soutenance/students_sout.html.twig',[
+            'groupId' => $groupId,
+            'formNotation' => $formNotation->createView(),
+            'groupe' => $groupe,
+            'etudiants' => $etudiants,
+            'notes' => $notes,
+            'eval' => $eval,
+            ]);
+        }
+        
+    public function group_notes_poster(int $groupId, int $idEval, Request $request, EvalPosterNotationRepository $evalPosterNotationRepo)
+    {
+        $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $repo->find($groupId);
+
+        $repoUser = $this->getDoctrine()->getRepository(User::class);
+        $eval = $repoUser->find($idEval);
+        
+        $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $repo2->findBy([
+            'idGroupeEtud' => $groupId
+        ]);
+        $var = $evalPosterNotationRepo->findIsEvalNotationPoster($idEval, $groupe->getId());
+        //  if note exists
+        if($var){
+            // update row note poster
+            $notes = $var[0];
+        }else{
+            // create row note poster
+            $notes = [
+                "post_qual_pres" => null,
+                "post_trav" => null,
+                "post_compet" => null,
+                "post_moyenne" => null
+            ];
+        }
+        
+        $formNotation = $this->createForm(EvalNotationType::class);
+        if($request->isMethod('post')){
+            $var = $evalPosterNotationRepo->findIsEvalNotationPoster($idEval, $groupe->getId());
+            // get data of form
+            $datas = $request->request->all();
+            $datas = $datas["eval_notation"];
+            // on test si on a déjà noté ce groupe
+            if($var){
+                // update row 
+                $evalPosterNotationRepo->updateNoteGroupePoster($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $idEval, $groupe->getId());
+                $this->addFlash('success', 'Notes mis à jour avec succès');
+                
+                //update vue
+                $var = $evalPosterNotationRepo->findIsEvalNotationPoster($idEval, $groupe->getId());
+                $notes = $var[0];
+            } else {
+                $this->addFlash('danger', 'Vous ne pouvez pas insérer de notes');
+
+            }
+        }
+    
+        return $this->render('admin/group/notes/poster/students_poster.html.twig',[
+            'groupId' => $groupId,
+            'formNotation' => $formNotation->createView(),
+            'groupe' => $groupe,
+            'etudiants' => $etudiants,
+            'notes' => $notes,
+            'eval' => $eval,
+            ]);
     }
 
+    public function group_notes_indiv(int $groupId, Request $request): Response
+    {
+        $groupeRepository = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $groupeRepository->find($groupId);
 
-    
+        $studentRepository = $this->getDoctrine()->getRepository(Etudiant::class);
+        $etudiants = $studentRepository->findBy([
+            'idGroupeEtud' => $groupId
+        ]);
+        
+        if($request->isMethod('post')){
+            
+            $datas = $request->request->all();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            foreach ($etudiants as $etudiant) {
+                
+                $noteTutRapport = $datas['noteTutRapport'.$etudiant->getIdEtud()];
+                $noteTutTrav = $datas['noteTutTrav'.$etudiant->getIdEtud()];
+                $noteTutCompt = $datas['noteTutCompet'.$etudiant->getIdEtud()];
+                $poucentTravail = $datas['pourcentTravail'.$etudiant->getIdEtud()];
+                $noteFinale = $datas['noteFinale'.$etudiant->getIdEtud()];
+                
+                $etudiant->setNoteTutRapport((float)$noteTutRapport);
+                $etudiant->setNoteTutTrav((float)$noteTutTrav);
+                $etudiant->setNoteTutCompet((float)$noteTutCompt);
+                $etudiant->setPourcentTravail((float)$poucentTravail);
+                $etudiant->setNoteFinale((float)$noteFinale);
+
+                
+                // $constraint = new Assert\Collection([
+                
+                $entityManager->persist($etudiant);
+            }
+            $entityManager->flush();
+            $this->addFlash('success', 'Les notes ont été enregistrées avec succès');
+
+        }
+        return $this->render('admin/group/notes/indiv/students_eval.html.twig',[
+            'groupe' => $groupe,
+            'etudiants' => $etudiants,
+            ]);
+    }
 }
