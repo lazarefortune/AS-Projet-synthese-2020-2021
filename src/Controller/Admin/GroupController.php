@@ -35,11 +35,11 @@ class GroupController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $allGroupes = $repo->findAll();
         
-        
+        $idPromoSession = $this->get('session')->get('promo')->getId();
         // il faut faire une find par promo
         foreach ($allGroupes as $groupe) {
             $idPromoGroup = $groupe->getIdProjet()->getIdPromoProj()->getId();
-            if($idPromoGroup == 2){
+            if($idPromoGroup == $idPromoSession){
                 $groupes[] = $groupe;
             }
         }

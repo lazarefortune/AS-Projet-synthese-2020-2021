@@ -65,7 +65,6 @@ class GroupController extends AbstractController
             'idGroupeEtud' => $groupId
         ]);
         $var = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
-        dump("test 1 ", $var);
         //  if note exists
         if($var){
             // update row note sout

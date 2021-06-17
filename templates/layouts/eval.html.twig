@@ -227,13 +227,41 @@
 										<!-- .gestion des notes -->
 										<li class="menu-header">Notation
 										</li>
+										<li class="menu-item has-child">
+												<a href="#" class="menu-link " data-bs-toggle="collapse" data-bs-target="#note-collapse" aria-expanded="true">
+													<span class="menu-icon fas fa-users"></span>
+													<span class="menu-text dropdown-toggle">Notation</span>
+												</a>
+												<!-- child menu -->
+												<div class="ml-4 show collapse " id="note-collapse">
+													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+														<li>
+															<a href="{{ path('eval_showNoteGroupSout') }}" class="link-dark text-muted">Soutenance</a>
+														</li>
+													</ul>
+												</div>
+												<div class="ml-4 show collapse " id="note-collapse">
+													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+														<li>
+															<a href="{{ path('eval_showNoteGroupPost') }}" class="link-dark text-muted">Poster</a>
+														</li>
+													</ul>
+												</div>
+												<div class="ml-4 show collapse " id="note-collapse">
+													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+														<li>
+															<a href="{{ path('eval_showNoteGroupIndiv') }}" class="link-dark text-muted">Individuelle</a>
+														</li>
+													</ul>
+												</div>
+											</li>
 										<!-- listes -->
-										<li class="menu-item">
+										{# <li class="menu-item">
 											<a href="{{ path('eval_group_list') }}" class="menu-link {{ app.request.get('_route') == 'group_list' ? 'active' }}">
 												<span class="menu-icon fas fa-th-list"></span>
 												<span class="menu-text">Par groupe</span>
 											</a>
-										</li>
+										</li> #}
 										<li class="menu-item">
 											<a href="{{ path('maintenance_eval') }}" class="menu-link">
 												<span class="menu-icon fas fa-users"></span>
