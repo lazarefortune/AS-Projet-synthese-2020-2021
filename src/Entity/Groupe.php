@@ -43,7 +43,7 @@ class Groupe
      * @ORM\Column(name="heure_sout", type="time", nullable=true)
      */
     private $heureSout;
-
+    
     /**
      * @var string|null
      *
@@ -242,10 +242,10 @@ class Groupe
         return $this;
     }
 
-    // public function getIdProjet(): ?Projet
-    // {
-    //     return $this->idProjet;
-    // }
+    public function getIdProjet()
+    {
+        return $this->idProjet;
+    }
 
     public function setIdProjet(?Projet $idProjet): self
     {

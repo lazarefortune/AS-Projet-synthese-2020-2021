@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block admin_content %}
+<h3 class="text-center title">Liste des posters</h3>
 <div>
     {% include "layouts/notation/searchbar.html.twig" %} 
 </div>
@@ -13,10 +14,12 @@
     {% for groupe in groupes %}
         <div class="col-md-4">
             <div class="card card-fluid p-3 sujet">
-                {% include "layouts/notation/card_proj.html.twig" %}
-                
-                <div class="text-center">
-                    <a href="{{ path('group_notes', {groupId: groupe.id}) }}"><button type="button" class="btn btn-primary">Consulter</button></a>
+            {% include "layouts/notation/card_proj.html.twig" %}
+            
+                <div class="row">
+                    <div class="text-center">
+                        <a href="{{ path('eval_group_notes_poster', {groupId: groupe.id}) }}"><button type="button" class="btn btn-outline-primary m-2">Poster</button></a>
+                    </div>
                 </div>
             </div>
         </div>

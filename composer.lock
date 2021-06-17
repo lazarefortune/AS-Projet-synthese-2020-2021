@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "fb4100f03ec57d4e48e326c3c4428882",
+
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -5953,6 +5955,7 @@
         },
         {
             "name": "symfony/rate-limiter",
+
             "version": "v5.2.7",
             "source": {
                 "type": "git",
@@ -5963,6 +5966,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/rate-limiter/zipball/e668217af19e346c29305c685a27f1d1f77ba2e4",
                 "reference": "e668217af19e346c29305c685a27f1d1f77ba2e4",
+
                 "shasum": ""
             },
             "require": {
@@ -6002,6 +6006,11 @@
                 "limiter",
                 "rate-limiter"
             ],
+
+            "support": {
+                "source": "https://github.com/symfony/rate-limiter/tree/v5.2.10"
+            },
+
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -6016,7 +6025,9 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-31T19:55:39+00:00"
+          
+            "time": "2021-05-26T17:33:56+00:00"
+
         },
         {
             "name": "symfony/routing",
@@ -8454,5 +8465,5 @@
     "platform-overrides": {
         "php": "7.2.22"
     },
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

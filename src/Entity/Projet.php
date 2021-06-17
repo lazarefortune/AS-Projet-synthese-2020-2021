@@ -145,10 +145,10 @@ class Projet
         return $this;
     }
 
-    // public function getIdPromoProj(): ?Promo
-    // {
-    //     return $this->idPromoProj;
-    // }
+    public function getIdPromoProj()
+    {
+        return $this->idPromoProj;
+    }
 
     public function setIdPromoProj(?Promo $idPromoProj): self
     {

@@ -1,0 +1,13 @@
+<thead>
+    <tr>
+        <th scope="col" class="align-middle text-center">
+            {% for eval in groupe.idProjet.idEval %}
+                {{ eval.nom }} {{eval.prenom}} 
+            {% endfor %}
+        </th>
+        <th scope="col" class="align-middle text-center">Qualité de la présentation </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+        <th scope="col" class="align-middle text-center">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+        <th scope="col" class="align-middle text-center">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/20 points. coeff. 1</span></th>
+        <th scope="col" class="align-middle text-center">Moyenne</th>
+    </tr>
+</thead>

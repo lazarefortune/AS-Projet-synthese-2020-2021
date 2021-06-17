@@ -1,0 +1,11 @@
+<tbody>
+                    {% for etudiant in etudiants %}
+                    <tr>
+                        <th class="text-center align-middle">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</th>
+                        <td><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control align-middle text-center mx-auto" id="note_rapport_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
+                        <td><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control align-middle text-center mx-auto" id="note_travail_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
+                        <td><input onchange="moyenne({{ etudiant.idEtud }})" class="form-control align-middle text-center mx-auto" id="note_competences_{{ etudiant.idEtud }}" type="number" min="0" max="20" size="2" step="0.5" required style="width:35%"></input></td>
+                        <td id="note_moyenne_{{ etudiant.idEtud }}" style="text-align:center;"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>

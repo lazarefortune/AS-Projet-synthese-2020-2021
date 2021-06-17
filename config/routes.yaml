@@ -23,6 +23,10 @@ home:
 #     controller: App\Controller\Admin\EvaluatorController::list
 
 
+list_note:
+    path: /admin/liste_notes
+    controller: App\Controller\Admin\GroupController::list_note
+
 group_list:
     path: /admin/groupes
     controller: App\Controller\Admin\GroupController::group_list
@@ -31,18 +35,9 @@ group_notes:
     path: /admin/groupe/{groupId}/notes
     controller: App\Controller\Admin\GroupController::group_notes
 
-group_notes_edit:
+list_notes_eval:
     path: /admin/groupe/{groupId}/edit/{typeEval}
-    defaults:
-        typeEval: soutenance
-    controller: App\Controller\Admin\GroupController::edit_note
-
-# group_notes_edit_poster:
-#     path: /groupe/{groupId}/edit/{typeEval}
-#     defaults:
-#         typeEval: poster
-#     controller: App\Controller\Admin\GroupController::edit_note
-
+    controller: App\Controller\Admin\GroupController::list_eval
 
 evaluator_list:
     path: /admin/evaluateurs
@@ -97,9 +92,16 @@ download_show:
     controller: App\Controller\Admin\GroupABController::downloadShow
 
 # Path view evaluator
+
+
+eval_list_note:
+    path: /liste_notes
+    controller: App\Controller\Admin\GroupController::list_note
+
 evaluator_home:
     path: /eval
     controller: App\Controller\Evaluator\EvaluatorController::index
+
 
 eval_group_list:
     path: /groupes
@@ -112,6 +114,29 @@ eval_group_notes_sout:
 eval_group_notes_poster:
     path: /groupe/{groupId}/poster
     controller: App\Controller\Evaluator\GroupController::group_notes_poster
+
+
+eval_group_notes_indiv:
+    path: /groupe/{groupId}/individuelle
+    controller: App\Controller\Evaluator\GroupController::group_notes_indiv
+
+eval_group_final:
+    path: /groupe/{groupId}/final
+    controller: App\Controller\Evaluator\GroupController::group_notes_final
+
+# routes Notation
+
+eval_showNoteGroupSout:
+    path: /groupes/session-soutenance
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupSout
+
+eval_showNoteGroupPost:
+    path: /groupes/session-poster
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupPost
+
+eval_showNoteGroupIndiv:
+    path: /groupes/edition-notes-du-tuteur
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupIndiv
 
 planning_eval:
     path: /eval/planning
@@ -133,3 +158,4 @@ update_eval:
 change_promo:
     path: /changer-de-promo
     controller: App\Controller\HomeController::index
+

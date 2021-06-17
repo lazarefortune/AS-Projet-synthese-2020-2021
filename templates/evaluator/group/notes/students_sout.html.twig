@@ -1,44 +1,69 @@
 {% extends "layouts/admin.html.twig" %}
 
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+
 {% block admin_content %}
+{% include "layouts/notation/buttons/retour_user.html.twig" %}
 
-<section class="mx-5">               
-    <p class="mb-3"> <span style="border-bottom: solid 1px #346cb0;" class="pb-1">Nom de l'évaluateur : <i>Nom_évaluateur</i></span></p>
-    <p class="ml-3 mb-3">Groupe n° {{ groupId }} : Nom_du_projet</i></p>
-    <h1 class="text-center my-4">Evaluation de la soutenance</h1> </br>
+<div class="vue_content">        
+    {% include "layouts/notation/user/header.html.twig" %}
+    
+    <h1 class="text-center">Evaluation de la soutenance</h1>
 
-    <form>
-        <div class="table-responsive">
-            <table class="table table-hover my-4">
-                <thead>
-                    <tr>
-                        <th scope="col" class="align-middle text-center">Nom de l'étudiant</td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Qualité du rapport </br> <span class="font-weight-normal">/5 points. coeff. 1</span></td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Travail réalisé. Etat </br> d'avancement du projet </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Utilisation de </br> compétences nouvelles </br> <span class="font-weight-normal">/5 points. coeff. 2</span></td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">% de travail réalisé</td>
-                        <th scope="col" class="align-middle text-center" style="width:16%">Moyenne</td>
-                    </tr>
-                </thead>
+    {% include 'layouts/flash-messages.html.twig' %}
+
+    {{ form_start(formNotation) }}
+        <div class="table-responsive size_tab">
+            <table class="table table-hover">
+                {% include 'layouts/notation/array/theader_group.html.twig' %}
+                
                 <tbody>
-                    {% for id in 0..3 %} {# nb_etudiants #}
-                        <tr>
-                            <td class="text-center">Nom . prénom</td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%"></input></td>
-                            <td><input class="form-control align-middle text-center mx-auto min-vw-50" type="text" style="width:35%"></input></td>
-                        </tr>
-                    {% endfor %}
+                    <tr>
+                        <td>Qualité de la présentation </br> <span>/20 points. coeff. 1</span></td>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_rapport_{{ groupe.id }}"
+                            value="{{ notes['sout_qual_pres'] }}" onchange="moyenne({{ groupe.id }})" name="eval_notation[qualPres]"  required></input>
+                            {% do formNotation.qualPres.setRendered %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Travail réalisé. Etat d'avancement du projet </br> <span>/20 points. coeff. 2</span></td>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_travail_{{ groupe.id }}"
+                            value="{{ notes['sout_trav'] }}" onchange="moyenne({{ groupe.id }})" name="eval_notation[trav]" required></input>
+                            {% do formNotation.trav.setRendered %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Utilisation de compétences nouvelles </br> <span>/20 points. coeff. 2</span></td>
+                        <td class="valeur">
+                            <input type="number" min="0" max="20" size="2" step="0.5" class="form-control form-control-sm" id="note_competences_{{ groupe.id }}"
+                            value="{{ notes['sout_compet'] }}" onchange="moyenne({{ groupe.id }})" name="eval_notation[compet]" required></input>
+                            {% do formNotation.compet.setRendered %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Moyenne</td>
+                        <td class="valeur">
+                            <input id="note_moyenne_{{ groupe.id }}" type="text" class="form control form-control-sm"
+                            value="{{ notes['sout_moyenne'] }}"  name="eval_notation[moyenne]"></input>
+                            {% do formNotation.moyenne.setRendered %}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-
-            <div class="mx-4 text-right">
-                <a href="{{ path('eval_group_list') }}"><button type="button" class="btn btn-danger mr-3">Annuler</button></a>
-                <button class="btn btn-success" type="submit">Valider</button>
-            </div>
+            <button class="btn btn-success" type="submit">Mettre à jour</button>
         </div>
-    </form>
-</section>
+    {{ form_end(formNotation) }}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/indiv_moy.js') }}"></script>
 {% endblock %}
