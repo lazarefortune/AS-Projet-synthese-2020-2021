@@ -92,6 +92,10 @@ show_groupAB:
     path: /composition-des-groupes
     controller: App\Controller\Admin\GroupABController::show
 
+download_show:
+    path: /composition-des-groupes
+    controller: App\Controller\Admin\GroupABController::downloadShow
+
 # Path view evaluator
 evaluator_home:
     path: /eval
