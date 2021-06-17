@@ -13,7 +13,7 @@ function addtolist(id){
    let row = document.getElementById(id);
    let table = document.getElementById(row.getAttribute("data-dest")).lastElementChild;
    let new_row_id= id + "_main";
-   table.innerHTML += "<tr>"+row.innerHTML +"<td><button type=\"button\" onclick=\"moveUp(this.parentElement.parentElement);\" >up</button><button type=\"button\" onclick=\"moveDown(this.parentElement.parentElement);\" >down</button></td><td><button type=\"button\" onclick='deleteLine(this.parentElement.parentElement)' >-</button></td></tr>";
+   table.innerHTML += "<tr>"+row.innerHTML +"<td><button type=\"button\" onclick=\"moveUp(this.parentElement.parentElement);\" >↑</button><button type=\"button\" onclick=\"moveDown(this.parentElement.parentElement);\" >↓</button></td><td><button type=\"button\" onclick='deleteLine(this.parentElement.parentElement)' >-</button></td></tr>";
    table.lastElementChild.id=new_row_id;
    removefromlist(id);
 }

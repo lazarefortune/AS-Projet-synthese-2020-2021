@@ -82,8 +82,8 @@ jury:
     controller: App\Controller\Admin\JuryController::index
 
 groupAB:
-    path: /composition-des-groupes
-    controller: App\Controller\Admin\GroupABController::index
+    path: /edition-des-groupes
+    controller: App\Controller\Admin\GroupABController::edit
 
 edit_jury:
     path: /composition-des-jury
