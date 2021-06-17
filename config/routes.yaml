@@ -24,7 +24,7 @@ home:
 
 
 list_note:
-    path: /admin/liste_notes
+    path: /admin/liste-des-notes
     controller: App\Controller\Admin\GroupController::list_note
 
 group_list:
@@ -88,7 +88,7 @@ show_groupAB:
     controller: App\Controller\Admin\GroupABController::show
 
 download_show:
-    path: /composition-des-groupes
+    path: /composition-des-groupes/download
     controller: App\Controller\Admin\GroupABController::downloadShow
 
 # Path view evaluator

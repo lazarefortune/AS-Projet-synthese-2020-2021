@@ -16,7 +16,17 @@ class GroupController extends AbstractController
     public function list_note(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
-        $groupes = $repo->findAll();
+        // $groupes = $repo->findAll();
+        $allGroupes = $repo->findAll();
+        
+        $idPromoSession = $this->get('session')->get('promo')->getId();
+        // il faut faire une find par promo
+        foreach ($allGroupes as $groupe) {
+            $idPromoGroup = $groupe->getIdProjet()->getIdPromoProj()->getId();
+            if($idPromoGroup == $idPromoSession){
+                $groupes[] = $groupe;
+            }
+        }
 
         $total = count($groupes);
 

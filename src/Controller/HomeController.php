@@ -16,7 +16,7 @@ class HomeController extends AbstractController
         $roles = $this->getUser()->getRoles();
         $hasAccess = $this->isGranted('ROLE_ADMIN');
         if (!$hasAccess) {
-            dump("on a pas admin");
+            // dump("on a pas admin")
             $allDateAccess = $dateAccessRepo->findAll();
             $nowDateTime = new \DateTime();
             $compteur = 0;
