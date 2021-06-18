@@ -30,7 +30,7 @@ class Etudiant
     private $demiGroupe;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="note_tut_rapport", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=20, minMessage = "c'est pas hlel")
@@ -38,7 +38,7 @@ class Etudiant
     private $noteTutRapport;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="note_tut_trav", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=20)
@@ -46,7 +46,7 @@ class Etudiant
     private $noteTutTrav;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="note_tut_compet", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=20)
@@ -54,7 +54,7 @@ class Etudiant
     private $noteTutCompet;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="pourcent_travail", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=100)
@@ -69,7 +69,7 @@ class Etudiant
     private $noteTut5;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="note_tut_20", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=20)
@@ -77,7 +77,7 @@ class Etudiant
     private $noteTut20;
 
     /**
-     * @var string|null
+     * @var float|null
      *
      * @ORM\Column(name="note_finale", type="decimal", precision=10, scale=0, nullable=true)
      * @Assert\Range(min=0, max=20)
@@ -131,48 +131,48 @@ class Etudiant
         return $this;
     }
 
-    public function getNoteTutRapport(): ?string
+    public function getNoteTutRapport(): ?float
     {
         return $this->noteTutRapport;
     }
 
-    public function setNoteTutRapport(?string $noteTutRapport): self
+    public function setNoteTutRapport(?float $noteTutRapport): self
     {
         $this->noteTutRapport = $noteTutRapport;
 
         return $this;
     }
 
-    public function getNoteTutTrav(): ?string
+    public function getNoteTutTrav(): ?float
     {
         return $this->noteTutTrav;
     }
 
-    public function setNoteTutTrav(?string $noteTutTrav): self
+    public function setNoteTutTrav(?float $noteTutTrav): self
     {
         $this->noteTutTrav = $noteTutTrav;
 
         return $this;
     }
 
-    public function getNoteTutCompet(): ?string
+    public function getNoteTutCompet(): ?float
     {
         return $this->noteTutCompet;
     }
 
-    public function setNoteTutCompet(?string $noteTutCompet): self
+    public function setNoteTutCompet(?float $noteTutCompet): self
     {
         $this->noteTutCompet = $noteTutCompet;
 
         return $this;
     }
 
-    public function getPourcentTravail(): ?string
+    public function getPourcentTravail(): ?float
     {
         return $this->pourcentTravail;
     }
 
-    public function setPourcentTravail(?string $pourcentTravail): self
+    public function setPourcentTravail(?float $pourcentTravail): self
     {
         $this->pourcentTravail = $pourcentTravail;
 
@@ -191,24 +191,24 @@ class Etudiant
         return $this;
     }
 
-    public function getNoteTut20(): ?string
+    public function getNoteTut20(): ?float
     {
         return $this->noteTut20;
     }
 
-    public function setNoteTut20(?string $noteTut20): self
+    public function setNoteTut20(?float $noteTut20): self
     {
         $this->noteTut20 = $noteTut20;
 
         return $this;
     }
 
-    public function getNoteFinale(): ?string
+    public function getNoteFinale(): ?float
     {
         return $this->noteFinale;
     }
 
-    public function setNoteFinale(?string $noteFinale): self
+    public function setNoteFinale(?float $noteFinale): self
     {
         $this->noteFinale = $noteFinale;
 

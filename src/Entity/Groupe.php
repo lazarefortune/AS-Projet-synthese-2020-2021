@@ -206,24 +206,24 @@ class Groupe
         return $this;
     }
 
-    public function getNoteSout(): ?string
+    public function getNoteSout(): ?float
     {
         return $this->noteSout;
     }
 
-    public function setNoteSout(?string $noteSout): self
+    public function setNoteSout(?float $noteSout): self
     {
         $this->noteSout = $noteSout;
 
         return $this;
     }
 
-    public function getNotePoster(): ?string
+    public function getNotePoster(): ?float
     {
         return $this->notePoster;
     }
 
-    public function setNotePoster(?string $notePoster): self
+    public function setNotePoster(?float $notePoster): self
     {
         $this->notePoster = $notePoster;
 

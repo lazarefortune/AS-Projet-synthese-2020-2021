@@ -283,8 +283,10 @@ class GroupController extends AbstractController
                 $noteTutCompt = $datas['noteTutCompet'.$etudiant->getIdEtud()];
                 $poucentTravail = $datas['pourcentTravail'.$etudiant->getIdEtud()];
                 $noteTut20 = $datas['noteTut20'.$etudiant->getIdEtud()];
-                
+                // dd((float)$noteTutRapport);
+                // dd((float)$noteTutRapport);
                 $etudiant->setNoteTutRapport((float)$noteTutRapport);
+                // dd($etudiant->getNoteTutRapport());
                 $etudiant->setNoteTutTrav((float)$noteTutTrav);
                 $etudiant->setNoteTutCompet((float)$noteTutCompt);
                 $etudiant->setPourcentTravail((float)$poucentTravail);
