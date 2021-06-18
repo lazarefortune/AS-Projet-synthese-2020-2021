@@ -80,13 +80,7 @@ class GroupController extends AbstractController
         ]);
 
         $moySout = $moyenneRepo->moyenneSout($groupId);
-        $groupe->setNoteSout((float)$moySout[0]["moySoutenance"]);
-        dump($groupe);
-        dump($moySout[0]["moySoutenance"]);
-        dump((float)$moySout[0]["moySoutenance"]);
-        
         $moyPost = $moyenneRepo->moyennePoster($groupId);
-        $groupe->setNotePoster((float)$moyPost[0]["moyPoster"]);
         
         return $this->render('admin/group/notes/show.html.twig',[
             'groupId'   => $groupId,
@@ -145,7 +139,7 @@ class GroupController extends AbstractController
         }
     }        
         
-    public function group_notes_sout(int $groupId, int $idEval, Request $request, EvalSoutNotationRepository $evalSoutNotationRepo)
+    public function group_notes_sout(int $groupId, int $idEval, Request $request, EvalSoutNotationRepository $evalSoutNotationRepo, MoyenneRepository $moyenneRepo)
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo->find($groupId);
@@ -172,6 +166,7 @@ class GroupController extends AbstractController
             ];
         }
         
+        $entityManager = $this->getDoctrine()->getManager();
         $formNotation = $this->createForm(EvalNotationType::class);
         if($request->isMethod('post')){
             $var = $evalSoutNotationRepo->findIsEvalNotationSout($idEval, $groupe->getId());
@@ -182,11 +177,17 @@ class GroupController extends AbstractController
             if($var){
                 // update row 
                 $evalSoutNotationRepo->updateNoteGroupeSout($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $idEval, $groupe->getId());
-                $this->addFlash('success', 'Notes mis à jour avec succès');
+                
+                $moySout = $moyenneRepo->moyenneSout($groupId);
+                $groupe->setNoteSout((float)$moySout[0]["moySoutenance"]);
+
+                $entityManager->persist($groupe);
+                $entityManager->flush();
                 
                 //update vue
                 $var = $evalSoutNotationRepo->findIsEvalNotationSout($idEval, $groupe->getId());
                 $notes = $var[0];
+                $this->addFlash('success', 'Notes mis à jour avec succès');
             } else {
                 $this->addFlash('danger', 'Vous ne pouvez pas insérer de notes');
 
@@ -203,7 +204,7 @@ class GroupController extends AbstractController
             ]);
         }
         
-    public function group_notes_poster(int $groupId, int $idEval, Request $request, EvalPosterNotationRepository $evalPosterNotationRepo)
+    public function group_notes_poster(int $groupId, int $idEval, Request $request, EvalPosterNotationRepository $evalPosterNotationRepo, MoyenneRepository $moyenneRepo)
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo->find($groupId);
@@ -230,6 +231,7 @@ class GroupController extends AbstractController
             ];
         }
         
+        $entityManager = $this->getDoctrine()->getManager();
         $formNotation = $this->createForm(EvalNotationType::class);
         if($request->isMethod('post')){
             $var = $evalPosterNotationRepo->findIsEvalNotationPoster($idEval, $groupe->getId());
@@ -240,11 +242,17 @@ class GroupController extends AbstractController
             if($var){
                 // update row 
                 $evalPosterNotationRepo->updateNoteGroupePoster($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $idEval, $groupe->getId());
-                $this->addFlash('success', 'Notes mis à jour avec succès');
                 
+                $moyPost = $moyenneRepo->moyennePoster($groupId);
+                $groupe->setNotePoster((float)$moyPost[0]["moyPoster"]);
+                
+                $entityManager->persist($groupe);
+                $entityManager->flush();
+
                 //update vue
                 $var = $evalPosterNotationRepo->findIsEvalNotationPoster($idEval, $groupe->getId());
                 $notes = $var[0];
+                $this->addFlash('success', 'Notes mis à jour avec succès');
             } else {
                 $this->addFlash('danger', 'Vous ne pouvez pas insérer de notes');
 
@@ -283,17 +291,12 @@ class GroupController extends AbstractController
                 $noteTutCompt = $datas['noteTutCompet'.$etudiant->getIdEtud()];
                 $poucentTravail = $datas['pourcentTravail'.$etudiant->getIdEtud()];
                 $noteTut20 = $datas['noteTut20'.$etudiant->getIdEtud()];
-                // dd((float)$noteTutRapport);
-                // dd((float)$noteTutRapport);
+                
                 $etudiant->setNoteTutRapport((float)$noteTutRapport);
-                // dd($etudiant->getNoteTutRapport());
                 $etudiant->setNoteTutTrav((float)$noteTutTrav);
                 $etudiant->setNoteTutCompet((float)$noteTutCompt);
                 $etudiant->setPourcentTravail((float)$poucentTravail);
                 $etudiant->setNoteTut20((float)$noteTut20);
-
-                
-                // $constraint = new Assert\Collection([
                 
                 $entityManager->persist($etudiant);
             }

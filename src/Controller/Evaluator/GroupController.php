@@ -9,6 +9,7 @@ use App\Form\EvalNotationType;
 use App\Repository\EvalGroupeRepository;
 use App\Repository\EvalSoutNotationRepository;
 use App\Repository\EvalPosterNotationRepository;
+use App\Repository\MoyenneRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,7 +55,7 @@ class GroupController extends AbstractController
     /**
      * @Route("/groupe/{groupId}/soutenance", name="note_soutenance")
      */
-    public function group_notes_sout(int $groupId, Request $request, EvalSoutNotationRepository $evalSoutNotationRepo)
+    public function group_notes_sout(int $groupId, Request $request, EvalSoutNotationRepository $evalSoutNotationRepo, MoyenneRepository $moyenneRepo)
     {
         
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
@@ -78,7 +79,8 @@ class GroupController extends AbstractController
                 "sout_moyenne" => null
             ];
         }
-        
+
+        $entityManager = $this->getDoctrine()->getManager();
         $formNotation = $this->createForm(EvalNotationType::class);
         if($request->isMethod('post')){
             $var = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
@@ -89,15 +91,29 @@ class GroupController extends AbstractController
             if($var){
                 // update row 
                 $evalSoutNotationRepo->updateNoteGroupeSout($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $this->getUser()->getIdUser(), $groupe->getId());
-                $this->addFlash('success', 'Notes mis à jour avec succès');
-
-                    //update vue
+                
+                $moySout = $moyenneRepo->moyenneSout($groupId);
+                $groupe->setNoteSout((float)$moySout[0]["moySoutenance"]);
+                
+                $entityManager->persist($groupe);
+                $entityManager->flush();
+                
+                //update vue
                 $var = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
                 $notes = $var[0];
+
+                $this->addFlash('success', 'Notes mis à jour avec succès');
             }else{
                 // create row
                 $evalSoutNotationRepo->insertNoteGroupeSout($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $this->getUser()->getIdUser(), $groupe->getId());
                 $var = $evalSoutNotationRepo->findIsEvalNotationSout($this->getUser()->getIdUser(), $groupe->getId(), "eval_sout");
+                
+                $moySout = $moyenneRepo->moyenneSout($groupId);
+                $groupe->setNoteSout((float)$moySout[0]["moySoutenance"]);
+                
+                $entityManager->persist($groupe);
+                $entityManager->flush();
+
                 $notes = $var[0];
                 $this->addFlash('success', 'Notes insérées avec succès');
             }
@@ -112,7 +128,7 @@ class GroupController extends AbstractController
             ]);
     }
 
-    public function group_notes_poster(int $groupId, Request $request, EvalPosterNotationRepository $evalPosterNotationRepo)
+    public function group_notes_poster(int $groupId, Request $request, EvalPosterNotationRepository $evalPosterNotationRepo, MoyenneRepository $moyenneRepo)
     {
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo->find($groupId);
@@ -136,7 +152,8 @@ class GroupController extends AbstractController
                 "poster_moyenne" => null
             ];
         }
-        
+
+        $entityManager = $this->getDoctrine()->getManager();
         $formNotation = $this->createForm(EvalNotationType::class);
         if($request->isMethod('post')){
             $var = $evalPosterNotationRepo->findIsEvalNotationPoster($this->getUser()->getIdUser(), $groupe->getId(), "eval_poster");
@@ -147,15 +164,28 @@ class GroupController extends AbstractController
             if($var){
                 // update row 
                 $evalPosterNotationRepo->updateNoteGroupePoster($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $this->getUser()->getIdUser(), $groupe->getId());
-                $this->addFlash('success', 'Notes mis à jour avec succès');
+                
+                $moyPost = $moyenneRepo->moyennePoster($groupId);
+                $groupe->setNotePoster((float)$moyPost[0]["moyPoster"]);
 
-                    //update vue
+                $entityManager->persist($groupe);
+                $entityManager->flush();
+                //update vue
                 $var = $evalPosterNotationRepo->findIsEvalNotationPoster($this->getUser()->getIdUser(), $groupe->getId(), "eval_poster");
                 $notes = $var[0];
+
+                $this->addFlash('success', 'Notes mis à jour avec succès');
             }else{
                 // create row
                 $evalPosterNotationRepo->insertNoteGroupePoster($datas["qualPres"], $datas["trav"], $datas["compet"], $datas["moyenne"], $this->getUser()->getIdUser(), $groupe->getId());
                 $var = $evalPosterNotationRepo->findIsEvalNotationPoster($this->getUser()->getIdUser(), $groupe->getId(), "eval_poster");
+                
+                $moyPost = $moyenneRepo->moyennePoster($groupId);
+                $groupe->setNotePoster((float)$moyPost[0]["moyPoster"]);
+
+                $entityManager->persist($groupe);
+                $entityManager->flush();
+                
                 $notes = $var[0];
                 $this->addFlash('success', 'Notes insérées avec succès');
             }
