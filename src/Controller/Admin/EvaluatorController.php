@@ -4,21 +4,30 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\EvalType;
-use App\Form\EvalUpdateType;
 use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\Form\EvalUpdateType;
 use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class EvaluatorController extends AbstractController
 {
-    public function list(Request $request, PaginatorInterface $paginator, UserRepository $repository): Response
+    private function index(User $user, string $plainPassword): bool
     {
+        $encoder = new UserPasswordEncoderInterface();
+        $passwordEncoded = $encoder->encodePassword($user, $plainPassword);
+        return $passwordEncoded;
+    }
+
+    public function list(Request $request, PaginatorInterface $paginator,UserRepository $repository): Response
+    {
+
         $user = new User();
         $entityManager = $this->getDoctrine()->getManager();
         $donnees =  $repository->findByRole("EVALUATOR");
@@ -27,6 +36,13 @@ class EvaluatorController extends AbstractController
         $form = $this->createForm(EvalType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($request->request->all()["eval"]["password"]) {
+                $plainPassword = $request->request->all()["eval"]["password"];
+                $passwordEncoded = hash('sha256', $plainPassword);
+                $user->setPassword($passwordEncoded);
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'Nouvel utilisateur enregistré avec succès');
