@@ -1,0 +1,24 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+<div class="vue_content"> 
+    {% include "layouts/notation/admin/header_allnotes.html.twig" %}
+    <h1 class="text-center mb-5">Liste des notes de soutenance</h1>
+
+    <div class="w-50 m-auto">
+        {% include 'layouts/flash-messages.html.twig' %}
+    </div>
+
+    <ul class="list-group w-75 m-auto">
+    {% for eval in evals %}
+            <li class="list-group-item">{{ eval.nom}} {{eval.prenom}} 
+            <a style="float:right;" href="{{ path('group_notes_sout', {groupId: groupe.id, idEval: eval.idUser}) }}" class="btn btn-primary btn-sm">Modifier</a> </li>
+    {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

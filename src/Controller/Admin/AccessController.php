@@ -2,20 +2,102 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\DateAccesSout;
+use App\Form\DateAccessSoutType;
+use App\Repository\DateAccessRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AccessController extends AbstractController
 {
-    public function dates_index(): Response
+    /**
+     * @IsGranted("ROLE_SUPER_ADMIN")
+     */
+    public function dates_index(DateAccessRepository $dateAccessRepo): Response
     {
+        $allDate = $dateAccessRepo->findAll();
+        // foreach ($allDate as $dateTime) {
 
-        return $this->render('admin/website/access.html.twig');
+        //     dd($dateTime->getDateDebut());
+        // }
+        return $this->render('admin/website/access.html.twig', [
+            'allDate' => $allDate
+        ]);
     }
-    
-    public function add_dates_index(): Response
+
+    /**
+     * @IsGranted("ROLE_SUPER_ADMIN")
+     */
+    public function add_dates_index(Request $request): Response
+    {
+        $dateTime = new DateAccesSout();
+        $formDateAccess = $this->createForm(DateAccessSoutType::class, $dateTime);
+
+
+        $formDateAccess->handleRequest($request);
+        if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
+            // dd($formDateAccess);
+            $dateTime = $formDateAccess->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($dateTime);
+            $entityManager->flush();
+            $this->addFlash('success', 'Créneau ajouté avec succès');
+            return $this->redirectToRoute('define_dates');
+        }
+
+        return $this->render('admin/website/addAccessDate.html.twig', [
+            'formDateAccess' => $formDateAccess->createView()
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_SUPER_ADMIN")
+     */
+    public function edit_dates_index(Request $request, $id, DateAccessRepository $dateAccessRepo): Response
+    {
+        // $dateTime = new DateAccesSout();
+        $dateTime = $dateAccessRepo->findBy([
+            'idDSout' => $id
+        ]);
+        $dateTime = $dateTime[0];
+        // dd($dateTime);
+        $formDateAccess = $this->createForm(DateAccessSoutType::class, $dateTime);
+
+
+        $formDateAccess->handleRequest($request);
+        if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
+            // dd($formDateAccess);
+            $dateTime = $formDateAccess->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($dateTime);
+            $entityManager->flush();
+            $this->addFlash('success', 'Créneau Modifié avec succès');
+            // return $this->redirectToRoute('define_dates');
+        }
+
+        return $this->render('admin/website/editAccessDate.html.twig', [
+            'dateTime' => $dateTime,
+            'formDateAccess' => $formDateAccess->createView()
+        ]);
+    }
+
+    public function delete_dates_index(Request $request, $id, DateAccessRepository $dateAccessRepo)
     {
 
-        return $this->render('admin/website/addAccessDate.html.twig');
+        $dateTime = $dateAccessRepo->find($id);
+        if($dateTime == null){
+
+            $this->addFlash('danger', 'Aucun créneau ne correspond');
+            return $this->redirectToRoute('define_dates');
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($dateTime);
+        $entityManager->flush();
+        $this->addFlash('success', 'Créneau <b>supprimé</b> avec succès');
+        return $this->redirectToRoute('define_dates');
     }
 }

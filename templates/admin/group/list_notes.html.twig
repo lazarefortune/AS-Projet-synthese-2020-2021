@@ -1,0 +1,47 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+<div class="vue_content">
+    <h1 class="text-center my-sm-0 my-lg-5">Ensemble des notes</h1>
+
+    <div class="table-responsive">
+        <table id="id_table" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="recap align-middle" style="width: 10%">Etudiant</th>
+                    <th scope="col" class="recap align-middle" style="width: 18,75%">Note individuelle </br><span>/20 pts</span></th>
+                    <th scope="col" class="recap align-middle" style="width: 18,75%">Note soutenance </br><span>/20 pts</span></th>
+                    <th scope="col" class="recap align-middle" style="width: 18,75%">Note poster </br><span>/20 pts</span></th>
+                    <th scope="col" class="recap align-middle" style="width: 18,75%">Note finale </br><span>/20 pts</span></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for groupe in groupes %}
+                    {% set i = 0 %}
+                    {% for etudiant in etudiants %}
+                        {% if groupe.numero == etudiant.idGroupeEtud.numero %}
+                        {% set i = i + 1 %}
+                            <tr>
+                                <td class="recap_note w-25">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
+                                <td class="recap_note" id="note_indiv">{{ etudiant.noteTut20 }}</td>
+                                <td class="recap_note" id="note_sout">{{ groupe.noteSout }}</td>
+                                <td class="recap_note" id="note_poster">{{ groupe.notePoster }}</td>
+                                <td class="recap_note" id="note_finale" style="text-align:center;"></td>
+                            </tr>
+                        {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/final_moy.js') }}"></script>
+{% endblock %}

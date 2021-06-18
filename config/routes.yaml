@@ -23,6 +23,10 @@ home:
 #     controller: App\Controller\Admin\EvaluatorController::list
 
 
+list_note:
+    path: /admin/liste-des-notes
+    controller: App\Controller\Admin\GroupController::list_note
+
 group_list:
     path: /admin/groupes
     controller: App\Controller\Admin\GroupController::group_list
@@ -31,26 +35,17 @@ group_notes:
     path: /admin/groupe/{groupId}/notes
     controller: App\Controller\Admin\GroupController::group_notes
 
-group_notes_edit:
+list_notes_eval:
     path: /admin/groupe/{groupId}/edit/{typeEval}
-    defaults:
-        typeEval: soutenance
-    controller: App\Controller\Admin\GroupController::edit_note
-
-# group_notes_edit_poster:
-#     path: /groupe/{groupId}/edit/{typeEval}
-#     defaults:
-#         typeEval: poster
-#     controller: App\Controller\Admin\GroupController::edit_note
-
+    controller: App\Controller\Admin\GroupController::list_eval
 
 evaluator_list:
     path: /admin/evaluateurs
     controller: App\Controller\Admin\EvaluatorController::list
 
-update_eval:
-    path: /admin/evaluateurs/modifier/{id}
-    controller: App\Controller\Admin\EvaluatorController::update
+# update_eval:
+#     path: /admin/evaluateurs/modifier/{id}
+#     controller: App\Controller\Admin\EvaluatorController::update
 
 delete_eval:
     path: /admin/evaluateurs/supprimer/{id}
@@ -59,6 +54,10 @@ delete_eval:
 account:
     path: /profil
     controller: App\Controller\UserController::index
+
+account_eval:
+    path: /eval/profil
+    controller: App\Controller\UserController::index_eval
 
 # email:
 #     path: /admin/email
@@ -80,10 +79,13 @@ add_define_dates:
     path: /admin/acces-au-site/ajouter
     controller: App\Controller\Admin\AccessController::add_dates_index
 
+edit_define_dates:
+    path: /admin/acces-au-site/edition/{id}
+    controller: App\Controller\Admin\AccessController::edit_dates_index
 
-planning:
-    path: /planning
-    controller: App\Controller\Admin\PlanningController::planning
+delete_dates:
+    path: /admin/acces-au-site/suppression/{id}
+    controller: App\Controller\Admin\AccessController::delete_dates_index
 
 #index:
 #    path: /
@@ -97,10 +99,35 @@ show_groupAB:
     path: /composition-des-groupes
     controller: App\Controller\Admin\GroupABController::show
 
+download_show:
+    path: /composition-des-groupes/download
+    controller: App\Controller\Admin\GroupABController::downloadShow
+
+
+group_notes_sout:
+    path: /groupe/{groupId}/{idEval}/modif-soutenance
+    controller: App\Controller\Admin\GroupController::group_notes_sout
+
+group_notes_poster:
+    path: /groupe/{groupId}/{idEval}/modif-poster
+    controller: App\Controller\Admin\GroupController::group_notes_poster
+
+group_notes_indiv:
+    path: /groupe/{groupId}/modif-individuelle
+    controller: App\Controller\Admin\GroupController::group_notes_indiv
+
+
 # Path view evaluator
+
+
+eval_list_note:
+    path: /liste_notes
+    controller: App\Controller\Evaluator\GroupController::list_note
+
 evaluator_home:
     path: /eval
     controller: App\Controller\Evaluator\EvaluatorController::index
+
 
 eval_group_list:
     path: /groupes
@@ -114,6 +141,29 @@ eval_group_notes_poster:
     path: /groupe/{groupId}/poster
     controller: App\Controller\Evaluator\GroupController::group_notes_poster
 
+
+eval_group_notes_indiv:
+    path: /groupe/{groupId}/individuelle
+    controller: App\Controller\Evaluator\GroupController::group_notes_indiv
+
+eval_group_final:
+    path: /groupe/{groupId}/final
+    controller: App\Controller\Evaluator\GroupController::group_notes_final
+
+# routes Notation
+
+eval_showNoteGroupSout:
+    path: /groupes/session-soutenance
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupSout
+
+eval_showNoteGroupPost:
+    path: /groupes/session-poster
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupPost
+
+eval_showNoteGroupIndiv:
+    path: /groupes/edition-notes-du-tuteur
+    controller: App\Controller\Evaluator\GroupController::showNoteGroupIndiv
+
 planning_eval:
     path: /eval/planning
     controller: App\Controller\Evaluator\EvalPlanningController::planning
@@ -122,8 +172,24 @@ maintenance_eval:
     path: /eval/maintenance
     controller: App\Controller\MaintenanceController::eval
 
+maintenance_etud:
+    path: /etudiant/maintenance
+    controller: App\Controller\MaintenanceController::etud
+    
+
 list_eval:
     path: /eval/list
     controller: App\Controller\Evaluator\EvalListController::list
 
+update_eval:
+    path: /eval/{id}
+    controller: App\Controller\Admin\EvaluatorController::update
 
+
+change_promo:
+    path: /changer-de-promo
+    controller: App\Controller\HomeController::index
+
+etudiant_home:
+    path: /etudiant
+    controller: App\Controller\Etudiant\EtudiantController::index

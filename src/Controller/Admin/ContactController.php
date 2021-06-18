@@ -6,11 +6,13 @@ use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="email")
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function index(Request $request,\Swift_Mailer $mailer)
     {
