@@ -110,7 +110,7 @@ class GroupController extends AbstractController
             if(!$listEval)
                 $this->addFlash(
                    'info',
-                   'Aucun évalatueur à noter ce groupe'
+                   'Aucun évaluateur n\'a noté ce groupe'
                 );
 
             return $this->render('admin/group/notes/list_sout_eval.html.twig',[
@@ -128,7 +128,7 @@ class GroupController extends AbstractController
             if(!$listEval)
                 $this->addFlash(
                    'info',
-                   'Aucun évalatueur à noter ce groupe'
+                   'Aucun évaluateur n\'a noté ce groupe'
                 );
 
             return $this->render('admin/group/notes/list_poster_eval.html.twig',[

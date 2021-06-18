@@ -313,7 +313,7 @@
 											</li>
 											
 											<li class="menu-item">
-												<a href="{{ path('list_note') }}" class="menu-link">
+												<a href="{{ path('list_note') }}" class="menu-link {{ app.request.get('_route') == 'list_note' ? 'active' }}">
 													<span class="menu-icon fas fa-users"></span>
 													<span class="menu-text">Liste des notes</span>
 												</a>
@@ -332,25 +332,12 @@
 											<!-- .menu-gestion blobale -->
 											<li class="menu-header">Gestion globale</li>
 
-											<li class="menu-item has-child">
-												<a href="#" class="menu-link " data-bs-toggle="collapse" data-bs-target="#access-collapse" aria-expanded="true">
+											
+											<li class="menu-item">
+												<a href="{{ path('define_dates') }}" class="menu-link {{ app.request.get('_route') == 'define_dates' ? 'active' }}">
 													<span class="menu-icon fas fa-user-lock"></span>
-													<span class="menu-text dropdown-toggle">Accès au site</span>
+													<span class="menu-text">Accès au site</span>
 												</a>
-												<!-- child menu -->
-												<div class="ml-4 collapse" id="access-collapse">
-													<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-														<li>
-															<a href="{{ path('define_dates') }}" class="link-dark text-muted">Définir les dates</a>
-														</li>
-														{# <li>
-															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Accès personalisé</a>
-														</li>
-														<li>
-															<a href="{{ path('maintenance') }}" class="link-dark text-muted">Gestion des utilisateurs</a>
-														</li> #}
-													</ul>
-												</div>
 											</li>
 
 											<!-- send email -->

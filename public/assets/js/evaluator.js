@@ -13,20 +13,22 @@ $(window).on("popstate", function() {
 });
 
 // Show/hide Form Password
-const togglePassword = document.querySelector('#togglePassword');
-const password = document.querySelector('#password');
-togglePassword.addEventListener('click', function (e) {
-    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
+var togglePassword = document.querySelectorAll('.togglePassword');
+togglePassword.forEach(item => {
+    item.addEventListener('click', function (e) {
+        var password = item.nextElementSibling;
+        var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
 });
 
 //Modal Form
 $(document).ready(function() {
-    $('a.btn-success').click(function () {
+    $('a.update').click(function () {
 //On initialise les modales materialize
-        $('.update').modal();
-        var url = $(this).attr('data-bs-target');
+        $('#update').modal();
+        var url = $(this).attr('href');
         $.get(url, function (data) {
             //on injecte le html dans la modale
             $('#update-form').html(data);
@@ -34,5 +36,29 @@ $(document).ready(function() {
             $('#update').modal('show');
         });
     });
+    $('button.delete').click(function(e){
+        var deleteUrl = $(this).attr('href');
+        $.ajax({
+        type: "POST",
+        url: deleteUrl,
+        });
+    });
 });
+
+/*
+//Searchbar
+$(document).ready(function() {
+    $('#table-search').keyup(function() {
+        var user = $(this).val();
+        if(user != "") {
+            $.ajax({
+                type: 'GET',
+                data: encodeURIComponent(user),
+                success: function(data) {
+                    console.log(data);
+                }
+            })
+        }
+    });
+});*/
 

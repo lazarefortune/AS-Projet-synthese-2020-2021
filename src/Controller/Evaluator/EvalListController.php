@@ -2,6 +2,8 @@
 
 namespace App\Controller\Evaluator;
 
+
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;

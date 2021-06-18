@@ -81,6 +81,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getOneOrNullResult();
     }
 
+    public function getMaxId(): ?int
+    {
+        $entityManager = $this->getEntityManager();
+
+        $id_max = $entityManager->createQuery(
+            'SELECT MAX(u.idUser)    
+                FROM App\Entity\User u'
+        )->getArrayResult();
+        return $id_max[0][1];
+    }
+
     /*
     public function findOneBySomeField($value): ?Evaluateur
     {

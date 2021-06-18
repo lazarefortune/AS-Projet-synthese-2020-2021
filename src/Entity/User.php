@@ -20,7 +20,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="id_user", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $idUser;
 
@@ -100,6 +100,13 @@ class User implements UserInterface
     public function getIdUser(): ?int
     {
         return $this->idUser;
+    }
+
+    public function setIdUser(int $id): self
+    {
+        $this->idUser = $id;
+
+        return $this;
     }
 
     public function getNom(): ?string
