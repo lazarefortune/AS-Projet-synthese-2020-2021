@@ -12,7 +12,6 @@
         <table id="id_table" class="table table-hover">
             <thead>
                 <tr>
-                    {# <th scope="col" class="recap align-middle" style="width: 10%">Evaluateur</th> #}
                     <th scope="col" class="recap align-middle" style="width: 10%">Etudiant</th>
                     <th scope="col" class="recap align-middle" style="width: 18,75%">Note individuelle </br><span>/20 pts</span></th>
                     <th scope="col" class="recap align-middle" style="width: 18,75%">Note soutenance </br><span>/20 pts</span></th>
@@ -28,10 +27,10 @@
                         {% if groupe.numero == etudiant.idGroupeEtud.numero %}
                         {% set i = i + 1 %}
                             <tr>
-                                <td class="recap_note">{{ etudiant.idUser.nom }}</td>
-                                <td class="recap_note" id="note_indiv">15.20</td>
-                                <td class="recap_note" id="note_sout">11.50</td>
-                                <td class="recap_note" id="note_poster">12.54</td>
+                                <td class="recap_note w-25">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
+                                <td class="recap_note" id="note_indiv">{{ etudiant.noteTut20 }}</td>
+                                <td class="recap_note" id="note_sout">{{ groupe.noteSout }}</td>
+                                <td class="recap_note" id="note_poster">{{ groupe.notePoster }}</td>
                                 <td class="recap_note" id="note_finale" style="text-align:center;"></td>
                             </tr>
                         {% endif %}

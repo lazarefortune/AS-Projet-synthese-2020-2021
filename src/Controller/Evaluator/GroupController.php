@@ -191,16 +191,15 @@ class GroupController extends AbstractController
                 $noteTutTrav = $datas['noteTutTrav'.$etudiant->getIdEtud()];
                 $noteTutCompt = $datas['noteTutCompet'.$etudiant->getIdEtud()];
                 $poucentTravail = $datas['pourcentTravail'.$etudiant->getIdEtud()];
-                $noteFinale = $datas['noteFinale'.$etudiant->getIdEtud()];
+                $noteTut20 = $datas['noteTut20'.$etudiant->getIdEtud()];
                 
                 $etudiant->setNoteTutRapport((float)$noteTutRapport);
                 $etudiant->setNoteTutTrav((float)$noteTutTrav);
                 $etudiant->setNoteTutCompet((float)$noteTutCompt);
                 $etudiant->setPourcentTravail((float)$poucentTravail);
-                $etudiant->setNoteFinale((float)$noteFinale);
+                $etudiant->setNoteTut20((float)$noteTut20);
 
                 
-                // $constraint = new Assert\Collection([
                 
                 $entityManager->persist($etudiant);
             }

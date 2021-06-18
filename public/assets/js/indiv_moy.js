@@ -24,5 +24,22 @@ function moyenne(id){
         }
     }
     
-    document.getElementById("note_moyenne_"+id).value = parseFloat(somme/n).toFixed(2);;
+    document.getElementById("note_moyenne_"+id).value = parseFloat(somme/n).toFixed(2);
+}
+
+function pourcentage(){
+    var pourcent = 0;
+    table = document.getElementById("idTable");
+    var tbodyRow = table.tBodies[0].rows.length;
+    for (let i = 1; i < tbodyRow; i++) {
+        pourcent = pourcent + parseFloat(document.getElementById("note_pourcentage_"+i).value);
+    }
+
+    document.getElementById("pourcent_nb").innerHTML = pourcent + " %";
+    
+    if (pourcent == 100) {
+        document.getElementById('send').removeAttribute("disabled");
+    } else {
+        document.getElementById('send').setAttribute("disabled", null);
+    }
 }
