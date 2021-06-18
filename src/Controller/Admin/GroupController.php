@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\EvalNotationType;
 use App\Repository\EvalSoutNotationRepository;
 use App\Repository\EvalPosterNotationRepository;
+use App\Repository\MoyenneRepository;
 
 class GroupController extends AbstractController
 {
@@ -58,7 +59,7 @@ class GroupController extends AbstractController
         ]);
     }
     
-    public function group_notes(int $groupId): Response
+    public function group_notes(int $groupId, MoyenneRepository $moyenneRepo): Response
     {
         $repo1 = $this->getDoctrine()->getRepository(Groupe::class);
         $groupe = $repo1->find($groupId);
@@ -67,13 +68,26 @@ class GroupController extends AbstractController
         $etudiants = $repo2->findBy([
             'idGroupeEtud' => $groupId
         ]);
+
+        $moySout = $moyenneRepo->moyenneSout($groupId);
+        $groupe->setNoteSout((float)$moySout[0]["moySoutenance"]);
+        dump($groupe);
+        dump($moySout[0]["moySoutenance"]);
+        dump((float)$moySout[0]["moySoutenance"]);
+        
+        $moyPost = $moyenneRepo->moyennePoster($groupId);
+        $groupe->setNotePoster((float)$moyPost[0]["moyPoster"]);
         
         return $this->render('admin/group/notes/show.html.twig',[
-            'groupId' => $groupId,
-            'groupe' => $groupe,
+            'groupId'   => $groupId,
+            'groupe'    => $groupe,
             'etudiants' => $etudiants,
+            'moySout'   => $moySout,
+            'moyPost'   => $moyPost,
             ]);
     }
+
+
 
     public function list_eval(int $groupId, string $typeEval, EvalSoutNotationRepository $evalSoutNotationRepo, EvalPosterNotationRepository $evalPosterNotationRepo){
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
@@ -258,13 +272,13 @@ class GroupController extends AbstractController
                 $noteTutTrav = $datas['noteTutTrav'.$etudiant->getIdEtud()];
                 $noteTutCompt = $datas['noteTutCompet'.$etudiant->getIdEtud()];
                 $poucentTravail = $datas['pourcentTravail'.$etudiant->getIdEtud()];
-                $noteFinale = $datas['noteFinale'.$etudiant->getIdEtud()];
+                $noteTut20 = $datas['noteTut20'.$etudiant->getIdEtud()];
                 
                 $etudiant->setNoteTutRapport((float)$noteTutRapport);
                 $etudiant->setNoteTutTrav((float)$noteTutTrav);
                 $etudiant->setNoteTutCompet((float)$noteTutCompt);
                 $etudiant->setPourcentTravail((float)$poucentTravail);
-                $etudiant->setNoteFinale((float)$noteFinale);
+                $etudiant->setNoteTut20((float)$noteTut20);
 
                 
                 // $constraint = new Assert\Collection([

@@ -33,7 +33,7 @@
 
     <form method="POST">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table id="idTable" class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" class="eval_title align-middle">Nom de l'étudiant</th>
@@ -46,7 +46,9 @@
                 </thead>
                 
                 <tbody>
+                {% set i = 0 %}
                 {% for etudiant in etudiants %}
+                    {% set i = i + 1 %}
                     <tr>
                         <td class="eval_name">{{ etudiant.idUser.nom }} {{ etudiant.idUser.prenom }}</td>
 
@@ -67,24 +69,32 @@
                         </td>
                         
                         <td class="eval_input align-middle">
-                            <input onchange="moyenne({{ etudiant.idEtud }})" onkeyup="moyenne({{ etudiant.idEtud }})" value="{{ etudiant.pourcentTravail }}"  type="number" min="0" max="100" size="2" style=""
-                                   id="notepourcentage{{ etudiant.idEtud }}" name="pourcentTravail{{ etudiant.idEtud }}" class="form-control form-control-sm" required></input>
+                            <input onchange="pourcentage()" onkeyup="pourcentage()" value="{{ etudiant.pourcentTravail }}"  type="number" min="0" max="100" size="2"
+                                   id="note_pourcentage_{{ i }}" name="pourcentTravail{{ etudiant.idEtud }}" class="form-control form-control-sm" required></input>
                         </td>
+
                         
                         <td class="eval_input align-middle">
-                            <input type="text" name="noteFinale{{ etudiant.idEtud }}" class="form-control form-control-sm"
-                                   id="note_moyenne_{{ etudiant.idEtud }}" name="noteFinale{{ etudiant.idEtud }}" value="{{ etudiant.noteFinale }}" style="text-align:center;" readonly>
+                            <input type="text" name="noteTut20{{ etudiant.idEtud }}" class="form-control form-control-sm"
+                                   id="note_moyenne_{{ etudiant.idEtud }}" value="{{ etudiant.noteTut20 }}" style="text-align:center;" readonly>
                         </td>
                     </tr>
                     {% endfor %}
+                    <tr>
+                    <td class="text-center"> Total </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="pourcent_nb" class="text-center fs-6"></td>
+                    <td></td>
+                    </tr>
                     
                 </tbody>
             </table>
 
             <div class="d-flex justify-content-between w-75 mx-auto bouton">
                 <div>
-                    <button class="btn btn-success" type="submit">Enregistrer</button>
-                    
+                    <button id="send" class="btn btn-success" type="submit">Enregistrer</button>
                 </div>
             </div>
         </div>
