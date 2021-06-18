@@ -215,10 +215,10 @@ class Etudiant
         return $this;
     }
 
-    // public function getIdGroupeEtud(): ?Groupe
-    // {
-    //     return $this->idGroupeEtud;
-    // }
+    public function getIdGroupeEtud()
+    {
+        return $this->idGroupeEtud;
+    }
 
     public function setIdGroupeEtud(?Groupe $idGroupeEtud): self
     {
@@ -227,10 +227,10 @@ class Etudiant
         return $this;
     }
 
-    // public function getIdPromo(): ?Promo
-    // {
-    //     return $this->idPromo;
-    // }
+    public function getIdPromo()
+    {
+        return $this->idPromo;
+    }
 
     public function setIdPromo(?Promo $idPromo): self
     {

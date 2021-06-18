@@ -19,14 +19,14 @@ class AccessController extends AbstractController
     {
         $allDate = $dateAccessRepo->findAll();
         // foreach ($allDate as $dateTime) {
-            
+
         //     dd($dateTime->getDateDebut());
         // }
-        return $this->render('admin/website/access.html.twig',[
+        return $this->render('admin/website/access.html.twig', [
             'allDate' => $allDate
         ]);
     }
-    
+
     /**
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
@@ -35,7 +35,7 @@ class AccessController extends AbstractController
         $dateTime = new DateAccesSout();
         $formDateAccess = $this->createForm(DateAccessSoutType::class, $dateTime);
 
-        
+
         $formDateAccess->handleRequest($request);
         if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
             // dd($formDateAccess);
@@ -48,11 +48,11 @@ class AccessController extends AbstractController
             return $this->redirectToRoute('define_dates');
         }
 
-        return $this->render('admin/website/addAccessDate.html.twig',[
+        return $this->render('admin/website/addAccessDate.html.twig', [
             'formDateAccess' => $formDateAccess->createView()
         ]);
     }
-    
+
     /**
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
@@ -66,7 +66,7 @@ class AccessController extends AbstractController
         // dd($dateTime);
         $formDateAccess = $this->createForm(DateAccessSoutType::class, $dateTime);
 
-        
+
         $formDateAccess->handleRequest($request);
         if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
             // dd($formDateAccess);
@@ -79,9 +79,25 @@ class AccessController extends AbstractController
             // return $this->redirectToRoute('define_dates');
         }
 
-        return $this->render('admin/website/editAccessDate.html.twig',[
+        return $this->render('admin/website/editAccessDate.html.twig', [
             'dateTime' => $dateTime,
             'formDateAccess' => $formDateAccess->createView()
         ]);
+    }
+
+    public function delete_dates_index(Request $request, $id, DateAccessRepository $dateAccessRepo)
+    {
+
+        $dateTime = $dateAccessRepo->find($id);
+        if($dateTime == null){
+
+            $this->addFlash('danger', 'Aucun créneau ne correspond');
+            return $this->redirectToRoute('define_dates');
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($dateTime);
+        $entityManager->flush();
+        $this->addFlash('success', 'Créneau <b>supprimé</b> avec succès');
+        return $this->redirectToRoute('define_dates');
     }
 }

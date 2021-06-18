@@ -40,8 +40,13 @@ class HomeController extends AbstractController
         }
         
         if (!$hasAccess) {
-            
-            return $this->render('evaluator/index.html.twig');
+            $hasAccessEval = $this->isGranted('ROLE_EVALUATOR');
+            if (!$hasAccessEval) {
+                // return $this->render('etudiant/index.html.twig');
+                return $this->redirectToRoute('etudiant_home');
+            }
+            return $this->redirectToRoute('evaluator_home');
+            // return $this->render('evaluator/index.html.twig');
         }
         
         $promos = $promoRepo->findAll();

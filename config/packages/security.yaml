@@ -27,9 +27,9 @@ security:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
                 path:     /
-                domain: ~
-                name: REMEMBER_DEMO
                 samesite: lax
+                # name: REMEMBER_DEMO
+                # domain: ~
                 # token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
                 # by default, the feature is enabled by checking a
                 # checkbox in the login form (see below), uncomment the

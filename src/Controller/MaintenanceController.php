@@ -15,4 +15,8 @@ class MaintenanceController extends AbstractController
     public function eval(): Response{
         return $this->render('evaluator/maintenance.html.twig');
     }
+    
+    public function etud(): Response{
+        return $this->render('etudiant/maintenance.html.twig');
+    }
 }

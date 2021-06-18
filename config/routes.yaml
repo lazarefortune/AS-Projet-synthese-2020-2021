@@ -75,6 +75,10 @@ edit_define_dates:
     path: /admin/acces-au-site/edition/{id}
     controller: App\Controller\Admin\AccessController::edit_dates_index
 
+delete_dates:
+    path: /admin/acces-au-site/suppression/{id}
+    controller: App\Controller\Admin\AccessController::delete_dates_index
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
@@ -160,6 +164,11 @@ maintenance_eval:
     path: /eval/maintenance
     controller: App\Controller\MaintenanceController::eval
 
+maintenance_etud:
+    path: /etudiant/maintenance
+    controller: App\Controller\MaintenanceController::etud
+    
+
 list_eval:
     path: /eval/list
     controller: App\Controller\Evaluator\EvalListController::list
@@ -173,3 +182,6 @@ change_promo:
     path: /changer-de-promo
     controller: App\Controller\HomeController::index
 
+etudiant_home:
+    path: /etudiant
+    controller: App\Controller\Etudiant\EtudiantController::index
