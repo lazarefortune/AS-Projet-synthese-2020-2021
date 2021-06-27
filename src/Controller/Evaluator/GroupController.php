@@ -261,11 +261,31 @@ class GroupController extends AbstractController
     }
 
     // affiche la liste des groupes pour la gestion des soutenances
-    public function showNoteGroupSout(){
+    public function showNoteGroupSout(EvalGroupeRepository $evalGroupeRepo){
 
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
-        $groupes = $repo->findAll();
+        // $groupes = $repo->findAll();
+        $groupes = [];
+        $valeurs = $evalGroupeRepo->findAllGroupSout($this->getUser()->getIdUser());
+        foreach ($valeurs as $valeur) {
 
+            $groupId = $valeur["id_groupe_eval_sout"];
+            $groupe = $repo->find($groupId);
+            $groupes[] = $groupe;
+        }
+
+        // On sélectionne en fonction de la promo
+        $idPromoSession = $this->get('session')->get('promo')->getId();
+        // il faut faire une find par promo
+        $allGroupes = $groupes;
+        $groupes = [];
+        foreach ($allGroupes as $groupe) {
+            $idPromoGroup = $groupe->getIdProjet()->getIdPromoProj()->getId();
+            if($idPromoGroup == $idPromoSession){
+                $groupes[] = $groupe;
+            }
+        }
+        // dd($groupes);
         $total = count($groupes);
 
         $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
@@ -279,16 +299,36 @@ class GroupController extends AbstractController
     }
     
     // affiche la liste des groupes pour la gestion des posters
-    public function showNoteGroupPost(){
+    public function showNoteGroupPost(EvalGroupeRepository $evalGroupeRepo){
 
+        // $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        // $groupes = $repo->findAll();
+        
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
-        $groupes = $repo->findAll();
-
+        $groupes = [];
+        $valeurs = $evalGroupeRepo->findAllGroupPost($this->getUser()->getIdUser());
+        foreach ($valeurs as $valeur) {
+            $groupId = $valeur["id_groupe_eval_post"];
+            $groupe = $repo->find($groupId);
+            $groupes[] = $groupe;
+        }
+        
+        // On sélectionne en fonction de la promo
+        $idPromoSession = $this->get('session')->get('promo')->getId();
+        // il faut faire une find par promo
+        $allGroupes = $groupes;
+        $groupes = [];
+        foreach ($allGroupes as $groupe) {
+            $idPromoGroup = $groupe->getIdProjet()->getIdPromoProj()->getId();
+            if($idPromoGroup == $idPromoSession){
+                $groupes[] = $groupe;
+            }
+        }
         $total = count($groupes);
-
+        
         $repo2 = $this->getDoctrine()->getRepository(Etudiant::class);
         $etudiants = $repo2->findAll();
-
+        
         return $this->render('evaluator/group/notes/poster/group_list.html.twig', [
             'groupes'   => $groupes,
             'etudiants' => $etudiants,
@@ -297,10 +337,41 @@ class GroupController extends AbstractController
     }
     
     // affiche la liste des groupes dont l'utilisateur est encadrant
-    public function showNoteGroupIndiv(){
-
+    public function showNoteGroupIndiv(EvalGroupeRepository $evalGroupeRepo){
+        
+        
         $repo = $this->getDoctrine()->getRepository(Groupe::class);
-        $groupes = $repo->findAll();
+        $allGroupes = $repo->findAll();
+        $groupes = [];
+        // $allGroupes = [];
+        // // On récupère tous les groupes à évaluer
+        // $valeurs = $evalGroupeRepo->findAllGroupSout($this->getUser()->getIdUser());
+        // foreach ($valeurs as $valeur) {
+            //     $groupId = $valeur["id_groupe_eval_sout"];
+            //     $groupe = $repo->find($groupId);
+            //     $allGroupes[] = $groupe;
+            // }
+            // On cherche les groupes dont l'utilisateur est évaluateur
+        foreach ($allGroupes as $groupe) {
+            $evals = $groupe->getIdProjet()->getIdEval();
+            foreach ($evals as $eval) {
+                if ($eval->getIdUser() == $this->getUser()->getIdUser()) {
+                    $groupes[] = $groupe;
+                }
+            }
+        }
+
+        // On sélectionne en fonction de la promo
+        $idPromoSession = $this->get('session')->get('promo')->getId();
+        // il faut faire une find par promo
+        $allGroupes = $groupes;
+        $groupes = [];
+        foreach ($allGroupes as $groupe) {
+            $idPromoGroup = $groupe->getIdProjet()->getIdPromoProj()->getId();
+            if($idPromoGroup == $idPromoSession){
+                $groupes[] = $groupe;
+            }
+        }
 
         $total = count($groupes);
 

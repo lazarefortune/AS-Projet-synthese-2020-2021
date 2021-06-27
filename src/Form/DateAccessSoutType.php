@@ -14,8 +14,17 @@ class DateAccessSoutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut', DateTimeType::class, ['label' => false])
-            ->add('dateFin', DateTimeType::class , ['label' => false])
+            ->add('dateDebut', DateTimeType::class, [
+                'label' => false,
+                'widget' => 'single_text',
+                ])
+            ->add('dateFin', DateTimeType::class , [
+                'label' => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'id' => 'datepicker'
+                ],
+                ])
             ->add('motif')
             // ->add('Ajouter', SubmitType::class)
         ;

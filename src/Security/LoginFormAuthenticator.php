@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Security;
+
 use App\Entity\User;
 use App\Repository\DateAccessRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,15 +71,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         // $user = $this->entityManager->getRepository(User::class)->findOneBy([
         //     'login' => $credentials['username']
         //     ]);
-        
+
         $user = $this->entityManager->createQuery(
             'SELECT u
             FROM App\Entity\User u
             WHERE u.login = :query
             OR u.email = :query'
         )
-        ->setParameter('query', $credentials['username'])
-        ->getOneOrNullResult();
+            ->setParameter('query', $credentials['username'])
+            ->getOneOrNullResult();
 
         if (!$user) {
             // fail authentication with a custom error
@@ -107,7 +108,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        
+
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         return new RedirectResponse($this->urlGenerator->generate('home'));

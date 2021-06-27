@@ -16,7 +16,10 @@
                     <tr class="text-center">
                         <th class="criteres">Critères</th>
                         <th>Soutenance</th>
+                        {% if app.session.get('promo').typePromo != 'AS' %}
+                            
                         <th>Poster</th>
+                        {% endif %}
                     </tr>
                 </thead>
 
@@ -24,16 +27,22 @@
                     <tr  class="text-center">
                         <td>Moyenne</td>
                         <td class="valeur">{{ moySout[0]["moySoutenance"] }}</td>
+                        {% if app.session.get('promo').typePromo != 'AS' %}
+                            
                         <td class="valeur">{{ moyPost[0]["moyPoster"] }}</td>
+                        {% endif %}
                     </tr>
                     <tr class="text-center">
                         <td></td>
                         <td class="valeur">
                             <a href="{{ path('list_notes_eval', {groupId: groupe.id, typeEval: "soutenance"}) }}"  type="button" class="btn btn-primary">Détails</a>
                         </td>
+                        {% if app.session.get('promo').typePromo != 'AS' %}
+                            
                         <td class="valeur">
                             <a href="{{ path('list_notes_eval', {groupId: groupe.id, typeEval: "poster"}) }}"  type="button" class="btn btn-primary">Détails</a>
                         </td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>

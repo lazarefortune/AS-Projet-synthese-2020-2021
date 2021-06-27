@@ -6,7 +6,7 @@
 
 {% block eval_content %}
 {# modal btn retour #}
-<div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+{# <div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -19,6 +19,26 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <a href="{{ path('eval_showNoteGroupIndiv') }}"  type="button" class="btn btn-primary">Continuer</a>
+        </div>
+        </div>
+    </div>
+</div> #}
+{# fin modal #}
+
+{# modal btn retour #}
+<div class="modal fade" id="retourGroupe" tabindex="-1" aria-labelledby="retourGroupeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Retour sélection du groupe</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Les notes non enregistrées seront <b>perdues</b> si vous quitter cette page.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <a href="{{ path('eval_showNoteGroupSout') }}"  type="button" class="btn btn-primary">Continuer</a>
         </div>
         </div>
     </div>

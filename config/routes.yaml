@@ -1,3 +1,7 @@
+# home_simple:
+#     path: /
+#     controller: App\Controller\HomeController::index
+
 home:
     path: /
     controller: App\Controller\HomeController::index
@@ -67,9 +71,9 @@ maintenance:
     path: /maintenance
     controller: App\Controller\MaintenanceController::index
 
-password_reset:
-    path: /mot-de-passe/recuperation
-    controller: App\Controller\Auth\AuthController::password_reset_form
+# password_reset:
+#     path: /mot-de-passe/recuperation
+#     controller: App\Controller\SecurityController::password_reset_form
 
 define_dates:
     path: /admin/acces-au-site
@@ -153,15 +157,15 @@ eval_group_final:
 # routes Notation
 
 eval_showNoteGroupSout:
-    path: /groupes/session-soutenance
+    path: /eval/groupes/session-soutenance
     controller: App\Controller\Evaluator\GroupController::showNoteGroupSout
 
 eval_showNoteGroupPost:
-    path: /groupes/session-poster
+    path: /eval/groupes/session-poster
     controller: App\Controller\Evaluator\GroupController::showNoteGroupPost
 
 eval_showNoteGroupIndiv:
-    path: /groupes/edition-notes-du-tuteur
+    path: /eval/groupes/edition-notes-du-tuteur
     controller: App\Controller\Evaluator\GroupController::showNoteGroupIndiv
 
 planning_eval:
@@ -190,6 +194,14 @@ change_promo:
     path: /changer-de-promo
     controller: App\Controller\HomeController::index
 
+change_promo_eval:
+    path: /changer-de-promo-eval
+    controller: App\Controller\Evaluator\EvaluatorController::index
+
 etudiant_home:
     path: /etudiant
     controller: App\Controller\Etudiant\EtudiantController::index
+
+etud_note_group_sout:
+    path: /etudiant/notes/soutenance
+    controller: App\Controller\Etudiant\EtudiantController::notes_group_sout

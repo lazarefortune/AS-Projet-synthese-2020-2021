@@ -38,6 +38,13 @@ class DateAccesSout
     /**
      * @var string
      *
+     * @ORM\Column(name="roles", type="json", nullable=false)
+     */
+    private $roles;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="motif", type="string", nullable=false)
      */
     private $motif;

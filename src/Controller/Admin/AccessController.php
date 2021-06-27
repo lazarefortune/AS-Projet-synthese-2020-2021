@@ -39,8 +39,18 @@ class AccessController extends AbstractController
         $formDateAccess->handleRequest($request);
         if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
             // dd($formDateAccess);
-            $dateTime = $formDateAccess->getData();
 
+            $dateTime = $formDateAccess->getData();
+            $dateDeb = $dateTime->getDateDebut();
+            $dateFin = $dateTime->getDateFin();
+            dump($dateDeb);
+            dump($dateFin);
+            dump($dateDeb < $dateFin);
+            if($dateDeb < $dateFin){
+                $this->addFlash('danger', 'Erreur! Date de début supérieur à la date de fin');
+                return $this->redirectToRoute('define_dates');
+            }
+            die;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($dateTime);
             $entityManager->flush();
@@ -75,7 +85,7 @@ class AccessController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($dateTime);
             $entityManager->flush();
-            $this->addFlash('success', 'Créneau Modifié avec succès');
+            $this->addFlash('info', 'Créneau modifié avec succès');
             // return $this->redirectToRoute('define_dates');
         }
 
@@ -97,7 +107,7 @@ class AccessController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($dateTime);
         $entityManager->flush();
-        $this->addFlash('success', 'Créneau <b>supprimé</b> avec succès');
+        $this->addFlash('warning', 'Créneau <b>supprimé</b> avec succès');
         return $this->redirectToRoute('define_dates');
     }
 }

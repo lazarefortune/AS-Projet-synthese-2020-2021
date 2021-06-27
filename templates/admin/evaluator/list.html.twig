@@ -42,7 +42,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
                             </div>
-                            <input id="table-search" type="text" class="form-control" placeholder="Recherche">
+                            <input id="searchEval" type="text" class="form-control" placeholder="Recherche">
                         </div>
                         <!-- /.input-group -->
                     </div>
@@ -259,4 +259,19 @@
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('assets/js/evaluator.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        const input = document.querySelector('#searchEval');
+        input.addEventListener('keyup', searchFunc);
+
+        function searchFunc(e){
+            e.preventDefault();
+            const url = "http://localhost/projet/public/admin/evaluateurs/" + input.value
+            //console.log(url);
+            axios.get(url).then(function(response) {
+                console.log(response);
+            })
+        }
+    </script>
 {% endblock %}

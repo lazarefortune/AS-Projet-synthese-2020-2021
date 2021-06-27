@@ -1,0 +1,33 @@
+{% extends "layouts/etudiant.html.twig" %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/css/note.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block etud_content %}
+	<tbody>
+		<tr class="text-center">
+			<td>Moyenne</td>
+			<td class="valeur">{{ moySout[0]["moySoutenance"] }}</td>
+
+				<td class="valeur">{{ moyPost[0]["moyPoster"] }}</td>
+		</tr>
+	</tbody>
+
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+            <div class="card">
+                <div class="card-header">Notes</div>
+                <div class="card-body"> 
+                    <p>moyenne soutenance : <strong>{{ moySout[0]["moySoutenance"] }}</strong> / 20 </p>
+                
+                    {% if etudiant.idPromo.typePromo != 'AS' %}
+                        <p>moyenne Poster : <strong>{{ moyPost[0]["moyPoster"] }}</strong> / 20 </p>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,16 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Etudiant;
-use App\Entity\Groupe;
 use App\Entity\User;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Groupe;
+use App\Entity\Etudiant;
 use App\Form\EvalNotationType;
-use App\Repository\EvalSoutNotationRepository;
-use App\Repository\EvalPosterNotationRepository;
 use App\Repository\MoyenneRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Repository\EvalSoutNotationRepository;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\EvalPosterNotationRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GroupController extends AbstractController
 {

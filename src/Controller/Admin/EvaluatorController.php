@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -108,5 +109,26 @@ class EvaluatorController extends AbstractController
         return $this->redirectToRoute('evaluator_list');
     }
 
+    /**
+     * @Route("admin/evaluateurs/{nom}")
+     */
+    public function searchEvaluator(string $nom, PaginatorInterface $paginator, Request $request): Response{
+        
 
+        return new JsonResponse([
+            'code' => 200, 
+            'message' => 'Ca marche super bien',
+            // 'groupes' => count($groupes)
+        ]);
+        // die;
+        // $repo = $this->getDoctrine()->getRepository(Groupe::class);
+        // $groupes = $repo->findAll();
+        // // dd($groupes);
+        // return $this->json([
+        //     'code' => 200, 
+        //     'message' => 'Ca marche super bien',
+        //     'groupes' => count($groupes)
+        // ], 200);
+
+    }
 }
