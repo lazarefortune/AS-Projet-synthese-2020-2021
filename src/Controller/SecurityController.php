@@ -67,7 +67,7 @@ class SecurityController extends AbstractController
             // Si l'utilisateur n'existe pas
             if ($user === null) {
                 // On envoie une alerte disant que l'adresse e-mail est inconnue
-                $this->addFlash('danger', 'Cette adresse e-mail est inconnue');
+                $this->addFlash('danger', 'Cet identifiant est inconnu');
 
                 // On retourne sur la page d'oublie de mot de passe
                 return $this->redirectToRoute('forgotten_password');
@@ -95,8 +95,12 @@ class SecurityController extends AbstractController
                 ->setFrom('servicefortuneindustry@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(
-                    "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site de gestion des projet tuteurés de l'IUT de Metz (Université de Lorraine). Veuillez cliquer sur le lien suivant : " . $url,
-                    'text/html'
+                    $this->renderView('auth/emails/reset_pass.html.twig',
+                    [
+                        'url' => $url
+                    ]), 'text/html'
+                    // "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site de gestion des projet tuteurés de l'IUT de Metz (Université de Lorraine). Veuillez cliquer sur le lien suivant : " . $url,
+                    // 'text/html'
                 );
             //dd($mailer);
             // On envoie l'e-mail
@@ -158,4 +162,13 @@ class SecurityController extends AbstractController
         }
     }
 
+    /**
+     * @Route("/mot-de-passe/vue", name="vue")
+     */
+    public function see(){
+        $url = null;
+        return $this->render('auth/emails/reset_pass.html.twig', [
+            'url' => $url,
+        ]);
+    }
 }
