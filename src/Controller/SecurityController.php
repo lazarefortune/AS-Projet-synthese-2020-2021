@@ -72,7 +72,12 @@ class SecurityController extends AbstractController
                 // On retourne sur la page d'oublie de mot de passe
                 return $this->redirectToRoute('forgotten_password');
             }
+            if ($user->getEmail() === null) {
+                $this->addFlash('danger', 'Cet utilisateur ne possède pas d\'adresse mail');
 
+                // On retourne sur la page d'oublie de mot de passe
+                return $this->redirectToRoute('forgotten_password');
+            }
             // On génère un token
             $token = $tokenGenerator->generateToken();
 
@@ -97,6 +102,7 @@ class SecurityController extends AbstractController
                 ->setBody(
                     $this->renderView('auth/emails/reset_pass.html.twig',
                     [
+                        'user' => $user,
                         'url' => $url
                     ]), 'text/html'
                     // "Bonjour,<br><br>Une demande de réinitialisation de mot de passe a été effectuée pour le site de gestion des projet tuteurés de l'IUT de Metz (Université de Lorraine). Veuillez cliquer sur le lien suivant : " . $url,
