@@ -28,7 +28,7 @@ class DateAccessSoutType extends AbstractType
                 'attr' => [
                     'id' => 'datepicker',
                     'required' => true,
-                    'value' => date("Y-m-d H:i", strtotime("now") )
+                    'value' => date("Y-m-d H:i", strtotime( "+1 days now") )
                 ],
                 ])
             ->add('motif')

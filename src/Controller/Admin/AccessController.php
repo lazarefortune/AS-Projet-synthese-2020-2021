@@ -56,12 +56,12 @@ class AccessController extends AbstractController
                     $this->addFlash('danger', 'Erreur! Ce créneau est déjà dans un créneau existant');
                     return $this->redirectToRoute('add_define_dates');
                 }
-                dump($date);
+                
             }
-            die;
+            
 
             if($dateDeb > $dateFin){
-                $this->addFlash('danger', 'Erreur! Date de début supérieur à la date de fin');
+                $this->addFlash('danger', 'Erreur! La date de fin se trouve avant la date de début');
                 return $this->redirectToRoute('add_define_dates');
             }
             $entityManager = $this->getDoctrine()->getManager();

@@ -17,18 +17,25 @@ class ContactController extends AbstractController
     public function index(Request $request,\Swift_Mailer $mailer)
     {
         $formContact = $this->createForm(ContactType::class);
+        
         $formContact->handleRequest($request);
 
         if ($formContact->isSubmitted() && $formContact->isValid()) {
             $contact = $formContact->getData();
-
+            $toEmail = [];
+            foreach ($contact['users'] as $user) {
+                $toEmail[] =  $user->getEmail();
+            }
+            
+            // dd($contact);
+            // dd($contact);
             // Ici nous enverrons l'e-mail
             // On crée le message
             $message = (new \Swift_Message('Nouveau contact'))
                 // On attribue l'expéditeur
-                ->setFrom($contact['email'])
+                ->setFrom('servicefortuneindustry@gmail.com')
                 // On attribue le destinataire
-                ->setTo('servicefortuneindustry@gmail.com')
+                ->setTo($toEmail)
                 // On crée le texte avec la vue
                 ->setBody(
                     $this->renderView(
@@ -40,9 +47,15 @@ class ContactController extends AbstractController
             $mailer->send($message);
 
 
-            $this->addFlash('success', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.'); // Permet un message flash de renvoi
-        }
+            $this->addFlash('success', 'Votre message a été transmis.');        }
         return $this->render('admin/contact/index.html.twig',['formContact' => $formContact->createView()]);
+    }
+
+    /**
+     * @Route("/admin/email/vue",name="vue_email")
+     */
+    public function vue(){
+        return $this->render('layouts/emails/contact.html.twig');
     }
 
 }
