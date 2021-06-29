@@ -79,9 +79,9 @@ define_dates:
     path: /admin/acces-au-site
     controller: App\Controller\Admin\AccessController::dates_index
 
-add_define_dates:
-    path: /admin/acces-au-site/ajouter
-    controller: App\Controller\Admin\AccessController::add_dates_index
+# add_define_dates:
+#     path: /admin/acces-au-site/ajouter
+#     controller: App\Controller\Admin\AccessController::add_dates_index
 
 edit_define_dates:
     path: /admin/acces-au-site/edition/{id}

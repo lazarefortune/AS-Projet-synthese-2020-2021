@@ -17,12 +17,18 @@ class DateAccessSoutType extends AbstractType
             ->add('dateDebut', DateTimeType::class, [
                 'label' => false,
                 'widget' => 'single_text',
+                'attr' => [
+                    'required' => true,
+                    'value' => date("Y-m-d H:i", strtotime("now") )
+                ]
                 ])
             ->add('dateFin', DateTimeType::class , [
                 'label' => false,
                 'widget' => 'single_text',
                 'attr' => [
-                    'id' => 'datepicker'
+                    'id' => 'datepicker',
+                    'required' => true,
+                    'value' => date("Y-m-d H:i", strtotime("now") )
                 ],
                 ])
             ->add('motif')

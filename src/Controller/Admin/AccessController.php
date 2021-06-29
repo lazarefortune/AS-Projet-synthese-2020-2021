@@ -5,10 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\DateAccesSout;
 use App\Form\DateAccessSoutType;
 use App\Repository\DateAccessRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccessController extends AbstractController
 {
@@ -29,6 +30,7 @@ class AccessController extends AbstractController
 
     /**
      * @IsGranted("ROLE_SUPER_ADMIN")
+     * @Route("/admin/acces-au-site/ajouter", name="add_define_dates")
      */
     public function add_dates_index(Request $request): Response
     {
@@ -39,18 +41,29 @@ class AccessController extends AbstractController
         $formDateAccess->handleRequest($request);
         if ($formDateAccess->isSubmitted() && $formDateAccess->isValid()) {
             // dd($formDateAccess);
-
             $dateTime = $formDateAccess->getData();
             $dateDeb = $dateTime->getDateDebut();
             $dateFin = $dateTime->getDateFin();
-            dump($dateDeb);
-            dump($dateFin);
-            dump($dateDeb < $dateFin);
-            if($dateDeb < $dateFin){
-                $this->addFlash('danger', 'Erreur! Date de début supérieur à la date de fin');
-                return $this->redirectToRoute('define_dates');
+            // dump($dateDeb);
+            // dump($dateFin);
+            // dump($dateDeb < $dateFin);
+
+            $datesRepo = $this->getDoctrine()->getRepository(DateAccesSout::class);
+
+            $allDates = $datesRepo->findAll();
+            foreach($allDates as $date){
+                if ( ($dateDeb > $date->getDateDebut() && $dateDeb < $date->getDateFin()) || ($dateFin > $date->getDateDebut() && $dateFin < $date->getDateFin()) ) {
+                    $this->addFlash('danger', 'Erreur! Ce créneau est déjà dans un créneau existant');
+                    return $this->redirectToRoute('add_define_dates');
+                }
+                dump($date);
             }
             die;
+
+            if($dateDeb > $dateFin){
+                $this->addFlash('danger', 'Erreur! Date de début supérieur à la date de fin');
+                return $this->redirectToRoute('add_define_dates');
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($dateTime);
             $entityManager->flush();
