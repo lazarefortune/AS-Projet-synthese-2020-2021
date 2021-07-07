@@ -1,0 +1,85 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block head_javascripts %}
+	<!-- tiny text editor script -->
+	<!-- <script src="https://cdn.tiny.cloud/1/w8lxv8u1047tpk94wqg0uln8oh3ke8uqu13jmt49skfg1wvd/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --><script src="https://cdn.tiny.cloud/1/ri13hgfps3gifxkj8xnsnom2tpqd5iwzl2nbpwavr7qasiu0/tinymce/5/tinymce.min.js" referrerpolicy="origin"> </script>
+	{# <script>
+		tinymce.init({selector: 'textarea'});
+	</script> #}
+ 
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+  <script>
+      tinymce.init({
+        selector: '#contact_message2'
+      });
+    </script>
+{% endblock %}
+
+{% block admin_content %}
+
+	<div class=" m-0 m-md-5 m-lg-5 email-app">
+		<main>
+			{% include 'layouts/flash-messages.html.twig' %}
+
+			<p class="text-center">Nouveau message</p>
+
+
+			{# <form method="post" enctype="multipart/form-data"> #}
+			{{ form_start(formContact) }}
+
+			{{ form_rest(formContact) }}
+			<div id="fileList" class="row my-2"></div>
+
+
+			{# <div class="col-md-12 form-group d-flex justify-content-between">
+				<button type="reset" class="btn btn-outline-danger" onclick="javascript:deleteList()">Annuler</button>
+				<button type="submit" class="btn btn-primary px-5">
+					<i class="fas fa-paper-plane"></i>
+					Envoyer</button>
+			</div> #}
+			<!-- <div class="row">
+			                  <div class="col-sm-12">
+			                    <div class="form-group mt-4">
+			                      <label for="">Message : </label>
+			                      <textarea class="form-control" id="message" rows="12">
+			
+			                      </textarea>
+			
+			                </div>
+			                <div class=" my-4 form-group">
+			                  <label for="attachFiles">Joindre des fichiers</label>
+			                  <input type="file" class="form-control" id="attachFiles" name="attachFiles" multiple>
+			                </div>
+			                <div class="form-group d-flex justify-content-between">
+			                  <button type="reset" class="btn btn-outline-warning">Annuler</button>
+			                  <button type="submit" class="btn btn-primary px-5"><i class="fas fa-paper-plane"></i> Envoyer</button>
+			                </div>
+			              </div>
+			            </div> -->
+			{{ form_end(formContact) }}
+			{# </form> #}
+		</main>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		updateList = function () {
+var input = document.getElementById('contact_fichiers');
+var output = document.getElementById('fileList');
+var children = "";
+for (var i = 0; i < input.files.length; ++ i) {
+children += '<li class="list-group-item">' + input.files.item(i).name + '</li>';
+}
+output.innerHTML = ' <small>Vos fichiers</small> <ul class="list-group list-group-flush">' + children + '</ul>';
+}
+
+deleteList = function () {
+var output = document.getElementById('fileList');
+var children = "";
+output.innerHTML = '<ul class="list-group list-group-flush">' + children + '</ul>';
+}
+	</script>
+{% endblock %}

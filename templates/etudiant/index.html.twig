@@ -1,0 +1,60 @@
+{% extends "layouts/etudiant.html.twig" %}
+
+{% block etud_content %}
+	<div class="row">
+		<div class="col-md-9 mx-auto">
+
+			{% if etudiant %}
+				<div class="card card-fluid mt-4">
+					<h5 class="card-header"> {{ app.user.nom }} {{ app.user.prenom }} </h5>
+					<div class="card-body">
+						Votre projet :
+						<p class="text-primary">
+							{{ etudiant.idGroupeEtud.idProjet.titre }}
+						</p>
+						Votre promotion :
+						<p class="text-primary">
+							{{ etudiant.idPromo.nomPromo }}
+						</p>
+						Votre date de soutenance :
+						<p class="text-primary">
+							{{ etudiant.idPromo.dateSout|date('d/m/Y') }}
+						</p>
+					
+					</div>
+				</div>
+			{% else %}
+				<div class="row">
+					<div class="col-md-9 mx-auto">
+						<div class="alert alert-primary d-flex align-items-center" role="alert">
+							<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+							<div>
+								<h5 class="text-center">Vous n'avez pas encore de groupe de projet tuteuré
+								</h5>
+								<p>
+									Vous pouvez :
+									<ul>
+										<li>Contacter l'administrateur</li>
+										<li>Patienter qu'un projet soit rattaché à votre compte</li>
+									</ul>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				{# <div class="alert alert-danger">
+										<h5 class="text-center">Vous n'avez pas encore de groupe de projet tuteuré
+										</h5>
+				                        <p> Vous pouvez :
+				                            <ul>
+				                                <li>Contacter l'administrateur</li>
+				                                <li>Patienter qu'un projet soit rattaché à votre compte</li>
+				                            </ul>
+				                        </p>
+									</div> #}
+			{% endif %}
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layouts/admin.html.twig" %}
+
+
+{% block admin_content %}
+
+	<div class="container ">
+
+
+		<div class="align-content-end mb-2">
+			<a href="{{ path('define_dates') }}">
+				<button class="btn btn-sm btn-primary " type="button">
+					<i class="fas fa-list"></i>
+					Liste des créneaux</button>
+			</a>
+		</div>
+
+		<div class="card mt-3">
+			<div class="card-header">
+				<h5 class="text-center">Ajouter un créneaux d'accès au site</h5>
+
+			</div>
+			<div class="card-body">
+				{% include 'layouts/flash-messages.html.twig' %}
+				
+				{{ form_start(formDateAccess) }}
+
+
+				<div class="row">
+					<div class="col-md-6">
+						<h6>Date de début</h6>
+						{# <input class="form-control" type="date" name="" id="">  #}
+						{# <input class="form-control mt-2" type="time" name="" id=""> #}
+						{{ form_row(formDateAccess.dateDebut) }}
+					</div>
+					<div class="col-md-6">
+						<h6>Date de fin</h6>
+						{# <input class="form-control" type="date" name="" id="">  #}
+						{# <input class="form-control mt-2" type="time" name="" id=""> #}
+						{{ form_row(formDateAccess.dateFin) }}
+					</div>
+				</div>
+
+				<div class="row mt-4">
+					<div class="col-md-5">
+						<h6>Roles</h6>
+						<select class="form-select" aria-label="test">
+							<option>Selectionner</option>
+							<option selected value="['ROLE_ADMIN',['ROLE_ADMIN','ROLE_EVALUATOR']]">@Tous (Evaluateur + Etudiant)</option>
+							<option value="['ROLE_ADMIN']">@Evaluateur</option>
+							<option value="['ROLE_EVALUATOR']">@Etudiant</option>
+						</select>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-5">
+						<h6>Motif</h6>
+						<select name="date_access_sout[motif]" class="form-select" aria-label="motif">
+							<option value="soutenance">Soutenance</option>
+							<option value="avant soutenance">Avant la soutenance</option>
+							<option value="saisie des disponibilites">Saisie des disponibilités</option>
+							<option value="consultation">Consultation des notes</option>
+						</select>
+						{% do formDateAccess.motif.setRendered %}
+					</div>
+				</div>
+
+				<button class="btn btn-success mt-4" type="submit">
+					<i class="fas fa-plus"></i>
+					Ajouter ce crénaux</button>
+
+
+				{{ form_end(formDateAccess) }}
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}

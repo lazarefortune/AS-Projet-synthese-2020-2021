@@ -1,0 +1,18 @@
+<h6 name="title_sujet" class="title_card mb-3">{{ groupe.idProjet.titre }}</h6>
+                <ul>
+                    <p class="nom_card font-italic">
+                    {% for eval in groupe.idProjet.idEval %}
+                        <li> {{ eval.nom }} </li>
+                    {% endfor %}
+                    </p>
+                    <p class="grp_card">
+                        Groupe n°{{ groupe.numero }} :
+                        <ul>
+                            {% for etudiant in etudiants %}
+                                {% if groupe.numero == etudiant.idGroupeEtud.numero %}
+                                    <li>{{ etudiant.idUser.nom }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </ul>

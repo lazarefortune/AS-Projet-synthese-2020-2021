@@ -1,0 +1,82 @@
+{% extends "layouts/admin_simple.html.twig" %}
+
+{% block admin_content %}
+    <main class="auth auth-floated">
+        <!-- .auth-announcement -->
+        <div id="announcement" class="auth-announcement" style="background-image: url(assets/images/illustration/img-1.png);">
+          <div class="announcement-body">
+            <h2 class="announcement-title"> Espace des Projets Tuteurés (EPT) </h2>
+              <div class="jumbotron">
+                  <p class="blockquote">
+                      
+                      <strong>Bienvenue sur l'interface des projets tuteurés !</strong> <br>
+                      Vous pourrez accéder aux informations concernant les projets tutoeurés.
+                  </p>
+              </div>
+
+          </div>
+        </div>
+
+
+        <form class="auth-form" method="post">
+          <div class="mb-4">
+              <a href="{{ path('home') }}">
+                  <div class="mb-3">
+                      <img class="rounded" src="{{ asset('assets/images/Logo_IUT_Metz.Info_UL.small.png') }}" alt="" height="72">
+                  </div>
+              </a>
+            <h1 class="h3"> Connexion </h1>
+          </div>
+          {% include 'layouts/flash-messages.html.twig' %}
+          {% if error %}
+              <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+          {% endif %}
+
+          <div class="form-group mb-4">
+            <label class="d-block text-left" for="username">Identifiant</label>
+            <input type="text" name="username" id="username" class="form-control form-control-lg" required="">
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="d-block text-left" for="password">Mot de passe</label>
+              <input type="password" name="password" id="password" class="form-control form-control-lg" required="">
+          </div>
+
+
+          <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+
+
+          <div class="form-group mb-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+          </div>
+
+{#           
+          Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+          See https://symfony.com/doc/current/security/remember_me.html #}
+          <!-- 
+          <div class="form-group text-center">
+            <div class="custom-control custom-control-inline custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="remember-me"> <label class="custom-control-label" for="remember-me">Rester connecté</label>
+            </div>
+          </div>-->
+
+          <div class="checkbox mb-2">
+              <label>
+                  <label for="remember_me"></label>
+                  <input type="checkbox" id="remember_me" name="_remember_me" checked> Rester connecté
+              </label>
+          </div>
+         
+
+          <p class="pb-2">
+            <a href="{{ path('forgotten_password') }}" class="link text-secondary">Mot de passe oublié ?</a>
+          </p>
+
+
+          {# <p class="mb-0 px-3 text-muted text-center"> © 2021 Tous les droits sont réservés. #}
+          </p>
+        </form>
+
+      </main>
+{% endblock %}

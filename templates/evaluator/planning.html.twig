@@ -1,0 +1,31 @@
+{% extends 'layouts/eval.html.twig' %}
+
+{% block title %}Planning des évaluations{% endblock %}
+
+{% block eval_content %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <!-- .card -->
+            <div class="card card-fluid">
+                <!-- /.card-header -->
+                <div class="card-header">
+                    Planning évaluations
+                </div>
+                <!-- /.card-header -->
+                <!-- .card-body -->
+                <div class="card-body">
+                    <div id='calendar'>
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src={{ asset('assets/fullcalendar/main.js') }}></script>
+    <script src={{ asset('assets/js/planning.js') }}></script>
+{% endblock %}

@@ -1,0 +1,277 @@
+{% extends "layouts/admin.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/evaluator.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block admin_content %}
+    <!-- .page-navs -->
+    <nav class="page-navs mb-4">
+        <!-- .nav-scroller -->
+        <div class="row nav-scroller">
+            <!-- .nav -->
+            <div class="nav nav-tabs col-md-10" id="nav-tabs" role="tablist">
+                <a href="#nav-list" class="nav-link active" id="nav-list-tab" data-toggle="tab" role="tab"
+                   aria-controls="nav-list" aria-selected="true">Consulter</a>
+                <a href="#nav-addform" class="nav-link" id="nav-addform-tab" data-toggle="tab" role="tab"
+                   aria-controls="nav-addform" aria-selected="false">Ajouter</a>
+            </div>
+            <!-- /.nav -->
+        </div>
+        <!-- /.nav-scroller -->
+    </nav>
+    <!-- /.page-navs -->
+    {% include 'layouts/flash-messages.html.twig' %}
+    <!-- tab-content -->
+    <div class="row tab-content justify-content-center" id="nav-tabContent">
+        <!-- .tabe-pane -->
+        <div class="col-md-10 tab-pane fade show active" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+            <!-- .card -->
+            <div class="card card-fluid">
+                <!-- .card-header -->
+                <div class="card-header">
+                    <span>Liste des évaluateurs</span>
+                </div>
+                <!-- /.card-header -->
+                <!-- .card-body -->
+                <div class="card-body">
+                    <!-- form-group -->
+                    <div class="form-group">
+                        <!-- .input-group -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            </div>
+                            <input id="searchEval" type="text" class="form-control" placeholder="Recherche">
+                        </div>
+                        <!-- /.input-group -->
+                    </div>
+                    <!-- /.form-group -->
+                    <!-- .table-responsive -->
+                    <div class="table-responsive">
+                        <!-- .table -->
+                        <table id="eval" class="table">
+                            <!-- thead -->
+                            <thead>
+                            <tr>
+                                <th>
+                                    <!-- .dropdown -->
+                                    <div id="email-dd" class="dropdown">
+                                        <button class="btn btn-primary btn-sm rounded-2 dropdown-toggle" type="button"
+                                                id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-envelope"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <li>
+                                                <button class="dropdown-item" type="button">Tous</button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" type="button">Sélection</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Encadrant</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <!-- /thead -->
+                        <!-- tbody -->
+                        <tbody id="search-result">
+                        {% for user in users %}
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="{{ user.idUser }}">
+                                </td>
+                                <td> {{ user.nom }} </td>
+                                <td> {{ user.prenom }} </td>
+                                <td>    {% if user.leadProject() %}
+                                            <div class="eval"><i class="far fa-check-circle"></i></div>
+                                        {% else %}
+                                            <div class="encadrant"><i class="far fa-times-circle"></i></div>
+                                        {% endif %}
+                                </td>
+                                <td>
+                                    <ul class="list-inline mb-0 mr-2 justify-content-end">
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-success btn-sm rounded-2 update" type="button" href="{{ path('update_eval', {id: user.idUser}) }}"
+                                                    data-bs-toggle="modal" data-bs-target="#update-{{ user.idUser }}">
+                                                <i class="fa fa-edit"></i>
+                                                Modifier
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-danger btn-sm rounded-2" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#delete-{{ user.idUser }}">
+                                                <i class="fa fa-trash"></i>
+                                                Supprimer
+                                            </a>
+                                            <!-- Modal Edit -->
+                                            <div class="modal fade" id="update" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-primary">
+                                                                Modification d'un évaluateur </h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body" id="update-form">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal Delete -->
+                                            <div class="modal fade" id="delete-{{ user.idUser }}" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-danger">
+                                                                Attention !! </h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form action="{{ path('delete_eval', {id: user.idUser}) }}" method="post">
+                                                            <div class="modal-body">
+                                                                Vous êtes sur le point de supprimer :
+                                                                <p class="h6 mt-3"> {{ user.nom }}  {{ user.prenom }} </p>
+                                                                <p>Cette action est irréversible, souhaitez vous continuer
+                                                                    ?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-danger delete">
+                                                                    <i class="fa fa-trash"></i>
+                                                                    Supprimer
+                                                                </button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Annuler
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <!-- /tbody -->
+                    </table>
+                    <!-- /.table -->
+                    {{ knp_pagination_render(users,'pagination.html.twig') }}
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.tab-pane -->
+    <!-- .tab-pane -->
+    <div class="col-md-10 tab-pane fade" id="nav-addform" role="tabpanel" aria-labelledby="nav-list-tab">
+        <!-- .card -->
+        <div class="card card-fluid">
+            <!-- .card-header -->
+            <div class="card-header">
+                <span>Formulaire d'ajout</span>
+            </div>
+            <!-- /.card-header -->
+            <!-- .card-body -->
+            <div class="card-body">
+                <!-- form -->
+                {{ form_start(form) }}
+                <div class="form-row">
+                    <!-- form column -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="form_nomEval">Nom <span class="text-danger">*</span> </label>
+                            {{ form_widget(form.nom) }}
+                            {{ form_errors(form.nom) }}
+
+                        </div>
+                    </div>
+                    <!-- /form column -->
+                    <!-- form column -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="input02">Prénom <span class="text-danger">*</span></label>
+                            {{ form_widget(form.prenom) }}
+                            {{ form_errors(form.prenom) }}
+                        </div>
+                    </div>
+                    <!-- /form column -->
+                </div>
+                <!-- /form row -->
+                <!-- .form-group -->
+                <div class="form-group">
+                    <label for="input03">Adresse e-mail <span class="text-danger">*</span></label>
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+                <!-- /.form-group -->
+                <!-- .form-group -->
+                <div class="form-group">
+                    <label for="identifiant">Identifiant de connexion</label>
+                    {{ form_widget(form.login) }}
+                    {{ form_errors(form.login) }}
+                </div>
+                <!-- /.form-group -->
+                <!-- .form-group -->
+                <div class="form-group" id="inputPassword">
+                    <label for="password">Mot de passe</label>
+                    <i class="far fa-eye togglePassword"></i>
+                    {{ form_widget(form.password) }}
+                    {{ form_errors(form.password) }}
+                </div>
+                <!-- /.form-group -->
+                <!-- .form-group -->
+                <div class="form-group">
+                    <label for="roles">Rôle (un seul choix possible)</label>
+                    {{ form_widget(form.roles) }}
+                    {{ form_errors(form.roles) }}
+                </div>
+                <!-- /.form-group -->
+                <!-- .form-actions -->
+                <div class="form-actions">
+                    {{ form_widget(form.save, {'label' : 'Enregistrer'}) }}
+                </div>
+                <!-- /.form-actions -->
+                {{ form_end(form) }}
+                <!-- /form -->
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.tab-pane-->
+    </div>
+    <!-- /.tab-content -->
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/evaluator.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        const input = document.querySelector('#searchEval');
+        input.addEventListener('keyup', searchFunc);
+
+        function searchFunc(e){
+            e.preventDefault();
+            const url = "http://localhost/projet/public/admin/evaluateurs/" + input.value
+            //console.log(url);
+            axios.get(url).then(function(response) {
+                console.log(response);
+            })
+        }
+    </script>
+{% endblock %}

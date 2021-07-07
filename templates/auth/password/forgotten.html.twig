@@ -1,0 +1,78 @@
+{% extends "layouts/admin_simple.html.twig" %}
+
+{% block admin_content %}
+
+	<main
+		class="auth">
+		<!-- form -->
+		<div class="auth-form auth-form-reflow">
+			{{ form_start(emailForm) }}
+			<div class="text-center mb-4">
+				<a href="{{ path('home') }}">
+					<div
+						class="mb-4">
+						{# <img class="rounded" src="assets/apple-touch-icon.png" alt="" height="72"> #}
+						<img class="rounded" src="{{ asset('assets/images/Logo_IUT_Metz.Info_UL.small.png') }}" alt="" height="72">
+					</div>
+				</a>
+
+				<h3 class="h4">
+					Réinitialisation du mot de passe
+				</h3>
+			</div>
+			{# <p class="mb-4">
+                sqoijqs
+			</p> #}
+			<!-- .form-group -->
+			<div
+				class="form-group mb-4">
+				{# {{ form(emailForm) }} #}
+				{% include 'layouts/flash-messages.html.twig' %}
+				<label class="d-block text-left" for="inputUser">Identifiant ou adresse e-mail</label>
+				<input type="text" name="reset_pass[email]" id="inputUser" class="form-control form-control-lg" required="" autofocus="">
+				{% do emailForm.email.setRendered %}
+				<p class="text-muted">
+					<small>Nous vous enverrons un lien de réinitialisation de mot de passe à votre adresse e-mail.</small>
+				</p>
+			</div>
+			<!-- /.form-group -->
+			<!-- actions -->
+			<div class="d-block d-md-inline-block mb-2">
+				<button class="btn btn-block btn-primary" type="submit">Réinitialiser</button>
+			</div>
+			<div class="d-block d-md-inline-block">
+				<a href="{{ path('app_login') }}" class="btn btn-block btn-light">Retour à la connexion</a>
+			</div>
+			{{ form_end(emailForm) }}
+		</div>
+		<!-- /.auth-form -->
+		<footer class="auth-footer mt-5">
+			© 2021 Tous les droits sont réservés.
+		</footer>
+	</main>
+	<!-- /.auth -->
+
+	{# <main
+		class="jumbotron auth">
+		<!-- form -->
+		<div class="auth-form">
+			<div class="mb-4">
+				<a href="{{ path('home') }}">
+					<div class="mb-3">
+						<img class="rounded" src="{{ asset('assets/images/Logo_IUT_Metz.Info_UL.small.png') }}" alt="" height="72">
+					</div>
+				</a>
+				<h5 class="h5 mt-4">
+					Mot de passe oublié
+				</h5>
+				<div class="legend">
+					<p>Vous allez recevoir un lien de réinitialisation de votre mot de passe par email</p>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.auth-form -->
+	</main>
+	<!-- /.auth --> #}
+
+{% endblock %}
