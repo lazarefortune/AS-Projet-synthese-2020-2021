@@ -1,5 +1,5 @@
 # Gestion des soutenances de fin d'année
-> Projet de tuteuré de l'année spéciale 2020-2021
+> Projet tuteuré de l'année spéciale 2020-2021
 
 ## Installation
 
